@@ -8,6 +8,9 @@ DAT_LINES_QUERY_URL = (
     "nws_damageassessmenttoolkit/DamageViewer/MapServer/1/query"
 )
 
+DEFAULT_BBOX = "-91.8,28.5,-87.8,31.5"
+
+
 def fetch_dat_lines(start_date, end_date, bbox, output):
     """
     bbox format:
@@ -15,6 +18,9 @@ def fetch_dat_lines(start_date, end_date, bbox, output):
     Example for LIX-ish area:
     -91.8,28.5,-87.8,31.5
     """
+
+    if not bbox:
+        bbox = DEFAULT_BBOX
 
     params = {
         "f": "geojson",
@@ -43,7 +49,9 @@ def fetch_dat_lines(start_date, end_date, bbox, output):
     with output.open("w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
+    print(f"Used bbox: {bbox}")
     print(f"Wrote {len(data.get('features', []))} DAT line features to {output}")
+
 
 def main():
     p = argparse.ArgumentParser()
@@ -51,7 +59,9 @@ def main():
     p.add_argument("--end", required=True, help="End date YYYY-MM-DD")
     p.add_argument(
         "--bbox",
-        default="-91.8,28.5,-87.8,31.5",
+        nargs="?",
+        const=DEFAULT_BBOX,
+        default=DEFAULT_BBOX,
         help="min_lon,min_lat,max_lon,max_lat",
     )
     p.add_argument(
@@ -62,6 +72,7 @@ def main():
     args = p.parse_args()
 
     fetch_dat_lines(args.start, args.end, args.bbox, args.output)
+
 
 if __name__ == "__main__":
     main()
