@@ -1,4 +1,4 @@
-name: Run tornado crossing workflow
+name: Run Tornado Crossing Workflow
 
 on:
   workflow_dispatch:
@@ -20,17 +20,19 @@ permissions:
   contents: write
 
 jobs:
-  run:
+  calculate:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install packages
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Fetch parish/county boundaries
@@ -39,10 +41,10 @@ jobs:
       - name: Fetch DAT damage lines
         run: |
           python scripts/fetch_dat_tracks.py \
-            --start "${{ github.event.inputs.start_date }}" \
-            --end "${{ github.event.inputs.end_date }}" \
-            --bbox "${{ github.event.inputs.bbox }}" \
-            --output data/dat_damage_lines.geojson
+            --start "${{ inputs.start_date }}" \
+            --end "${{ inputs.end_date }}" \
+            --bbox "${{ inputs.bbox }}" \
+            --output "data/dat_damage_lines.geojson"
 
       - name: Commit fetched data
         run: |
