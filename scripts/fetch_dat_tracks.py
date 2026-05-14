@@ -1,6 +1,7 @@
 from pathlib import Path
 import argparse
 import json
+import sys
 import requests
 
 DAT_LINES_QUERY_URL = (
@@ -9,6 +10,30 @@ DAT_LINES_QUERY_URL = (
 )
 
 DEFAULT_BBOX = "-91.8,28.5,-87.8,31.5"
+
+
+def normalize_args(argv):
+    """Make argparse handle bbox values that begin with a minus sign.
+
+    A bbox like -91.8,28.5,-87.8,31.5 starts with '-', so argparse can
+    mistake it for another option when passed as: --bbox -91.8,...
+    This rewrites it to: --bbox=-91.8,... before argparse sees it.
+    """
+    fixed = []
+    i = 0
+    while i < len(argv):
+        item = argv[i]
+        if item == "--bbox":
+            if i + 1 < len(argv) and "," in argv[i + 1]:
+                fixed.append(f"--bbox={argv[i + 1]}")
+                i += 2
+                continue
+            fixed.append(f"--bbox={DEFAULT_BBOX}")
+            i += 1
+            continue
+        fixed.append(item)
+        i += 1
+    return fixed
 
 
 def fetch_dat_lines(start_date, end_date, bbox, output):
@@ -59,8 +84,6 @@ def main():
     p.add_argument("--end", required=True, help="End date YYYY-MM-DD")
     p.add_argument(
         "--bbox",
-        nargs="?",
-        const=DEFAULT_BBOX,
         default=DEFAULT_BBOX,
         help="min_lon,min_lat,max_lon,max_lat",
     )
@@ -69,7 +92,7 @@ def main():
         default="data/dat_damage_lines.geojson",
         help="Output GeoJSON path",
     )
-    args = p.parse_args()
+    args = p.parse_args(normalize_args(sys.argv[1:]))
 
     fetch_dat_lines(args.start, args.end, args.bbox, args.output)
 
