@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "tornado_id": "SAMPLE_EF1_001",
+        "start_time": "2026-05-14 20:29",
+        "end_time": "2026-05-14 20:42"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-90.70, 30.50],
+          [-90.65, 30.53],
+          [-90.60, 30.56]
+        ]
+      }
+    }
+  ]
+}
