@@ -1,0 +1,12 @@
+{
+  "tracks_file": "data/dat_tracks.geojson",
+  "boundaries_file": "data/parishes.geojson",
+  "output_csv": "output/tornado_crossing_times.csv",
+  "track_id_field": "tornado_id",
+  "start_time_field": "start_time",
+  "end_time_field": "end_time",
+  "boundary_name_field": "NAME",
+  "timezone": "America/Chicago",
+  "track_length_field_miles": null,
+  "projected_crs": "EPSG:5070"
+}
