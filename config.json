@@ -1,0 +1,12 @@
+{
+  "tracks_file": "data/dat_damage_lines.geojson",
+  "boundaries_file": "data/parish_county_boundaries.geojson",
+  "output_csv": "output/tornado_crossing_times.csv",
+  "track_id_field": "event_id",
+  "start_time_field": "starttime",
+  "end_time_field": "endtime",
+  "boundary_name_field": "boundary_name",
+  "timezone": "America/Chicago",
+  "track_length_field_miles": "length",
+  "projected_crs": "EPSG:5070"
+}
