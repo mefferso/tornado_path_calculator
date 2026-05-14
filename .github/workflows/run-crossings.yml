@@ -46,10 +46,19 @@ jobs:
             --bbox "${{ inputs.bbox }}" \
             --output "data/dat_damage_lines.geojson"
 
-      - name: Commit fetched data
+      - name: Calculate crossing times
+        run: python scripts/calculate_crossing_times.py --config config.json
+
+      - name: Upload output CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: tornado-crossing-times
+          path: output/tornado_crossing_times.csv
+
+      - name: Commit generated files
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data/*.geojson
-          git commit -m "Fetch DAT tracks and boundaries" || echo "No changes to commit"
+          git add data/*.geojson output/*.csv
+          git commit -m "Update DAT tracks and crossing times" || echo "No changes to commit"
           git push
