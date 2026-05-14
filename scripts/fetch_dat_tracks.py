@@ -1,5 +1,6 @@
 from pathlib import Path
 import argparse
+from datetime import datetime, timezone, timedelta
 import json
 import sys
 import requests
@@ -36,6 +37,17 @@ def normalize_args(argv):
     return fixed
 
 
+def date_to_epoch_ms(date_text, end_of_day=False):
+    """Convert YYYY-MM-DD to ArcGIS epoch milliseconds in UTC.
+
+    If end_of_day=True, return the last millisecond of that calendar date.
+    """
+    dt = datetime.strptime(date_text, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    if end_of_day:
+        dt = dt + timedelta(days=1) - timedelta(milliseconds=1)
+    return int(dt.timestamp() * 1000)
+
+
 def fetch_dat_lines(start_date, end_date, bbox, output):
     """
     bbox format:
@@ -47,6 +59,9 @@ def fetch_dat_lines(start_date, end_date, bbox, output):
     if not bbox:
         bbox = DEFAULT_BBOX
 
+    start_ms = date_to_epoch_ms(start_date, end_of_day=False)
+    end_ms = date_to_epoch_ms(end_date, end_of_day=True)
+
     params = {
         "f": "geojson",
         "where": "1=1",
@@ -57,11 +72,9 @@ def fetch_dat_lines(start_date, end_date, bbox, output):
         "inSR": "4326",
         "spatialRel": "esriSpatialRelIntersects",
         "outSR": "4326",
+        "time": f"{start_ms},{end_ms}",
         "resultRecordCount": 2000,
     }
-
-    # DAT layer is time-enabled, but field names can be squirrelly.
-    # Keep bbox first. We can tighten date filtering after seeing real attributes.
 
     r = requests.get(DAT_LINES_QUERY_URL, params=params, timeout=60)
     r.raise_for_status()
@@ -74,8 +87,16 @@ def fetch_dat_lines(start_date, end_date, bbox, output):
     with output.open("w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
+    feature_count = len(data.get("features", []))
     print(f"Used bbox: {bbox}")
-    print(f"Wrote {len(data.get('features', []))} DAT line features to {output}")
+    print(f"Used date window: {start_date} through {end_date}")
+    print(f"Used ArcGIS time: {start_ms},{end_ms}")
+    print(f"Wrote {feature_count} DAT line features to {output}")
+
+    if feature_count:
+        props = data["features"][0].get("properties", {})
+        print("First feature property fields:")
+        print(", ".join(sorted(props.keys())))
 
 
 def main():
