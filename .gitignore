@@ -1,6 +1,4 @@
 __pycache__/
 *.pyc
 .env
-output/*.csv
-output/*.xlsx
 .DS_Store
