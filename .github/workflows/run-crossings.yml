@@ -1,0 +1,29 @@
+name: Calculate Tornado Crossings
+
+on:
+  workflow_dispatch:
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run crossing calculator
+        run: python scripts/calculate_crossing_times.py --config config.json
+
+      - name: Upload output CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: tornado-crossing-times
+          path: output/tornado_crossing_times.csv
