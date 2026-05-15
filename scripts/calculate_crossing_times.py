@@ -142,8 +142,16 @@ def from_to_names(
     )
 
 
-def extract_crossing_points(line: LineString, boundary_union) -> list[Point]:
-    intersection = line.intersection(boundary_union.boundary)
+def extract_crossing_points(line: LineString, boundary_lines) -> list[Point]:
+    """Return points where a track crosses parish/county boundary lines.
+
+    Important: do NOT dissolve county polygons and then use the dissolved
+    polygon boundary. That removes internal county/parish lines and only leaves
+    the outside edge of the whole LA/MS/AL boundary dataset. Instead, this uses
+    the union of each polygon's boundary rings, so internal shared boundaries
+    remain available for intersection.
+    """
+    intersection = line.intersection(boundary_lines)
     points: list[Point] = []
 
     if intersection.is_empty:
@@ -162,6 +170,9 @@ def extract_crossing_points(line: LineString, boundary_union) -> list[Point]:
                 points.append(g.interpolate(g.length / 2))
     elif isinstance(intersection, LineString):
         points.append(intersection.interpolate(intersection.length / 2))
+    elif intersection.geom_type == "MultiLineString":
+        for g in intersection.geoms:
+            points.append(g.interpolate(g.length / 2))
 
     return points
 
@@ -198,7 +209,11 @@ def calculate(cfg: Config) -> pd.DataFrame:
 
     tracks_proj = tracks.to_crs(cfg.projected_crs)
     boundaries_proj = boundaries.to_crs(cfg.projected_crs)
-    boundary_union = boundaries_proj.geometry.union_all()
+
+    # Use all individual county/parish polygon boundary rings. This preserves
+    # internal boundaries. Using boundaries_proj.geometry.union_all().boundary
+    # dissolves internal boundaries and causes a header-only CSV.
+    boundary_lines = boundaries_proj.geometry.boundary.union_all()
 
     rows = []
 
@@ -227,7 +242,7 @@ def calculate(cfg: Config) -> pd.DataFrame:
         duration_minutes = duration_seconds / 60.0
         avg_speed_mph = total_miles / (duration_minutes / 60.0) if duration_minutes > 0 else None
 
-        pts = extract_crossing_points(line, boundary_union)
+        pts = extract_crossing_points(line, boundary_lines)
         crossings = []
         for pt in pts:
             dist_m = line.project(pt)
@@ -246,6 +261,8 @@ def calculate(cfg: Config) -> pd.DataFrame:
             crossing_time = start + pd.Timedelta(seconds=measured_fraction * duration_seconds)
 
             before_name, after_name = from_to_names(boundaries_proj, line, dist_m, cfg.boundary_name_field)
+            if before_name == after_name:
+                continue
 
             pt_wgs = gpd.GeoSeries([pt_proj], crs=cfg.projected_crs).to_crs("EPSG:4326").iloc[0]
 
@@ -269,7 +286,7 @@ def calculate(cfg: Config) -> pd.DataFrame:
                     "boundary_to": after_name,
                     "crossing_lon": round(pt_wgs.x, 6),
                     "crossing_lat": round(pt_wgs.y, 6),
-                    "review_flag": "CHECK" if before_name == after_name or before_name is None or after_name is None else "",
+                    "review_flag": "CHECK" if before_name is None or after_name is None else "",
                 }
             )
 
