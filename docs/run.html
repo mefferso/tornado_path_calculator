@@ -13,7 +13,6 @@
       --border: #cbd5e1;
       --accent: #0369a1;
       --accent-dark: #075985;
-      --danger: #991b1b;
       --soft: #f8fafc;
       --shadow: 0 18px 50px rgba(0,0,0,.25);
     }
@@ -27,120 +26,27 @@
       padding: 28px;
     }
     .wrap { max-width: 820px; margin: 0 auto; }
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 18px;
-      color: white;
-    }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; color: white; }
     h1 { margin: 0; font-size: 26px; letter-spacing: .2px; }
     .topbar a { color: #bae6fd; font-weight: 750; text-decoration: none; }
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-    .intro {
-      margin: 0 0 18px;
-      color: var(--muted);
-      line-height: 1.45;
-      font-size: 15px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,.2); border-radius: 18px; box-shadow: var(--shadow); padding: 22px; }
+    .intro { margin: 0 0 18px; color: var(--muted); line-height: 1.45; font-size: 15px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .full { grid-column: 1 / -1; }
-    label {
-      display: block;
-      font-weight: 800;
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-    input {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 11px 12px;
-      font-size: 16px;
-      background: white;
-    }
-    input:focus {
-      outline: 3px solid rgba(56,189,248,.25);
-      border-color: #0284c7;
-    }
-    .hint {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 5px;
-    }
-    .warning {
-      background: #fff7ed;
-      color: #7c2d12;
-      border: 1px solid #fed7aa;
-      border-radius: 14px;
-      padding: 12px 14px;
-      margin: 18px 0;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-      align-items: center;
-    }
-    button, .button-link {
-      border: 0;
-      border-radius: 12px;
-      padding: 12px 16px;
-      font-weight: 850;
-      font-size: 15px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-    button {
-      background: var(--accent);
-      color: white;
-    }
+    label { display: block; font-weight: 800; margin-bottom: 6px; font-size: 14px; }
+    input { width: 100%; border: 1px solid var(--border); border-radius: 12px; padding: 11px 12px; font-size: 16px; background: white; }
+    input:focus { outline: 3px solid rgba(56,189,248,.25); border-color: #0284c7; }
+    .hint { color: var(--muted); font-size: 12px; margin-top: 5px; }
+    .warning { background: #fff7ed; color: #7c2d12; border: 1px solid #fed7aa; border-radius: 14px; padding: 12px 14px; margin: 18px 0; font-size: 14px; line-height: 1.4; }
+    .buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; align-items: center; }
+    button, .button-link { border: 0; border-radius: 12px; padding: 12px 16px; font-weight: 850; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-block; }
+    button { background: var(--accent); color: white; }
     button:hover { background: var(--accent-dark); }
-    .button-link {
-      background: #e2e8f0;
-      color: #0f172a;
-    }
-    .status {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: var(--soft);
-      border: 1px solid #e2e8f0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .small {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 14px;
-      line-height: 1.45;
-    }
-    code {
-      background: #e2e8f0;
-      padding: 2px 5px;
-      border-radius: 6px;
-    }
-    @media (max-width: 700px) {
-      body { padding: 16px; }
-      .grid { grid-template-columns: 1fr; }
-      h1 { font-size: 22px; }
-    }
+    .button-link { background: #e2e8f0; color: #0f172a; }
+    .status { margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: var(--soft); border: 1px solid #e2e8f0; color: var(--muted); font-size: 14px; line-height: 1.4; }
+    .small { font-size: 12px; color: var(--muted); margin-top: 14px; line-height: 1.45; }
+    code { background: #e2e8f0; padding: 2px 5px; border-radius: 6px; }
+    @media (max-width: 700px) { body { padding: 16px; } .grid { grid-template-columns: 1fr; } h1 { font-size: 22px; } }
   </style>
 </head>
 <body>
@@ -156,7 +62,7 @@
         The backend securely triggers the GitHub Actions workflow without exposing your GitHub token in this page.
       </p>
 
-      <form id="runForm" method="post" target="workflow_result">
+      <form id="runForm" method="post" target="_blank">
         <div class="grid">
           <div>
             <label for="start_date">Start date</label>
@@ -188,7 +94,7 @@
         </div>
 
         <div class="warning">
-          After submitting, a result tab/window will open from Google Apps Script. If it says the workflow started,
+          After submitting, a new tab will open from Google Apps Script. If it says the workflow started,
           give GitHub a couple minutes, then refresh the map.
         </div>
 
@@ -198,8 +104,6 @@
           <a class="button-link" href="./" target="_blank">Open map</a>
         </div>
       </form>
-
-      <iframe name="workflow_result" title="Workflow trigger result" style="width:100%;height:230px;border:1px solid #cbd5e1;border-radius:14px;margin-top:18px;background:white;"></iframe>
 
       <div class="status" id="status">
         Waiting for setup. Paste your Apps Script web app URL and run key, then submit.
@@ -243,7 +147,7 @@
       localStorage.setItem('tornadoAppsScriptUrl', url);
       localStorage.setItem('tornadoRunKey', runKey);
       form.action = url;
-      statusBox.textContent = `Submitted ${start} through ${end}. Watch the result box below, then check GitHub Actions.`;
+      statusBox.textContent = `Submitted ${start} through ${end}. A Google Apps Script result tab should open. Then check GitHub Actions.`;
     });
   </script>
 </body>
