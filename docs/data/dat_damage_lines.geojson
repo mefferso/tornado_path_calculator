@@ -1,0 +1,2005 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 2583186,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -89.912810772,
+            31.51331046400003
+          ],
+          [
+            -89.89203974600002,
+            31.50731014500002
+          ],
+          [
+            -89.87787768200002,
+            31.50669728600002
+          ],
+          [
+            -89.86732050699999,
+            31.50596550900002
+          ],
+          [
+            -89.85950991499999,
+            31.504209220000007
+          ],
+          [
+            -89.847150296,
+            31.503111521999983
+          ],
+          [
+            -89.83848139600002,
+            31.502086992999978
+          ],
+          [
+            -89.83109995699999,
+            31.499818353000023
+          ],
+          [
+            -89.81753870799997,
+            31.498647419999998
+          ],
+          [
+            -89.811672461,
+            31.49707660399997
+          ],
+          [
+            -89.802316916,
+            31.496088601999986
+          ],
+          [
+            -89.78845525899999,
+            31.495539706999978
+          ],
+          [
+            -89.773134481,
+            31.49261221400002
+          ],
+          [
+            -89.76360727500003,
+            31.490599508999992
+          ],
+          [
+            -89.75502420599997,
+            31.491807137000023
+          ],
+          [
+            -89.74446703199999,
+            31.49250243099999
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2583186,
+        "event_id": "Jefferson Davis Tornado 1",
+        "stormdate": 1773279060000,
+        "starttime": 1773279060000,
+        "endtime": 1773279900000,
+        "startlat": 31.5133,
+        "startlon": -89.9128,
+        "endlat": 31.4925,
+        "endlon": -89.7445,
+        "length": 10.1334,
+        "width": 500,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 100,
+        "globalid": "{91B509A6-3126-4A57-A591-99A92FAF050B}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773355725000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1777628508000,
+        "comments": "An EF-1 tornado touched down just west of MS Highway 13 near Mapp Turner Road and moved east-southeast across Greens Creek Road, Friendship Road, Martin Bass Road, Carson-Bunker Hill Road and Hunnicut Road before crossing MS Highway 35. It lifted near Bassfield-Cemetery Road as it merged with the Choctaw Road tornado. The tornado uprooted and snapped multiple trees along the path and downed power lines. A few trees were down on a couple buildings and homes. Some tin damage was noted to some sheds and skirting blown away from a mobile home.",
+        "st_length(shape)": 0.17079130361223335,
+        "wfo": "JAN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2583189,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -89.792703878,
+            31.511788609999996
+          ],
+          [
+            -89.78450704800002,
+            31.50897138900001
+          ],
+          [
+            -89.77867056100001,
+            31.504214849999983
+          ],
+          [
+            -89.77369238099999,
+            31.501104673999976
+          ],
+          [
+            -89.76476598900001,
+            31.497518695999986
+          ],
+          [
+            -89.75446630699997,
+            31.49367642300001
+          ],
+          [
+            -89.74961687299998,
+            31.492724979000002
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2583189,
+        "event_id": "Chocktaw Road Tornado",
+        "stormdate": 1773279660000,
+        "starttime": 1773279660000,
+        "endtime": 1773279840000,
+        "startlat": 31.5118,
+        "startlon": -89.7927,
+        "endlat": 31.4927,
+        "endlon": -89.7496,
+        "length": 2.8993,
+        "width": 250,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 105,
+        "globalid": "{322544DB-73DC-41E0-9555-9EBC6FDFE414}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773356158000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1777622631000,
+        "comments": "An EF-1 tornado began west of Chocktaw Road, tracked east-southeast into the west side of the town of Bassfield, and dissipated shortly after crossing MS Hwy 35 as it . Numerous trees were snapped and uprooted on the south and southwest side of Chocktaw Rd. A mobile home had the roof heavily damaged. A tree was down on a vehicle, and power lines were blown down. A wooden building was damaged on the edge of a pond as well. A well defined path of snapped and uprooted trees was left from just south of Chocktaw Rd southeastward to north of Dyess Trail. Estimated peak winds were 105 mph. Max width was 250 yards. Path length was 2.22 miles.",
+        "st_length(shape)": 0.04762122334145567,
+        "wfo": "JAN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2583190,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -89.80743885300001,
+            31.476938857999983
+          ],
+          [
+            -89.78126049299999,
+            31.477246302000026
+          ],
+          [
+            -89.75570011999997,
+            31.472502786000007
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2583190,
+        "event_id": "Bass Burkett Tornado",
+        "stormdate": 1773279660000,
+        "starttime": 1773279660000,
+        "endtime": 1773279840000,
+        "startlat": 31.4769,
+        "startlon": -89.8074,
+        "endlat": 31.4725,
+        "endlon": -89.7557,
+        "length": 3.0901,
+        "width": 400,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 90,
+        "globalid": "{AC185634-C180-4B5F-A397-BC1338EB07F8}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773356244000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773870678000,
+        "comments": "An EF-1 tornado touched down along Carson Bunkerhill Road, moved east across Bass Burkett Road and Lofton Drive, and dissipated as it crossed MS Highway 35. A few trees were snapped, but mostly trees were uprooted along the path. A couple power lines were down as well.",
+        "st_length(shape)": 0.052176965313041904,
+        "wfo": "JAN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2583192,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -89.71817493700001,
+            31.48964564099998
+          ],
+          [
+            -89.69093227399998,
+            31.492602499999975
+          ],
+          [
+            -89.60515067,
+            31.497403287999987
+          ],
+          [
+            -89.57605406599998,
+            31.501428361000023
+          ],
+          [
+            -89.55442473300002,
+            31.507063172000016
+          ],
+          [
+            -89.519405812,
+            31.520014633000017
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2583192,
+        "event_id": "Gum Swamp Tornado",
+        "stormdate": 1773279960000,
+        "starttime": 1773279960000,
+        "endtime": 1773280980000,
+        "startlat": 31.4896,
+        "startlon": -89.7182,
+        "endlat": 31.52,
+        "endlon": -89.5194,
+        "length": 12.0217,
+        "width": 700,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 105,
+        "globalid": "{2AC5C351-5D15-43B0-A2D4-10D1557A3A1F}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773356779000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773870678000,
+        "comments": "An EF-1 tornado touched down just east of MS Highway 42, tracked east, and dissipated in Covington County near MS Highway 589. Trees were damaged along Hosey Mikell, Ridgeland, Stubbs, and Willie Buckley roads. A notable increase in intensity was seen as the tornado approached and crossed Gum Swamp Road around Fairman Lane. Hundreds of trees were snapped and uprooted in the area. Some minor damage was done to a few structures on the east side of Gum Swamp Rd. The tornado continued east into Covington County at Sumrall Road where additional trees were uprooted. The tornado continued northeast and ended along MS Highway 589 where it uprooted a tree and snapped some large branches.",
+        "st_length(shape)": 0.202380634028626,
+        "wfo": "JAN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2583577,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.11003846099999,
+            30.59496318800001
+          ],
+          [
+            -90.07529849000002,
+            30.581811313000003
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2583577,
+        "event_id": "Blond",
+        "stormdate": 1773282060000,
+        "starttime": 1773282060000,
+        "endtime": 1773282240000,
+        "startlat": 30.595,
+        "startlon": -90.11,
+        "endlat": 30.5818,
+        "endlon": -90.0753,
+        "length": 2.2599,
+        "width": 50,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 80,
+        "globalid": "{08DA68E0-DF8E-41EF-8978-AEE2C49A8002}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773360024000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773680833000,
+        "comments": "An EF-0 tornado rapidly developed within a line of storms near Blond, LA in St. Tammany Parish. This tornado predominantly uprooted and damaged tree branches and rotten trunks as it tracked from Allison Rd east-southeast through LA Hwy 40 before dissipating near Lee Road Junior High School.",
+        "st_length(shape)": 0.037146162669839465,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2584374,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.38062753700001,
+            31.40290694700002
+          ],
+          [
+            -90.35891237300001,
+            31.40385930399998
+          ],
+          [
+            -90.330845738,
+            31.399390469000025
+          ],
+          [
+            -90.29797258399998,
+            31.391624447000027
+          ],
+          [
+            -90.27145090099998,
+            31.389572938000015
+          ],
+          [
+            -90.25849046799999,
+            31.38774119499999
+          ],
+          [
+            -90.246130848,
+            31.386935216999973
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2584374,
+        "event_id": "Fox Road Tornado",
+        "stormdate": 1773277020000,
+        "starttime": 1773277020000,
+        "endtime": 1773277620000,
+        "startlat": 31.4029,
+        "startlon": -90.3806,
+        "endlat": 31.3869,
+        "endlon": -90.2461,
+        "length": 8.0695,
+        "width": 700,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 105,
+        "globalid": "{B3086D47-91AA-490C-AE7F-2440F15807E2}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773356733000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773870678000,
+        "comments": "An EF-1 tornado touched down along Glade Lane and tracked east-southeast across Fox Road and through the north side of the Ruth and Bristerville communities. The tornado dissipated near the intersection of Silverton Trail and Orchard Lane, but additional straightline wind damage to trees and power lines continued south and east of the tornado path.",
+        "st_length(shape)": 0.13601026218669668,
+        "wfo": "JAN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587572,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.03877079300003,
+            30.59973007100001
+          ],
+          [
+            -90.02911483999998,
+            30.597177132000013
+          ],
+          [
+            -90.02179538500002,
+            30.594402478000006
+          ],
+          [
+            -90.00171437799997,
+            30.587283255999978
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587572,
+        "event_id": "Waldheim",
+        "stormdate": 1773282480000,
+        "starttime": 1773282480000,
+        "endtime": 1773282660000,
+        "startlat": 30.5997,
+        "startlon": -90.0388,
+        "endlat": 30.5873,
+        "endlon": -90.0017,
+        "length": 2.3712,
+        "width": 50,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 75,
+        "globalid": "{F43363EE-9EF0-4347-A69F-45F4EFD3FB8B}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773360196000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773680851000,
+        "comments": "Another EF-0 tornado rapidly developed within a line of storms subsequently after the dissipation of an EF-0 tornado to its southwest. This tornado caused minor tree damage along a defined path from a private residence west of LA Hwy 1082 and Elderberry Ln east-southeast to LA Hwy 1083 near Oalmann Rd.",
+        "st_length(shape)": 0.0391210909521201,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587573,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.68924277600001,
+            30.91379662700001
+          ],
+          [
+            -90.68117469100002,
+            30.908052714999997
+          ],
+          [
+            -90.66830342700001,
+            30.897013265999988
+          ],
+          [
+            -90.654456073,
+            30.886938971000006
+          ],
+          [
+            -90.63858217,
+            30.872664557999997
+          ],
+          [
+            -90.58390263299998,
+            30.833683946999997
+          ],
+          [
+            -90.56278828299997,
+            30.82439739
+          ],
+          [
+            -90.524773058,
+            30.812054439000008
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587573,
+        "event_id": "Liverpool",
+        "stormdate": 1773278220000,
+        "starttime": 1773278220000,
+        "endtime": 1773279180000,
+        "startlat": 30.9138,
+        "startlon": -90.6892,
+        "endlat": 30.8121,
+        "endlon": -90.5248,
+        "length": 12.1783,
+        "width": 200,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 95,
+        "globalid": "{DF92F8C5-DB6E-43FA-8C02-754A872E8B9B}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773362150000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775760157000,
+        "comments": "An EF-1 tornado quickly spun up along a line of strong thunderstorms near Liverpool LA, south of LA 1043. This tornado caused predominantly uprooted and snapped trees as it tracked southeast. It began to track more east-southeast as it approached I-55, bringing a few trees down along the interstate before dissipating.",
+        "st_length(shape)": 0.19551993059552963,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587581,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.4045016,
+            30.92766592700002
+          ],
+          [
+            -90.36270932399998,
+            30.909696782000026
+          ],
+          [
+            -90.31103924899998,
+            30.880383240000015
+          ],
+          [
+            -90.28314172300003,
+            30.868373174
+          ],
+          [
+            -90.23721137500002,
+            30.85454364499998
+          ],
+          [
+            -90.22160367200001,
+            30.845607813000015
+          ],
+          [
+            -90.21324691799998,
+            30.839857629999983
+          ],
+          [
+            -90.201507203,
+            30.831906478000008
+          ],
+          [
+            -90.19396362700002,
+            30.824904661999994
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587581,
+        "event_id": "Lewistown",
+        "stormdate": 1773279480000,
+        "starttime": 1773279480000,
+        "endtime": 1773280920000,
+        "startlat": 30.9277,
+        "startlon": -90.4045,
+        "endlat": 30.8249,
+        "endlon": -90.194,
+        "length": 14.4863,
+        "width": 200,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 95,
+        "globalid": "{02E27589-2FF3-4353-AD58-9AF99E46D086}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773366430000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773707295000,
+        "comments": "A tornado rapidly developed within a strong line of thunderstorms southeast of Lewiston, LA along LA 38. This tornado predominantly caused minor tree damage as it tracked southeastward, maintaining EF-0 intensity until it reached LA Hwy 440. The tornado strengthened, uprooting trees and snapping large branches and the tops of trunks as it LA Hwy 10 and moved into Sylvest Rd. Additional tree damage was identified downstream of the surveyed end point of this tornado via high resolution satellite imagery which evidently dissipated prior to it reaching LA Hwy 16, west of Franklinton. ",
+        "st_length(shape)": 0.2358376230396969,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587583,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.171482599,
+            30.841517927999973
+          ],
+          [
+            -90.15431646100001,
+            30.834295716999975
+          ],
+          [
+            -90.14185610999999,
+            30.823057601000016
+          ],
+          [
+            -90.12777987700002,
+            30.813770015999978
+          ],
+          [
+            -90.120398438,
+            30.809568194999997
+          ],
+          [
+            -90.111815369,
+            30.803818035999996
+          ],
+          [
+            -90.10347489100002,
+            30.796410278999986
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587583,
+        "event_id": "Franklinton",
+        "stormdate": 1773281040000,
+        "starttime": 1773281040000,
+        "endtime": 1773281580000,
+        "startlat": 30.8415,
+        "startlon": -90.1715,
+        "endlat": 30.7964,
+        "endlon": -90.1035,
+        "length": 5.1437,
+        "width": 300,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 105,
+        "globalid": "{0A99A630-F888-41C3-A067-28C9DB9642DC}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773367478000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773681354000,
+        "comments": "An EF-1 tornado quickly spun up along a line of strong thunderstorms just east of Franklinton Louisiana. The tornado tracked southeastward through southern areas of Franklinton, causing moderate roof damage to a Floral Shop and damaging a business sign. As it crossed LA 16 it caused minor roof damage to homes and an apartment building while also causing a couple trees to fall on a home and shed. After the tornado crossed south of LA 1072 it caused moderate damage to a forecast, snapping about 40-50 small pine trees. This was the peak intensity of the tornado. This tornado caused several uprooted and snapped trees along its path. Finally the tornado tracked further southeast, before dissipating east of LA 1072 north of Fussell Road. ",
+        "st_length(shape)": 0.08224728530835605,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587584,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.58741043999999,
+            30.799001600999986
+          ],
+          [
+            -90.51693031899998,
+            30.80147635999998
+          ],
+          [
+            -90.44066498000001,
+            30.79436582699998
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587584,
+        "event_id": "Roseland",
+        "stormdate": 1773278940000,
+        "starttime": 1773278940000,
+        "endtime": 1773279720000,
+        "startlat": 30.799,
+        "startlon": -90.5874,
+        "endlat": 30.7944,
+        "endlon": -90.4407,
+        "length": 8.7565,
+        "width": 175,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 85,
+        "globalid": "{44DFBBF3-CE12-452F-BB4E-2500CA203D67}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773369332000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1778789859000,
+        "comments": "An EF-0 tornado with maximum sustained winds of 85 mph rapidly developed along a line of thunderstorms, near Hwy 1047 and Deer Creek Rd, near the Tangipahoa and St. Helena Parish border. The crossed the parish line and into a solar farm where a weak tornado debris signature became evident on KHDC. Only minor tree damage was evident along this section of Interstate 55. Additional tree damage including uproots and snapped tree tops were evident between I-55 and Hwy 51 which was collocated with a stronger tornado debris signature on KHDC. The tornado likely peaked in strength and size in this area. Thereafter, the tornado crossed the Tangipahoa River and began moving east-southeast toward LA Hwy 10. The tornado caused mostly uprooted trees and snapped large limbs off of trees along LA Hwy 10 before it dissipated just east of LA 1054.",
+        "st_length(shape)": 0.1471196495318023,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587587,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.62871801099999,
+            30.606446295000012
+          ],
+          [
+            -90.60331212699998,
+            30.59433033800002
+          ],
+          [
+            -90.58065282500002,
+            30.577483685999994
+          ],
+          [
+            -90.550440423,
+            30.557086454
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587587,
+        "event_id": "Tickfaw",
+        "stormdate": 1773279060000,
+        "starttime": 1773279060000,
+        "endtime": 1773279540000,
+        "startlat": 30.6064,
+        "startlon": -90.6287,
+        "endlat": 30.5571,
+        "endlon": -90.5504,
+        "length": 5.7936,
+        "width": 50,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 65,
+        "globalid": "{33F377D9-53E2-4BF2-AD4C-4F876B9BD5CD}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773416033000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775761181000,
+        "comments": "A 65 MPH EF0 tornado touched down north of Albany, LA and tracked southeast. The damage was large branches and tree debris along the line that also lines up with the radar signature.",
+        "st_length(shape)": 0.09283591858535663,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587598,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.53627260100001,
+            31.267212905000008
+          ],
+          [
+            -90.52841909300002,
+            31.26724958699998
+          ],
+          [
+            -90.516681747,
+            31.269853981999972
+          ],
+          [
+            -90.51009424099999,
+            31.273118545999978
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587598,
+        "event_id": "Magnolia Pisgah Rd Tornado",
+        "stormdate": 1773276480000,
+        "starttime": 1773276480000,
+        "endtime": 1773276600000,
+        "startlat": 31.2672,
+        "startlon": -90.5363,
+        "endlat": 31.2731,
+        "endlon": -90.5101,
+        "length": 1.6322,
+        "width": 375,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 110,
+        "globalid": "{116AEB55-1A79-4D84-A8D0-13122B412B4A}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773439713000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773528026000,
+        "comments": "A strong EF-1 tornado touched down south of Hwy 570 near Moak Rd in Pike County, MS. This tornado rapidly strengthened and grew in size as it tracked to the east-northeast causing destruction of a wood frame farm outbuilding and increasingly significant treefall as it crossed Kodiak Ln and Magnolia Pisgah Rd. While there was a high proportion of treefall associated with this tornado in this area, a significant portion was due to uprooted trees from soft soils due to recent heavy rainfall. As such, maximum sustained winds were estimated near 110 mph despite the heavy deforestation. This level of heavy deforestation spanning approximately 375 yards wide at peak width continued across Hwy 570 to Dye Ln where tree damage rapidly became less significant. It's estimated that this tornado rapidly lifted as it crossed Magee Rd.",
+        "st_length(shape)": 0.027228460402055798,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587599,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.50843004699999,
+            31.26678641000001
+          ],
+          [
+            -90.50437812400003,
+            31.26423491700001
+          ],
+          [
+            -90.49486318499999,
+            31.257409543999984
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587599,
+        "event_id": "Oakland",
+        "stormdate": 1773276660000,
+        "starttime": 1773276660000,
+        "endtime": 1773276780000,
+        "startlat": 31.2668,
+        "startlon": -90.5084,
+        "endlat": 31.2574,
+        "endlon": -90.4949,
+        "length": 1.0309,
+        "width": 175,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 90,
+        "globalid": "{B2FB69DE-ED7B-4FA0-A583-72C316C735F1}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773440193000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773681156000,
+        "comments": "A subsequent EF-1 tornado rapidly developed along Hwy 570, northwest of McComb, MS on the evening of March 11th. This tornado damage path was distinctly different to the predecessor tornado along Hwy 570 as most of the confluent damage was directed southeast and east as the KHDC velocity signature denoted the strong rotation center of this tornado diving southeastward along the highway. This tornado uprooted several trees, snapped the tops of tree trunks, tossed a golf cart approximately 70 yards, and caused minor roof damage to a couple homes as it tracked along the highway. Additional tree damage was near Delaware Avenue where confluence of damage direction was identified. These damage path characteristics are subject to change.",
+        "st_length(shape)": 0.01649815521539126,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2587603,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.511978323,
+            31.323783253999977
+          ],
+          [
+            -90.50107782600003,
+            31.318834004999985
+          ],
+          [
+            -90.47155206899998,
+            31.31304122099999
+          ],
+          [
+            -90.46038454299998,
+            31.308350108000013
+          ],
+          [
+            -90.45119054000003,
+            31.303912054000023
+          ],
+          [
+            -90.44563928899998,
+            31.297399809000012
+          ],
+          [
+            -90.436038172,
+            31.295833155000025
+          ],
+          [
+            -90.42568365300002,
+            31.294331667999984
+          ],
+          [
+            -90.41332880200002,
+            31.28462949300001
+          ],
+          [
+            -90.39907137300003,
+            31.27462473600002
+          ],
+          [
+            -90.38762251600002,
+            31.271506945999988
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2587603,
+        "event_id": "Summit, MS Tornado",
+        "stormdate": 1773276480000,
+        "starttime": 1773276480000,
+        "endtime": 1773277200000,
+        "startlat": 31.3238,
+        "startlon": -90.512,
+        "endlat": 31.2715,
+        "endlon": -90.3876,
+        "length": 8.426,
+        "width": 300,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 105,
+        "globalid": "{8412592A-D8D6-4EE3-A796-A003C015444C}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773445793000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775753956000,
+        "comments": "An EF-1 tornado with peak estimated winds near 105 mph touched down near Johnston Chapel Rd. A broadly defined area of uprooted and damaged trees was identified via high resolution satellite imagery near the beginning of this path which continued east-southeast across Old Brookhaven Rd and Interstate 55. This damage was corroborated by a storm report with pictures of numerous uprooted trees near Chapel Dr. The tornado began to strengthen and increase in size with complex multi-vortex behaviors evident according to the damage path present after crossing I-55. Numerous trees were snapped and uprooted along US Hwy 51, Rollingwood Drive, and Johnston Station Rd. Additional tree damage was surveyed near Lakeside Drive on Southwest Mississippi Community College campus. The tornado continued east destroying a cinderblock dugout at North Pike High School. More tree damage was also identified on Barrett Drive and Jaguar Trail. Scattered pockets of wind damage were evident via ground survey across Barnett Rd and L.D. White Rd, but the most cohesive damage points representative of a tornado damage path were evident to the southeast as the multi-vortex tornado continued to produce patches and swaths of tree damage on high resolution satellite imagery near Hwy 570 and and River Ridge Rd. The tornado damage path evidently became incoherent after crossing River Ridge Rd and it's estimated the tornado lifted prior to reaching Hwy 44.",
+        "st_length(shape)": 0.13812250091741854,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2589573,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.33518509800001,
+            30.922249163999993
+          ],
+          [
+            -88.306345986,
+            30.917757557000016
+          ],
+          [
+            -88.295798349,
+            30.91485303600001
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2589573,
+        "event_id": "Georgetown 1",
+        "stormdate": 1773290940000,
+        "starttime": 1773290940000,
+        "endtime": 1773291180000,
+        "startlat": 30.9222,
+        "startlon": -88.3352,
+        "endlat": 30.9149,
+        "endlon": -88.2958,
+        "length": 2.3982,
+        "width": 30,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 85,
+        "globalid": "{37AA4E7F-A79A-4AD3-AFB0-A24112824FE6}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773452529000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "The EF-0 tornado began along Mason Ferry Rd west of Georgetown Alabama where it resulted in a few large branches snapped. The tornado continued through the forest on the north side of Mason Ferry rd before reaching McDavid rd where large branches and a large softwood tree was uprooted in a clear convergent pattern. This is likely where the tornado ended. The tornado may have reached peak intensity within the woods; however, the peak intensity that survey crews were able to find was around 85 mph. ",
+        "st_length(shape)": 0.0401270351959515,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2589574,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.29440572599998,
+            30.912439731999996
+          ],
+          [
+            -88.293144493,
+            30.912294499999973
+          ],
+          [
+            -88.29044718199998,
+            30.91117590800002
+          ],
+          [
+            -88.28760477899999,
+            30.909751862000007
+          ],
+          [
+            -88.286460369,
+            30.908499957999993
+          ],
+          [
+            -88.27043711099998,
+            30.903519508999977
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2589574,
+        "event_id": "Georgetown 2",
+        "stormdate": 1773291180000,
+        "starttime": 1773291180000,
+        "endtime": 1773291360000,
+        "startlat": 30.9124,
+        "startlon": -88.2944,
+        "endlat": 30.9035,
+        "endlon": -88.2704,
+        "length": 1.5702,
+        "width": 110,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 90,
+        "globalid": "{44A72ED2-63CA-483D-B46E-205BD1000D5A}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773452714000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "The EF-1 tornado began south of Mason Ferry Rd just south of McDavid Rd. The start point was difficult to determine as the end point of another tornado and the start point of this tornado were close in proximity to each other. However, convergence patterns and radar analysis did suggest that these were indeed two separate tornadoes rather than one tornado. The tornado snapped a couple of softwood trunks and continued sporadically uprooting trees as it approached Brothers Lake Club Rd where it reached peak intensity of 90 mph near and around Brothers Lake Club Rd. The tornado then crosses Mason Ferry Rd and tracked into the forest before crossing Alabama 217 and finishing near Cleborne Rd. ",
+        "st_length(shape)": 0.02584439655387066,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2589578,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.55743230600001,
+            31.04464475399999
+          ],
+          [
+            -88.55410636699997,
+            31.04297177699999
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2589578,
+        "event_id": "Vernal",
+        "stormdate": 1773289380000,
+        "starttime": 1773289380000,
+        "endtime": 1773289440000,
+        "startlat": 31.0446,
+        "startlon": -88.5574,
+        "endlat": 31.043,
+        "endlon": -88.5541,
+        "length": 0.2285,
+        "width": 30,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 80,
+        "globalid": "{50B86A9C-0207-4801-AF68-FB1FE95F163A}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773455270000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "A weak and small EF-0 tornado occurred in the woods just west of highway 63 just north of Jake Hill Rd. A tree was uprooted and a few large branches snapped off along highway 63 as it crossed the road. The tornado likely dissipated just east of highway 63. ",
+        "st_length(shape)": 0.003722999096760479,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2589582,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -89.81142844200002,
+            31.404510531000028
+          ],
+          [
+            -89.79415501599999,
+            31.397697350999977
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2589582,
+        "event_id": "Bunker Hill Tornado",
+        "stormdate": 1773279780000,
+        "starttime": 1773279780000,
+        "endtime": 1773279900000,
+        "startlat": 31.4045,
+        "startlon": -89.8114,
+        "endlat": 31.3977,
+        "endlon": -89.7942,
+        "length": 1.1235,
+        "width": 75,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 75,
+        "globalid": "{0A7218A7-5CE8-4D9C-9D21-2A060C5EA4EB}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773507915000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1774833173000,
+        "comments": "This brief EF-0 started along Grice Road where it uprooted a couple of trees. The tornado crossed Bunker Hill Road and ended along Highway 35, where it uprooted a couple more trees. ",
+        "st_length(shape)": 0.018568539724266222,
+        "wfo": "JAN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2590774,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.36897254799999,
+            30.634561614999996
+          ],
+          [
+            -90.33361030399999,
+            30.626880733000007
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2590774,
+        "event_id": "Loranger",
+        "stormdate": 1773280500000,
+        "starttime": 1773280500000,
+        "endtime": 1773280680000,
+        "startlat": 30.6346,
+        "startlon": -90.369,
+        "endlat": 30.6269,
+        "endlon": -90.3336,
+        "length": 2.172,
+        "width": 25,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 65,
+        "globalid": "{A3221805-BA72-47F3-A83C-2D026181FCE6}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773545545000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773707703000,
+        "comments": "A EF-0 tornado touched down just east of Loranger. This was determined via a ground survey point and minor tree damage evident on high resolution satellite imagery. This track was collocated with a weak tornado debris signature evident on radar imagery from nearby KHDC.",
+        "st_length(shape)": 0.03618679661165306,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2590776,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -91.18099735700002,
+            31.309617623999998
+          ],
+          [
+            -91.16138504499997,
+            31.303090912000016
+          ],
+          [
+            -91.15344570600001,
+            31.298103905999994
+          ],
+          [
+            -91.144905553,
+            31.29029284400002
+          ],
+          [
+            -91.13859699699998,
+            31.287799034999978
+          ],
+          [
+            -91.12198875899998,
+            31.28306795200001
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2590776,
+        "event_id": "Perrytown",
+        "stormdate": 1773273300000,
+        "starttime": 1773273300000,
+        "endtime": 1773273660000,
+        "startlat": 31.3096,
+        "startlon": -91.181,
+        "endlat": 31.2831,
+        "endlon": -91.122,
+        "length": 4.0105,
+        "width": 100,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 85,
+        "globalid": "{94B87872-8A53-4371-8B2B-8415AD5F67AD}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773614338000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773704158000,
+        "comments": "The damage path of an EF-0 tornado with estimated peak winds near 85 mph was identified on high resolution satellite imagery in northeast Wilkinson County, just south of Perrytown, MS. Evident damage and displacement to trees were identified near Turkey Creek Rd which extended to the east-southeast through to Tom Crum Rd which was closely collocated to a strong area of rotation on KHDC. The majority of this damage path was inaccessible to ground survey and thus is rated via identifiable damage via satellite.",
+        "st_length(shape)": 0.06567155653045835,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2590778,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -91.02858014600002,
+            31.25915408100002
+          ],
+          [
+            -91.02085299999999,
+            31.251409093999996
+          ],
+          [
+            -91.01913638600001,
+            31.242676877000008
+          ],
+          [
+            -91.00677676700002,
+            31.23489791999998
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2590778,
+        "event_id": "Coles",
+        "stormdate": 1773274140000,
+        "starttime": 1773274140000,
+        "endtime": 1773274320000,
+        "startlat": 31.2592,
+        "startlon": -91.0286,
+        "endlat": 31.2349,
+        "endlon": -91.0068,
+        "length": 2.2198,
+        "width": 200,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 90,
+        "globalid": "{9E7823E9-00D8-4D2C-B02F-69A51D64D1D2}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773616637000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773707730000,
+        "comments": "The damage path of an EF-1 tornado with maximum sustained winds of 90 mph was identified via high resolution satellite imagery in northwest Amite County, north of Gloster, MS. This tornado caused damage and displacement to several trees including a swath west of Hwy 33 concurrent with an EF-1. Additional tree damage was identified along Hwy 33 near Homochitto Rd. This was corroborated by EM report of tree damage north of Gloster which also was collocated with a strong area of rotation on KHDC radar.",
+        "st_length(shape)": 0.03444365168311473,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2591972,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.81436947499998,
+            31.260955772999978
+          ],
+          [
+            -90.79960659599999,
+            31.253545196999994
+          ],
+          [
+            -90.75808750800002,
+            31.241019870999992
+          ],
+          [
+            -90.73566273300003,
+            31.22852103500003
+          ],
+          [
+            -90.70716694499998,
+            31.21853887499998
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2591972,
+        "event_id": "N Liberty",
+        "stormdate": 1773275220000,
+        "starttime": 1773275220000,
+        "endtime": 1773275820000,
+        "startlat": 31.261,
+        "startlon": -90.8144,
+        "endlat": 31.2185,
+        "endlon": -90.7072,
+        "length": 7.0207,
+        "width": 150,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 85,
+        "globalid": "{4A78CFC3-DDB1-4197-8311-6D3B80F84279}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1773629508000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1773707730000,
+        "comments": "The damage path of an EF-0 tornado with maximum sustained winds near 85 mph was identified on high resolution satellite imagery in rural Amite County, north of Liberty, MS. Damage to tree tops were identified west of Pecan Rd. A focused path of damaged and displaced trees continued east-southeast through Meadville and Freeman Rd. The tornado evidently lifted after crossing Hwy 569, prior to reaching Newman Rd where no other damage could be identified. This damage path was collocated with a strong area of rotation of KHDC radar imagery.",
+        "st_length(shape)": 0.1157520779640482,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2605572,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.65804551299999,
+            30.931369175999976
+          ],
+          [
+            -88.65733741000003,
+            30.931074679000005
+          ],
+          [
+            -88.64768145800002,
+            30.928368944
+          ],
+          [
+            -88.644055111,
+            30.927761524000005
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2605572,
+        "event_id": "Lucedale",
+        "stormdate": 1773289020000,
+        "starttime": 1773289020000,
+        "endtime": 1773289080000,
+        "startlat": 30.9314,
+        "startlon": -88.658,
+        "endlat": 30.9278,
+        "endlon": -88.6441,
+        "length": 0.8691000000000001,
+        "width": 30,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 75,
+        "globalid": "{416B8B96-9A92-4E6A-8F7B-72AFE46551F8}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1774969766000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "Available high resolution satellite imagery revealed a brief EF0 tornado occurred west of Lucedale just off of Country Hill Road. This tornado likely began further west with the start point being approximated based on radar data showing a tornado debris signature beginning in the vicinity of the ponds west of Country Hill Road. The tornado remained solely within forest causing minor tree damage.",
+        "st_length(shape)": 0.014471650550526578,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2605972,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -89.01151774599998,
+            31.069779503999996
+          ],
+          [
+            -89.01093838899999,
+            31.069540571999994
+          ],
+          [
+            -89.00804160299998,
+            31.068437802000005
+          ],
+          [
+            -89.00587437799999,
+            31.06762909600002
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2605972,
+        "event_id": "Janice",
+        "stormdate": 1773286320000,
+        "starttime": 1773286320000,
+        "endtime": 1773286380000,
+        "startlat": 31.0698,
+        "startlon": -89.0115,
+        "endlat": 31.0676,
+        "endlon": -89.0059,
+        "length": 0.366,
+        "width": 150,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 80,
+        "globalid": "{86589DFA-0483-450A-AF12-3209F21013AB}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1774969802000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505810000,
+        "comments": "Available high resolution satellite imagery revealed a brief EF0 tornado occurred solely within forest just east of FS Road 342 near Janice. The tornado caused minor tree damage to the forest for roughly a third of a mile before lifting. ",
+        "st_length(shape)": 0.0060394788476618305,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2605973,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.68465302700002,
+            31.058218194999995
+          ],
+          [
+            -88.68375180499999,
+            31.057152057999986
+          ],
+          [
+            -88.68194935999998,
+            31.056122672000015
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2605973,
+        "event_id": "Gatlin Creek",
+        "stormdate": 1773288480000,
+        "starttime": 1773288480000,
+        "endtime": 1773288540000,
+        "startlat": 31.0582,
+        "startlon": -88.6847,
+        "endlat": 31.0561,
+        "endlon": -88.6819,
+        "length": 0.21910000000000002,
+        "width": 30,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 75,
+        "globalid": "{54BEDAC7-9282-4570-98D9-7FD6B29472A1}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1774969835000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "Available high resolution satellite imagery revealed a brief EF0 tornado occurred just southeast of Gatlin Creek Road west of Vernal. This tornado caused just under a quarter mile of minor forest damage, crossing no accessible roads.",
+        "st_length(shape)": 0.0034716909388149003,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2605974,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.38804403199998,
+            31.38215942300002
+          ],
+          [
+            -90.304863366,
+            31.381774730000018
+          ],
+          [
+            -90.28032651799998,
+            31.378019307999978
+          ],
+          [
+            -90.27496209999998,
+            31.378568890999986
+          ],
+          [
+            -90.26543489300002,
+            31.37812922400002
+          ],
+          [
+            -90.255907686,
+            31.379228387000012
+          ],
+          [
+            -90.242968711,
+            31.377286524
+          ],
+          [
+            -90.22803417099999,
+            31.37519806199998
+          ],
+          [
+            -90.21093240599998,
+            31.37527134200002
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2605974,
+        "event_id": "Ruth Bristerville Tornado",
+        "stormdate": 1773277020000,
+        "starttime": 1773277020000,
+        "endtime": 1773277680000,
+        "startlat": 31.3822,
+        "startlon": -90.388,
+        "endlat": 31.3753,
+        "endlon": -90.2109,
+        "length": 10.5229,
+        "width": 1000,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 105,
+        "globalid": "{214583DF-BFB3-4C64-8B1E-76F935E0A2D7}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1774997089000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1777628737000,
+        "comments": "This tornado began near Pleasant Hill Dr and Elm Ln in southeastern Lincoln County and tracked eastward crossing MS Hwy 583 in the Ruth community. It then continued along Greenwood Rd and Raiford Trail, crossing Primitive Dr in the Bristerville community, then across Monument Trail and Junction Ln before crossing into southwestern Lawrence County  near the Verna community. It crossed Holmesville Rd and paralleled Verna Rd before lifting near Excell Boyd Rd. Along the path, countless trees were snapped or uprooted, some in large swaths, multiple outbuildings sustained damage, utility poles were damaged, a mobile home sustained roof and skirting damage, and a site built home sustained minor wind damage.",
+        "st_length(shape)": 0.17779003559202905,
+        "wfo": "JAN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2606772,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.26118627400001,
+            31.369262177999985
+          ],
+          [
+            -90.25633684000002,
+            31.369005680999976
+          ],
+          [
+            -90.25153032100002,
+            31.36882246800002
+          ],
+          [
+            -90.242217692,
+            31.367063606999977
+          ],
+          [
+            -90.23316255399999,
+            31.36570779599998
+          ],
+          [
+            -90.22754064399999,
+            31.365927659000022
+          ],
+          [
+            -90.22333493999997,
+            31.36545129000001
+          ],
+          [
+            -90.22011628899998,
+            31.36354578700002
+          ],
+          [
+            -90.21470895599998,
+            31.361786827999993
+          ],
+          [
+            -90.20827165399999,
+            31.362153279999973
+          ],
+          [
+            -90.20295015200003,
+            31.362043345000018
+          ],
+          [
+            -90.198014887,
+            31.360705784000004
+          ],
+          [
+            -90.194495829,
+            31.359258265999983
+          ],
+          [
+            -90.18842330799998,
+            31.357920665999984
+          ],
+          [
+            -90.18132853100002,
+            31.357020192999983
+          ],
+          [
+            -90.16658711000002,
+            31.352732375000016
+          ],
+          [
+            -90.15840252999999,
+            31.352091347999988
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2606772,
+        "event_id": "Jayess Tornado",
+        "stormdate": 1773277440000,
+        "starttime": 1773277440000,
+        "endtime": 1773277920000,
+        "startlat": 31.3693,
+        "startlon": -90.2612,
+        "endlat": 31.3521,
+        "endlon": -90.1584,
+        "length": 6.2688,
+        "width": 1000,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 110,
+        "globalid": "{844EAE48-3181-4321-B9B9-813232C9BE74}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1774997424000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1777621087000,
+        "comments": "This tornado began near Junction Ln and Ard Trail in far southeastern Lincoln County, crossing Holmesville Rd as it moved into far southwestern Lawrence County. It continued across Woody Rd, WS Cothern Rd, and MS Hwy 44, passing near the center of the Jayess community. It then tracked across Jessie Wallace Rd and Latrell Sanders Rd before lifting just north of the Walthall County line. Along the path, numerous trees were snapped or uprooted, some in large swaths. Utility poles were leaning or broken with several lines downed. Multiple homes and outbuildings sustained roof and siding damage, and a business received roof damage. A poultry farm southeast of Jayess sustained roof damage.",
+        "st_length(shape)": 0.1052056051452583,
+        "wfo": "JAN"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2614374,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.11394754600002,
+            30.951868463999972
+          ],
+          [
+            -88.11154428700002,
+            30.955254389000004
+          ],
+          [
+            -88.108089602,
+            30.957296927000016
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2614374,
+        "event_id": "Turnerville",
+        "stormdate": 1773292020000,
+        "starttime": 1773292020000,
+        "endtime": 1773292080000,
+        "startlat": 30.9519,
+        "startlon": -88.1139,
+        "endlat": 30.9573,
+        "endlon": -88.1081,
+        "length": 0.5222,
+        "width": 100,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 85,
+        "globalid": "{72BDF655-9940-4F07-952F-B024F0375F91}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1775499329000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "Available high resolution satellite imagery revealed a brief EF0 tornado occurred in the Turnerville area, tracking across Dixie Road and Salco Road. The tornado caused mainly minor tree damage along its track, reaching a peak width just across Salco Road around 100 yards wide.",
+        "st_length(shape)": 0.008165454022776405,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2614375,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.23646888799999,
+            30.504432470999973
+          ],
+          [
+            -88.22900161799998,
+            30.501918108999973
+          ],
+          [
+            -88.20814475999998,
+            30.49688919099998
+          ],
+          [
+            -88.16480026300002,
+            30.497776665999993
+          ],
+          [
+            -88.13879356400003,
+            30.50006927200002
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2614375,
+        "event_id": "Irvington",
+        "stormdate": 1773293760000,
+        "starttime": 1773293760000,
+        "endtime": 1773294420000,
+        "startlat": 30.5044,
+        "startlon": -88.2365,
+        "endlat": 30.5001,
+        "endlon": -88.1388,
+        "length": 5.9151,
+        "width": 50,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 75,
+        "globalid": "{499E521F-2BF9-4114-9BF0-290ABE6761D8}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1775500956000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "Available high resolution satellite imagery revealed a weak EF0 tornado tracked from Irvington through the Laurendine area causing sporadic minor tree damage all along its track. The track of the tornado is further supported by the presence of a radar tornado debris signature. ",
+        "st_length(shape)": 0.09879492781168386,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2614772,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.35874142199998,
+            30.51457770600001
+          ],
+          [
+            -88.357282301,
+            30.514485277000006
+          ],
+          [
+            -88.35127415199997,
+            30.51291397099999
+          ],
+          [
+            -88.34612550000003,
+            30.51334069400002
+          ],
+          [
+            -88.31545534100002,
+            30.511796070000003
+          ],
+          [
+            -88.30438317699998,
+            30.50705523900001
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2614772,
+        "event_id": "Cloverdale",
+        "stormdate": 1773293040000,
+        "starttime": 1773293040000,
+        "endtime": 1773293100000,
+        "startlat": 30.5146,
+        "startlon": -88.3587,
+        "endlat": 30.5071,
+        "endlon": -88.3044,
+        "length": 3.3392,
+        "width": 140,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 85,
+        "globalid": "{F22FBE92-883F-4D53-B6AA-FCC0C47FE59D}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1775500173000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "Available high resolution satellite imagery was able to reveal an EF0 tornado tracked north of Interstate 10 near Grand Bay. The tornado began north of Pascagoula Road solely in forest causing minor tree damage. While there is a gap in visible damage on satellite imagery, radar tornado debris signature persists east connecting with another small corridor of tree damage near Ramsey Road and Boe Road. This is where the end point of the tornado is estimated as any visible damage associated with the radar signature disappears after reaching I-10.",
+        "st_length(shape)": 0.05559203267180853,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2615172,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.33089754399998,
+            30.58059244100002
+          ],
+          [
+            -88.32699224800001,
+            30.58085106599998
+          ],
+          [
+            -88.32476064999997,
+            30.58181166600002
+          ],
+          [
+            -88.31720754899999,
+            30.583289492999995
+          ],
+          [
+            -88.312830184,
+            30.58255058200001
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2615172,
+        "event_id": "Dees",
+        "stormdate": 1773292800000,
+        "starttime": 1773292800000,
+        "endtime": 1773292920000,
+        "startlat": 30.5806,
+        "startlon": -88.3309,
+        "endlat": 30.5826,
+        "endlon": -88.3128,
+        "length": 1.1093,
+        "width": 200,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 85,
+        "globalid": "{34247E1A-5339-47C5-815E-78CEED53D774}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1775501185000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1775505809000,
+        "comments": "Available high resolution satellite imagery revealed a brief EF0 tornado tracked along Dawes Road just northeast of Dees. The tornado remained primarily within forest causing minor tree damage along its track. The track of the tornado is also supported by a radar tornado debris signature.",
+        "st_length(shape)": 0.01847902422020868,
+        "wfo": "MOB"
+      }
+    }
+  ]
+}
