@@ -27,6 +27,28 @@ from shapely.ops import linemerge
 
 M_PER_MILE = 1609.344
 
+OUTPUT_COLUMNS = [
+    "event_id",
+    "stormdate",
+    "wfo",
+    "efscale",
+    "start_time",
+    "end_time",
+    "duration_minutes",
+    "measured_track_miles",
+    "total_track_miles_used",
+    "avg_speed_mph",
+    "crossing_index",
+    "crossing_distance_miles",
+    "crossing_fraction",
+    "crossing_time",
+    "boundary_from",
+    "boundary_to",
+    "crossing_lon",
+    "crossing_lat",
+    "review_flag",
+]
+
 
 @dataclass
 class Config:
@@ -58,13 +80,11 @@ def parse_time(value: Any, timezone: str) -> pd.Timestamp:
         raise ValueError("Missing datetime value")
 
     if isinstance(value, (int, float)):
-        # ArcGIS date fields are usually Unix epoch milliseconds in UTC.
         return pd.to_datetime(value, unit="ms", utc=True).tz_convert(timezone)
 
     text = str(value).strip()
     if text.replace(".", "", 1).isdigit():
         num = float(text)
-        # Use ms for normal ArcGIS 13-digit epoch values; seconds for 10-digit.
         unit = "ms" if num > 10_000_000_000 else "s"
         return pd.to_datetime(num, unit=unit, utc=True).tz_convert(timezone)
 
@@ -159,6 +179,11 @@ def calculate(cfg: Config) -> pd.DataFrame:
     tracks = gpd.read_file(cfg.tracks_file)
     boundaries = gpd.read_file(cfg.boundaries_file)
 
+    if tracks.empty:
+        raise ValueError(f"No DAT track features found in {cfg.tracks_file}. Check date/bbox/workflow inputs.")
+    if boundaries.empty:
+        raise ValueError(f"No boundary polygon features found in {cfg.boundaries_file}. Boundary fetch failed or file is empty.")
+
     required_track_fields = [cfg.track_id_field, cfg.start_time_field, cfg.end_time_field]
     for field in required_track_fields:
         if field not in tracks.columns:
@@ -173,7 +198,7 @@ def calculate(cfg: Config) -> pd.DataFrame:
 
     tracks_proj = tracks.to_crs(cfg.projected_crs)
     boundaries_proj = boundaries.to_crs(cfg.projected_crs)
-    boundary_union = boundaries_proj.unary_union
+    boundary_union = boundaries_proj.geometry.union_all()
 
     rows = []
 
@@ -248,7 +273,7 @@ def calculate(cfg: Config) -> pd.DataFrame:
                 }
             )
 
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=OUTPUT_COLUMNS)
 
 
 def main() -> None:
@@ -264,6 +289,8 @@ def main() -> None:
     df.to_csv(out, index=False)
 
     print(f"Wrote {len(df)} crossing records to {out}")
+    if df.empty:
+        print("No parish/county crossings found. CSV has headers only; this can be valid if all tracks stay inside one boundary.")
 
 
 if __name__ == "__main__":
