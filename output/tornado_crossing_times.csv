@@ -1,1 +1,1 @@
-
+event_id,stormdate,wfo,efscale,start_time,end_time,duration_minutes,measured_track_miles,total_track_miles_used,avg_speed_mph,crossing_index,crossing_distance_miles,crossing_fraction,crossing_time,boundary_from,boundary_to,crossing_lon,crossing_lat,review_flag
