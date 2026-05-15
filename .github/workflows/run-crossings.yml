@@ -39,7 +39,12 @@ jobs:
         run: python scripts/fetch_boundaries.py
 
       - name: Fetch DAT damage lines
-        run: python scripts/fetch_dat_tracks.py --start "2026-05-01" --end "2026-05-02" --bbox "-91.8,28.5,-87.8,31.5" --output "data/dat_damage_lines.geojson"
+        run: |
+          python scripts/fetch_dat_tracks.py \
+            --start "${{ inputs.start_date }}" \
+            --end "${{ inputs.end_date }}" \
+            --bbox "${{ inputs.bbox }}" \
+            --output "data/dat_damage_lines.geojson"
 
       - name: Calculate crossing times
         run: python scripts/calculate_crossing_times.py --config config.json
@@ -59,17 +64,10 @@ jobs:
           name: tornado-crossing-map
           path: docs/
 
-      - name: Configure git user
-        run: git config user.name github-actions
-
-      - name: Configure git email
-        run: git config user.email github-actions@github.com
-
-      - name: Stage generated files
-        run: git add data/*.geojson output/*.csv docs/
-
       - name: Commit generated files
-        run: git commit -m "Update DAT tracks crossing times and map" || echo no-changes
-
-      - name: Push generated files
-        run: git push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/*.geojson output/*.csv docs/
+          git commit -m "Update DAT tracks crossing times and map" || echo "No changes to commit"
+          git push
