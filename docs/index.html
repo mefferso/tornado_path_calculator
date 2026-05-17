@@ -297,29 +297,44 @@ function groupCrossings(rows) {
   return g;
 }
 
-function formatEpochMs(v) {
-  const n = Number(v);
-  if (!Number.isFinite(n)) return clean(v);
-
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: TZ,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit",
-    timeZoneName: "short"
-  }).format(new Date(n));
-}
-
-function formatCrossingDateTime(v) {
+function formatDateTime(v) {
   if (v === null || v === undefined || String(v).trim() === "") return "—";
 
   const text = String(v).trim();
-  const m = text.match(/^(\d{4})-(\d{2})-(\d{2})\s+(.*)$/);
+  const epoch = Number(text);
 
-  if (m) return `${m[2]}-${m[3]}-${m[1]} / ${m[4]}`;
+  if (Number.isFinite(epoch)) {
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZoneName: "short"
+    })
+      .format(new Date(epoch))
+      .replace(/\//g, "-")
+      .replace(/\bAM\b/g, "am")
+      .replace(/\bPM\b/g, "pm");
+  }
+
+  const m = text.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})(?::\d{2})?\s*(AM|PM|am|pm)?\s*([A-Z]{2,4})?$/);
+  if (m) {
+    let hour = Number(m[4]);
+    const minute = m[5];
+    let suffix = m[6] ? m[6].toLowerCase() : "";
+    const zone = m[7] || "CDT";
+
+    if (!suffix) {
+      suffix = hour >= 12 ? "pm" : "am";
+      hour = hour % 12 || 12;
+    }
+
+    return `${m[2]}-${m[3]}-${m[1]}, ${hour}:${minute} ${suffix} ${zone}`;
+  }
+
   return text;
 }
 
@@ -356,6 +371,12 @@ function firstNonBlank(...a) {
   return "";
 }
 
+function formatWithUnit(v, unit) {
+  const cleaned = clean(v);
+  if (cleaned === "—") return cleaned;
+  return String(cleaned).match(new RegExp(`\\b${unit}\\b`, "i")) ? cleaned : `${cleaned} ${unit}`;
+}
+
 function detailRow(k, v, strong = false) {
   return `<div class="detail-key">${k}</div><div class="detail-val${strong ? " strong" : ""}">${clean(v)}</div>`;
 }
@@ -364,12 +385,12 @@ function crossingRows(r, includeDistance = false) {
   let h = `<div class="detail-grid">`;
 
   h += detailRow("Crossing Lat/Lon:", crossingLatLon(r), true);
-  h += detailRow("Crossing date:", formatCrossingDateTime(r.crossing_time), true);
+  h += detailRow("Crossing date:", formatDateTime(r.crossing_time), true);
   h += detailRow("From:", r.boundary_from, true);
   h += detailRow("To:", r.boundary_to, true);
 
   if (includeDistance) {
-    h += detailRow("Distance into track:", `${clean(r.crossing_distance_miles)} mi`);
+    h += detailRow("Distance into track:", formatWithUnit(r.crossing_distance_miles, "mi"));
   }
 
   h += `</div>`;
@@ -385,19 +406,20 @@ function buildTrackPopup(f) {
   const dur = firstNonBlank(first.duration_minutes, durationMinutes(p.starttime, p.endtime));
   const miles = firstNonBlank(first.measured_track_miles, p.length);
   const speed = firstNonBlank(first.avg_speed_mph, avgSpeed(miles, dur));
+  const peakWind = firstNonBlank(first.peak_wind_mph, first.peak_wind, first.mag, first.magnitude, p.peak_wind_mph, p.peak_wind, p.mag, p.magnitude);
+  const maxWidth = firstNonBlank(first.max_width_yards, first.max_width, first.width_yards, first.width, p.max_width_yards, p.max_width, p.width_yards, p.width);
 
   let h = `<div class="popup-title">${id}</div>
-           <div class="popup-subtitle">Click/hover paths. Crossing markers show parish/county crossing points.</div>
            <div class="detail-grid">`;
 
-  h += detailRow("Event ID:", id);
-  h += detailRow("Storm date:", firstNonBlank(first.stormdate, formatEpochMs(p.stormdate)));
   h += detailRow("EF scale:", firstNonBlank(first.efscale, p.efscale));
-  h += detailRow("Start time:", firstNonBlank(first.start_time, formatEpochMs(p.starttime)));
-  h += detailRow("End time:", firstNonBlank(first.end_time, formatEpochMs(p.endtime)));
-  h += detailRow("Duration:", `${clean(dur)} min`);
-  h += detailRow("Track length:", `${clean(miles)} mi`);
-  h += detailRow("Avg speed:", `${clean(speed)} mph`);
+  h += detailRow("Peak wind speed:", formatWithUnit(peakWind, "mph"));
+  h += detailRow("Max width:", formatWithUnit(maxWidth, "yd"));
+  h += detailRow("Start time:", formatDateTime(firstNonBlank(first.start_time, p.starttime)));
+  h += detailRow("End time:", formatDateTime(firstNonBlank(first.end_time, p.endtime)));
+  h += detailRow("Duration:", formatWithUnit(dur, "min"));
+  h += detailRow("Track length:", formatWithUnit(miles, "mi"));
+  h += detailRow("Avg speed:", formatWithUnit(speed, "mph"));
   h += `</div>`;
 
   if (!rows.length) {
