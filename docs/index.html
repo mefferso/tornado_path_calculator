@@ -119,12 +119,23 @@ function triggerTornadoWorkflow() {
   }
 
   btn.disabled = true;
-  status.textContent = "Submitting workflow request in new tab...";
+  status.textContent = "Starting workflow... map will auto-refresh.";
+
+  const iframeName = "hiddenWorkflowTriggerFrame";
+  let iframe = document.getElementById(iframeName);
+
+  if (!iframe) {
+    iframe = document.createElement("iframe");
+    iframe.name = iframeName;
+    iframe.id = iframeName;
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+  }
 
   const form = document.createElement("form");
   form.method = "POST";
   form.action = APPS_SCRIPT_TRIGGER_URL;
-  form.target = "_blank";
+  form.target = iframeName;
   form.style.display = "none";
 
   const fields = {
@@ -146,12 +157,21 @@ function triggerTornadoWorkflow() {
   form.submit();
   form.remove();
 
-  status.style.color = "#166534";
-  status.textContent = "Submitted. Check the Apps Script result tab and GitHub Actions.";
+  let secondsRemaining = 60;
 
-  setTimeout(() => {
-    btn.disabled = false;
-  }, 3000);
+  status.style.color = "#166534";
+  status.textContent = `Workflow submitted. Auto-refreshing map in ${secondsRemaining} seconds...`;
+
+  const timer = setInterval(() => {
+    secondsRemaining -= 1;
+    status.textContent = `Workflow submitted. Auto-refreshing map in ${secondsRemaining} seconds...`;
+
+    if (secondsRemaining <= 0) {
+      clearInterval(timer);
+      status.textContent = "Refreshing map...";
+      window.location.reload();
+    }
+  }, 1000);
 }
 
 const map = L.map("map", { preferCanvas: true, zoomControl: true }).setView([30.7, -90.0], 7);
