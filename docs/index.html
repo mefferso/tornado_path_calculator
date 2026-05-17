@@ -97,13 +97,8 @@ const TZ = "America/Chicago";
 const APPS_SCRIPT_TRIGGER_URL = "https://script.google.com/a/macros/noaa.gov/s/AKfycbz4-0xAPxd7ICOWkTrwtuzli89a9_YQn3WSnGv3YVw2UhDW-8kTHZVIR6lEiq2Glp/exec";
 
 function setDefaultDatesForRunForm() {
-  const end = new Date();
-  const start = new Date(end);
-  start.setDate(end.getDate() - 1);
-
-  const fmt = d => d.toISOString().slice(0, 10);
-  document.getElementById("startDate").value = fmt(start);
-  document.getElementById("endDate").value = fmt(end);
+  document.getElementById("startDate").value = "2026-04-01";
+  document.getElementById("endDate").value = "2026-05-17";
 }
 
 function triggerTornadoWorkflow() {
