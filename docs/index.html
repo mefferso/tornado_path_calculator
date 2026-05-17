@@ -14,61 +14,87 @@
     #app{position:fixed;inset:0;display:flex;flex-direction:column;min-height:0}
     header{flex:0 0 auto;color:var(--text);background:linear-gradient(135deg,#111827,#0f172a 65%,#082f49);padding:10px 14px;box-shadow:var(--shadow);z-index:1000}
     .topline{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    h1{margin:0;font-size:17px;letter-spacing:.2px}#summary{color:var(--muted);font-size:12px;white-space:nowrap}
+    h1{margin:0;font-size:17px;letter-spacing:.2px}
+    #summary{color:var(--muted);font-size:12px;white-space:nowrap}
     #map{flex:1 1 auto;width:100%;min-height:0;background:#dbeafe}
     .legend{background:var(--panel2);color:#0f172a;border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);line-height:1.35;font-size:14px;border:1px solid rgba(15,23,42,.16)}
-    .legend-title{font-weight:800;margin-bottom:6px}.legend-row{display:flex;align-items:center;gap:7px;margin:4px 0}.swatch{width:22px;height:4px;border-radius:999px;display:inline-block}
-    .leaflet-popup-content-wrapper{border-radius:14px}.leaflet-popup-content{margin:14px 16px;min-width:370px;max-width:560px}.popup-title{font-size:19px;font-weight:850;margin-bottom:9px;color:#0f172a}.popup-subtitle{font-size:14px;color:#475569;margin-bottom:12px}
-    .detail-grid{display:grid;grid-template-columns:165px 1fr;gap:7px 13px;font-size:15px;line-height:1.35;margin-bottom:10px}.detail-key{color:#475569;font-weight:750}.detail-val{color:#111827;overflow-wrap:anywhere}.detail-val.strong{font-weight:750}
-    .crossing-block{border:1px solid #cbd5e1;border-radius:12px;padding:10px 11px;margin:10px 0;background:#f8fafc}.crossing-title{font-weight:850;font-size:16px;margin-bottom:8px;color:#0f172a}.empty-note{color:#64748b;font-size:14px;font-style:italic;border-top:1px solid #e2e8f0;padding-top:8px}
+    .legend-title{font-weight:800;margin-bottom:6px}
+    .legend-row{display:flex;align-items:center;gap:7px;margin:4px 0}
+    .swatch{width:22px;height:4px;border-radius:999px;display:inline-block}
+    .leaflet-popup-content-wrapper{border-radius:14px}
+    .leaflet-popup-content{margin:14px 16px;min-width:370px;max-width:560px}
+    .popup-title{font-size:19px;font-weight:850;margin-bottom:9px;color:#0f172a}
+    .popup-subtitle{font-size:14px;color:#475569;margin-bottom:12px}
+    .detail-grid{display:grid;grid-template-columns:165px 1fr;gap:7px 13px;font-size:15px;line-height:1.35;margin-bottom:10px}
+    .detail-key{color:#475569;font-weight:750}
+    .detail-val{color:#111827;overflow-wrap:anywhere}
+    .detail-val.strong{font-weight:750}
+    .crossing-block{border:1px solid #cbd5e1;border-radius:12px;padding:10px 11px;margin:10px 0;background:#f8fafc}
+    .crossing-title{font-weight:850;font-size:16px;margin-bottom:8px;color:#0f172a}
+    .empty-note{color:#64748b;font-size:14px;font-style:italic;border-top:1px solid #e2e8f0;padding-top:8px}
     .crossing-marker{width:12px;height:12px;border:2px solid white;border-radius:50%;background:#111827;box-shadow:0 0 0 2px rgba(15,23,42,.35)}
     .error-box{position:absolute;top:64px;left:50%;transform:translateX(-50%);z-index:1001;background:#fee2e2;color:#7f1d1d;border:1px solid #fecaca;border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);max-width:720px;font-weight:700}
   </style>
 </head>
+
 <body>
-  <div id="app"><header><div class="topline"><h1>Tornado Path Crossing Calculator</h1><div id="summary">Loading tornado paths and crossing data…</div></div></header><div id="map"></div></div>
+  <div id="app">
+    <header>
+      <div class="topline">
+        <h1>Tornado Path Crossing Calculator</h1>
+        <div id="summary">Loading tornado paths and crossing data…</div>
+      </div>
+    </header>
+    <div id="map"></div>
+  </div>
+
   <div id="runPanel" style="position:absolute;top:62px;left:12px;z-index:1001;background:white;color:#0f172a;border-radius:14px;padding:12px;box-shadow:0 18px 50px rgba(0,0,0,.35);border:1px solid #cbd5e1;width:min(430px,calc(100vw - 46px));font-size:13px">
-  <div style="font-weight:850;font-size:15px;margin-bottom:8px">Run new DAT crossing calculation</div>
+    <div style="font-weight:850;font-size:15px;margin-bottom:8px">Run new DAT crossing calculation</div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-    <label style="display:flex;flex-direction:column;gap:4px;font-weight:750">
-      Start date
-      <input id="startDate" type="date" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
-    </label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <label style="display:flex;flex-direction:column;gap:4px;font-weight:750">
+        Start date
+        <input id="startDate" type="date" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
+      </label>
 
-    <label style="display:flex;flex-direction:column;gap:4px;font-weight:750">
-      End date
-      <input id="endDate" type="date" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
-    </label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-weight:750">
+        End date
+        <input id="endDate" type="date" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
+      </label>
 
-    <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-weight:750">
-      Bounding box
-      <input id="bbox" type="text" value="-91.8,28.5,-87.8,31.5" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
-    </label>
+      <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-weight:750">
+        Bounding box
+        <input id="bbox" type="text" value="-91.8,28.5,-87.8,31.5" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
+      </label>
 
-    <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-weight:750">
-      Run key
-      <input id="runKey" type="password" autocomplete="off" placeholder="Paste RUN_KEY" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
-    </label>
+      <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-weight:750">
+        Run key
+        <input id="runKey" type="password" autocomplete="off" placeholder="Paste RUN_KEY" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
+      </label>
+    </div>
+
+    <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">
+      <button id="runBtn" style="border:0;border-radius:10px;background:#0f172a;color:white;font-weight:850;padding:8px 11px;cursor:pointer">Start workflow</button>
+      <span id="runStatus" style="font-size:12px;color:#334155;line-height:1.35">Ready.</span>
+    </div>
+
+    <div style="margin-top:7px;color:#64748b;font-size:12px;line-height:1.3">
+      Starts the GitHub Actions workflow through Apps Script. Wait a minute or two, then refresh the map.
+    </div>
   </div>
 
-  <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">
-    <button id="runBtn" style="border:0;border-radius:10px;background:#0f172a;color:white;font-weight:850;padding:8px 11px;cursor:pointer">Start workflow</button>
-    <span id="runStatus" style="font-size:12px;color:#334155;line-height:1.35">Ready.</span>
-  </div>
-
-  <div style="margin-top:7px;color:#64748b;font-size:12px;line-height:1.3">
-    Starts the GitHub Actions workflow through Apps Script. Wait a minute or two, then refresh the map.
-  </div>
-</div>
 <script>
 (function(){
   const s=document.createElement('style');
   s.textContent='.leaflet-container{overflow:hidden;position:relative}.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-layer,.leaflet-pane>svg,.leaflet-pane>canvas{position:absolute;left:0;top:0}.leaflet-tile{width:256px;height:256px;border:0;max-width:none!important;max-height:none!important}.leaflet-tile-container img{display:block}.leaflet-map-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-popup-pane{z-index:700}.leaflet-control-container .leaflet-top,.leaflet-control-container .leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{position:relative;z-index:800;pointer-events:auto;float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-control-zoom a{display:block;width:26px;height:26px;line-height:26px;text-align:center;background:#fff;text-decoration:none;color:#111827}.leaflet-control-layers{background:#fff;padding:8px 10px;border-radius:6px;box-shadow:0 1px 5px #0006}.leaflet-popup{position:absolute}.leaflet-popup-content-wrapper{background:#fff}.leaflet-popup-close-button{position:absolute;right:0;top:0;text-decoration:none;color:#555}.leaflet-interactive{cursor:pointer}';
   document.head.appendChild(s);
 })();
-const TRACKS_URL="data/dat_damage_lines.geojson",CROSSINGS_URL="data/tornado_crossing_times.csv",TZ="America/Chicago";
-  const APPS_SCRIPT_TRIGGER_URL = "https://script.google.com/a/macros/noaa.gov/s/AKfycbz4-0xAPxd7ICOWkTrwtuzli89a9_YQn3WSnGv3YVw2UhDW-8kTHZVIR6lEiq2Glp/exec";
+
+const TRACKS_URL = "data/dat_damage_lines.geojson";
+const CROSSINGS_URL = "data/tornado_crossing_times.csv";
+const TZ = "America/Chicago";
+
+const APPS_SCRIPT_TRIGGER_URL = "https://script.google.com/a/macros/noaa.gov/s/AKfycbz4-0xAPxd7ICOWkTrwtuzli89a9_YQn3WSnGv3YVw2UhDW-8kTHZVIR6lEiq2Glp/exec";
 
 function setDefaultDatesForRunForm() {
   const end = new Date();
@@ -78,12 +104,6 @@ function setDefaultDatesForRunForm() {
   const fmt = d => d.toISOString().slice(0, 10);
   document.getElementById("startDate").value = fmt(start);
   document.getElementById("endDate").value = fmt(end);
-}
-
-function htmlToPlainText(html) {
-  const div = document.createElement("div");
-  div.innerHTML = html;
-  return div.textContent.replace(/\s+/g, " ").trim();
 }
 
 function triggerTornadoWorkflow() {
@@ -138,29 +158,341 @@ function triggerTornadoWorkflow() {
     btn.disabled = false;
   }, 3000);
 }
-const map=L.map("map",{preferCanvas:true,zoomControl:true}).setView([30.7,-90.0],7);
-const osm=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"&copy; OpenStreetMap contributors"}).addTo(map);
-const topo=L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",{maxZoom:17,attribution:"&copy; OpenTopoMap contributors"});
-const crossingsLayer=L.layerGroup().addTo(map);const pathLayer=L.geoJSON(null,{style:f=>trackStyle(f),onEachFeature:(f,l)=>{l.on({mouseover:e=>e.target.setStyle({weight:7,opacity:1}),mouseout:e=>pathLayer.resetStyle(e.target),click:e=>{l.bindPopup(buildTrackPopup(f),{maxWidth:600}).openPopup(e.latlng)}})}}).addTo(map);
-L.control.layers({"OpenStreetMap":osm,"Topo":topo},{"Tornado paths":pathLayer,"Boundary crossings":crossingsLayer},{collapsed:false}).addTo(map);
-const crossingIcon=L.divIcon({className:"",html:"<div class='crossing-marker'></div>",iconSize:[16,16],iconAnchor:[8,8]});let crossingsByEvent=new Map(),allCrossings=[];
-function efColor(e){e=String(e||"").toUpperCase().trim();return {EF0:"#22c55e",EF1:"#eab308",EF2:"#f97316",EF3:"#ef4444",EF4:"#a855f7",EF5:"#111827"}[e]||"#2563eb"}
-function trackStyle(f){const p=f.properties||{};return{color:efColor(p.efscale),weight:5,opacity:.88,lineCap:"round",lineJoin:"round"}}
-function parseCsv(t){const rows=[];let row=[],v="",q=false;for(let i=0;i<t.length;i++){const c=t[i],n=t[i+1];if(c==='"'){if(q&&n==='"'){v+='"';i++}else q=!q}else if(c===","&&!q){row.push(v);v=""}else if((c==="\n"||c==="\r")&&!q){if(c==="\r"&&n==="\n")i++;row.push(v);if(row.some(x=>x.trim()!==""))rows.push(row);row=[];v=""}else v+=c}row.push(v);if(row.some(x=>x.trim()!==""))rows.push(row);if(!rows.length)return[];const h=rows[0].map(x=>x.trim());return rows.slice(1).map(r=>{const o={};h.forEach((x,i)=>o[x]=(r[i]??"").trim());return o})}
-function groupCrossings(rows){const g=new Map();rows.forEach(r=>{const id=r.event_id||"UNKNOWN";if(!g.has(id))g.set(id,[]);g.get(id).push(r)});g.forEach(a=>a.sort((x,y)=>parseFloat(x.crossing_distance_miles||0)-parseFloat(y.crossing_distance_miles||0)));return g}
-function formatEpochMs(v){const n=Number(v);if(!Number.isFinite(n))return clean(v);return new Intl.DateTimeFormat("en-US",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit",hour:"numeric",minute:"2-digit",second:"2-digit",timeZoneName:"short"}).format(new Date(n))}
-function formatCrossingDateTime(v){if(v===null||v===undefined||String(v).trim()==="")return"—";const text=String(v).trim();const m=text.match(/^(\d{4})-(\d{2})-(\d{2})\s+(.*)$/);if(m)return`${m[2]}-${m[3]}-${m[1]} / ${m[4]}`;return text}
-function crossingLatLon(r){const lat=clean(r.crossing_lat),lon=clean(r.crossing_lon);return `${lat} / ${lon}`}
-function durationMinutes(s,e){s=Number(s);e=Number(e);if(!Number.isFinite(s)||!Number.isFinite(e)||e<=s)return"";return((e-s)/60000).toFixed(2)}
-function avgSpeed(l,d){l=Number(l);d=Number(d);if(!Number.isFinite(l)||!Number.isFinite(d)||d<=0)return"";return(l/(d/60)).toFixed(1)}
-function clean(v){return v===null||v===undefined||v===""?"—":String(v)}function firstNonBlank(...a){for(const v of a)if(v!==null&&v!==undefined&&String(v).trim()!=="")return v;return""}function detailRow(k,v,strong=false){return`<div class="detail-key">${k}</div><div class="detail-val${strong?' strong':''}">${clean(v)}</div>`}
-function crossingRows(r,includeDistance=false){let h=`<div class="detail-grid">`;h+=detailRow("Crossing Lat/Lon:",crossingLatLon(r),true);h+=detailRow("Crossing date:",formatCrossingDateTime(r.crossing_time),true);h+=detailRow("From:",r.boundary_from,true);h+=detailRow("To:",r.boundary_to,true);if(includeDistance)h+=detailRow("Distance into track:",`${clean(r.crossing_distance_miles)} mi`);h+=`</div>`;return h}
-function buildTrackPopup(f){const p=f.properties||{},id=clean(p.event_id||p.objectid||f.id),rows=crossingsByEvent.get(id)||[],first=rows[0]||{},dur=firstNonBlank(first.duration_minutes,durationMinutes(p.starttime,p.endtime)),miles=firstNonBlank(first.measured_track_miles,p.length),speed=firstNonBlank(first.avg_speed_mph,avgSpeed(miles,dur));let h=`<div class="popup-title">${id}</div><div class="popup-subtitle">Click/hover paths. Crossing markers show parish/county crossing points.</div><div class="detail-grid">`;h+=detailRow("Event ID:",id)+detailRow("Storm date:",firstNonBlank(first.stormdate,formatEpochMs(p.stormdate)))+detailRow("EF scale:",firstNonBlank(first.efscale,p.efscale))+detailRow("Start time:",firstNonBlank(first.start_time,formatEpochMs(p.starttime)))+detailRow("End time:",firstNonBlank(first.end_time,formatEpochMs(p.endtime)))+detailRow("Duration:",`${clean(dur)} min`)+detailRow("Track length:",`${clean(miles)} mi`)+detailRow("Avg speed:",`${clean(speed)} mph`)+`</div>`;if(!rows.length)return h+`<div class="empty-note">No parish/county crossings were found for this tornado path.</div>`;rows.forEach((r,i)=>{h+=`<div class="crossing-block"><div class="crossing-title">Crossing ${i+1}</div>${crossingRows(r,true)}</div>`});return h}
-function addCrossingMarkers(rows){crossingsLayer.clearLayers();rows.forEach(r=>{const lat=parseFloat(r.crossing_lat),lon=parseFloat(r.crossing_lon);if(!Number.isFinite(lat)||!Number.isFinite(lon))return;crossingsLayer.addLayer(L.marker([lat,lon],{icon:crossingIcon}).bindPopup(`<div class="popup-title">Boundary Crossing</div><div class="crossing-block">${crossingRows(r,false)}</div>`,{maxWidth:540}))})}
-function addLegend(){const legend=L.control({position:"bottomright"});legend.onAdd=()=>{const d=L.DomUtil.create("div","legend"),rows=["EF0","EF1","EF2","EF3","EF4","EF5","Unknown"];d.innerHTML=`<div class="legend-title">Path color</div>`+rows.map(label=>`<div class="legend-row"><span class="swatch" style="background:${label==="Unknown"?efColor(""):efColor(label)}"></span>${label}</div>`).join("")+`<div class="legend-row"><span class="crossing-marker" style="display:inline-block"></span> Crossing</div>`;return d};legend.addTo(map)}
-function showError(m){const b=document.createElement("div");b.className="error-box";b.textContent=m;document.body.appendChild(b);document.getElementById("summary").textContent="Map failed to load."}
-async function init(){try{setDefaultDatesForRunForm();document.getElementById("runBtn").addEventListener("click",triggerTornadoWorkflow);map.invalidateSize(true);setTimeout(()=>map.invalidateSize(true),200);const [tr,cr]=await Promise.all([fetch(TRACKS_URL,{cache:"no-store"}),fetch(CROSSINGS_URL,{cache:"no-store"})]);if(!tr.ok)throw new Error(`Could not load ${TRACKS_URL}`);if(!cr.ok)throw new Error(`Could not load ${CROSSINGS_URL}`);const tracks=await tr.json(),csv=await cr.text();allCrossings=parseCsv(csv);crossingsByEvent=groupCrossings(allCrossings);pathLayer.addData(tracks);addCrossingMarkers(allCrossings);addLegend();const bounds=pathLayer.getBounds();if(bounds.isValid())map.fitBounds(bounds.pad(.18));setTimeout(()=>map.invalidateSize(true),100);document.getElementById("summary").textContent=`${tracks.features?tracks.features.length:0} tornado path(s), ${allCrossings.length} parish/county crossing record(s)`}catch(e){console.error(e);showError(e.message||String(e))}}
-window.addEventListener("resize",()=>map.invalidateSize(true));init();
+
+const map = L.map("map", { preferCanvas: true, zoomControl: true }).setView([30.7, -90.0], 7);
+
+const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution: "&copy; OpenStreetMap contributors"
+}).addTo(map);
+
+const topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+  maxZoom: 17,
+  attribution: "&copy; OpenTopoMap contributors"
+});
+
+const crossingsLayer = L.layerGroup().addTo(map);
+
+const pathLayer = L.geoJSON(null, {
+  style: f => trackStyle(f),
+  onEachFeature: (f, l) => {
+    l.on({
+      mouseover: e => e.target.setStyle({ weight: 7, opacity: 1 }),
+      mouseout: e => pathLayer.resetStyle(e.target),
+      click: e => {
+        l.bindPopup(buildTrackPopup(f), { maxWidth: 600 }).openPopup(e.latlng);
+      }
+    });
+  }
+}).addTo(map);
+
+L.control.layers(
+  { "OpenStreetMap": osm, "Topo": topo },
+  { "Tornado paths": pathLayer, "Boundary crossings": crossingsLayer },
+  { collapsed: false }
+).addTo(map);
+
+const crossingIcon = L.divIcon({
+  className: "",
+  html: "<div class='crossing-marker'></div>",
+  iconSize: [16, 16],
+  iconAnchor: [8, 8]
+});
+
+let crossingsByEvent = new Map();
+let allCrossings = [];
+
+function efColor(e) {
+  e = String(e || "").toUpperCase().trim();
+  return {
+    EF0: "#22c55e",
+    EF1: "#eab308",
+    EF2: "#f97316",
+    EF3: "#ef4444",
+    EF4: "#a855f7",
+    EF5: "#111827"
+  }[e] || "#2563eb";
+}
+
+function trackStyle(f) {
+  const p = f.properties || {};
+  return {
+    color: efColor(p.efscale),
+    weight: 5,
+    opacity: 0.88,
+    lineCap: "round",
+    lineJoin: "round"
+  };
+}
+
+function parseCsv(t) {
+  const rows = [];
+  let row = [];
+  let v = "";
+  let q = false;
+
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    const n = t[i + 1];
+
+    if (c === '"') {
+      if (q && n === '"') {
+        v += '"';
+        i++;
+      } else {
+        q = !q;
+      }
+    } else if (c === "," && !q) {
+      row.push(v);
+      v = "";
+    } else if ((c === "\n" || c === "\r") && !q) {
+      if (c === "\r" && n === "\n") i++;
+      row.push(v);
+      if (row.some(x => x.trim() !== "")) rows.push(row);
+      row = [];
+      v = "";
+    } else {
+      v += c;
+    }
+  }
+
+  row.push(v);
+  if (row.some(x => x.trim() !== "")) rows.push(row);
+  if (!rows.length) return [];
+
+  const h = rows[0].map(x => x.trim());
+
+  return rows.slice(1).map(r => {
+    const o = {};
+    h.forEach((x, i) => o[x] = (r[i] ?? "").trim());
+    return o;
+  });
+}
+
+function groupCrossings(rows) {
+  const g = new Map();
+
+  rows.forEach(r => {
+    const id = r.event_id || "UNKNOWN";
+    if (!g.has(id)) g.set(id, []);
+    g.get(id).push(r);
+  });
+
+  g.forEach(a => {
+    a.sort((x, y) => parseFloat(x.crossing_distance_miles || 0) - parseFloat(y.crossing_distance_miles || 0));
+  });
+
+  return g;
+}
+
+function formatEpochMs(v) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return clean(v);
+
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZoneName: "short"
+  }).format(new Date(n));
+}
+
+function formatCrossingDateTime(v) {
+  if (v === null || v === undefined || String(v).trim() === "") return "—";
+
+  const text = String(v).trim();
+  const m = text.match(/^(\d{4})-(\d{2})-(\d{2})\s+(.*)$/);
+
+  if (m) return `${m[2]}-${m[3]}-${m[1]} / ${m[4]}`;
+  return text;
+}
+
+function crossingLatLon(r) {
+  const lat = clean(r.crossing_lat);
+  const lon = clean(r.crossing_lon);
+  return `${lat} / ${lon}`;
+}
+
+function durationMinutes(s, e) {
+  s = Number(s);
+  e = Number(e);
+
+  if (!Number.isFinite(s) || !Number.isFinite(e) || e <= s) return "";
+  return ((e - s) / 60000).toFixed(2);
+}
+
+function avgSpeed(l, d) {
+  l = Number(l);
+  d = Number(d);
+
+  if (!Number.isFinite(l) || !Number.isFinite(d) || d <= 0) return "";
+  return (l / (d / 60)).toFixed(1);
+}
+
+function clean(v) {
+  return v === null || v === undefined || v === "" ? "—" : String(v);
+}
+
+function firstNonBlank(...a) {
+  for (const v of a) {
+    if (v !== null && v !== undefined && String(v).trim() !== "") return v;
+  }
+  return "";
+}
+
+function detailRow(k, v, strong = false) {
+  return `<div class="detail-key">${k}</div><div class="detail-val${strong ? " strong" : ""}">${clean(v)}</div>`;
+}
+
+function crossingRows(r, includeDistance = false) {
+  let h = `<div class="detail-grid">`;
+
+  h += detailRow("Crossing Lat/Lon:", crossingLatLon(r), true);
+  h += detailRow("Crossing date:", formatCrossingDateTime(r.crossing_time), true);
+  h += detailRow("From:", r.boundary_from, true);
+  h += detailRow("To:", r.boundary_to, true);
+
+  if (includeDistance) {
+    h += detailRow("Distance into track:", `${clean(r.crossing_distance_miles)} mi`);
+  }
+
+  h += `</div>`;
+  return h;
+}
+
+function buildTrackPopup(f) {
+  const p = f.properties || {};
+  const id = clean(p.event_id || p.objectid || f.id);
+  const rows = crossingsByEvent.get(id) || [];
+  const first = rows[0] || {};
+
+  const dur = firstNonBlank(first.duration_minutes, durationMinutes(p.starttime, p.endtime));
+  const miles = firstNonBlank(first.measured_track_miles, p.length);
+  const speed = firstNonBlank(first.avg_speed_mph, avgSpeed(miles, dur));
+
+  let h = `<div class="popup-title">${id}</div>
+           <div class="popup-subtitle">Click/hover paths. Crossing markers show parish/county crossing points.</div>
+           <div class="detail-grid">`;
+
+  h += detailRow("Event ID:", id);
+  h += detailRow("Storm date:", firstNonBlank(first.stormdate, formatEpochMs(p.stormdate)));
+  h += detailRow("EF scale:", firstNonBlank(first.efscale, p.efscale));
+  h += detailRow("Start time:", firstNonBlank(first.start_time, formatEpochMs(p.starttime)));
+  h += detailRow("End time:", firstNonBlank(first.end_time, formatEpochMs(p.endtime)));
+  h += detailRow("Duration:", `${clean(dur)} min`);
+  h += detailRow("Track length:", `${clean(miles)} mi`);
+  h += detailRow("Avg speed:", `${clean(speed)} mph`);
+  h += `</div>`;
+
+  if (!rows.length) {
+    return h + `<div class="empty-note">No parish/county crossings were found for this tornado path.</div>`;
+  }
+
+  rows.forEach((r, i) => {
+    h += `<div class="crossing-block">
+            <div class="crossing-title">Crossing ${i + 1}</div>
+            ${crossingRows(r, true)}
+          </div>`;
+  });
+
+  return h;
+}
+
+function addCrossingMarkers(rows) {
+  crossingsLayer.clearLayers();
+
+  rows.forEach(r => {
+    const lat = parseFloat(r.crossing_lat);
+    const lon = parseFloat(r.crossing_lon);
+
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+
+    crossingsLayer.addLayer(
+      L.marker([lat, lon], { icon: crossingIcon }).bindPopup(
+        `<div class="popup-title">Boundary Crossing</div>
+         <div class="crossing-block">${crossingRows(r, false)}</div>`,
+        { maxWidth: 540 }
+      )
+    );
+  });
+}
+
+function addLegend() {
+  const legend = L.control({ position: "bottomright" });
+
+  legend.onAdd = () => {
+    const d = L.DomUtil.create("div", "legend");
+    const rows = ["EF0", "EF1", "EF2", "EF3", "EF4", "EF5", "Unknown"];
+
+    d.innerHTML =
+      `<div class="legend-title">Path color</div>` +
+      rows.map(label =>
+        `<div class="legend-row">
+          <span class="swatch" style="background:${label === "Unknown" ? efColor("") : efColor(label)}"></span>${label}
+        </div>`
+      ).join("") +
+      `<div class="legend-row"><span class="crossing-marker" style="display:inline-block"></span> Crossing</div>`;
+
+    return d;
+  };
+
+  legend.addTo(map);
+}
+
+function showError(m) {
+  const b = document.createElement("div");
+  b.className = "error-box";
+  b.textContent = m;
+  document.body.appendChild(b);
+  document.getElementById("summary").textContent = "Map failed to load.";
+}
+
+async function init() {
+  try {
+    setDefaultDatesForRunForm();
+    document.getElementById("runBtn").addEventListener("click", triggerTornadoWorkflow);
+
+    map.invalidateSize(true);
+    setTimeout(() => map.invalidateSize(true), 200);
+
+    const [tr, cr] = await Promise.all([
+      fetch(TRACKS_URL, { cache: "no-store" }),
+      fetch(CROSSINGS_URL, { cache: "no-store" })
+    ]);
+
+    if (!tr.ok) throw new Error(`Could not load ${TRACKS_URL}`);
+    if (!cr.ok) throw new Error(`Could not load ${CROSSINGS_URL}`);
+
+    const tracks = await tr.json();
+    const csv = await cr.text();
+
+    allCrossings = parseCsv(csv);
+    crossingsByEvent = groupCrossings(allCrossings);
+
+    pathLayer.addData(tracks);
+    addCrossingMarkers(allCrossings);
+    addLegend();
+
+    const bounds = pathLayer.getBounds();
+    if (bounds.isValid()) map.fitBounds(bounds.pad(0.18));
+
+    setTimeout(() => map.invalidateSize(true), 100);
+
+    document.getElementById("summary").textContent =
+      `${tracks.features ? tracks.features.length : 0} tornado path(s), ${allCrossings.length} parish/county crossing record(s)`;
+
+  } catch (e) {
+    console.error(e);
+    showError(e.message || String(e));
+  }
+}
+
+window.addEventListener("resize", () => map.invalidateSize(true));
+init();
 </script>
 </body>
 </html>
