@@ -406,7 +406,7 @@ function buildTrackPopup(f) {
   const dur = firstNonBlank(first.duration_minutes, durationMinutes(p.starttime, p.endtime));
   const miles = firstNonBlank(first.measured_track_miles, p.length);
   const speed = firstNonBlank(first.avg_speed_mph, avgSpeed(miles, dur));
-  const peakWind = firstNonBlank(first.peak_wind_mph, first.peak_wind, first.mag, first.magnitude, p.peak_wind_mph, p.peak_wind, p.mag, p.magnitude);
+  const peakWind = firstNonBlank(first.maxwind, first.max_wind, first.peak_wind_mph, first.peak_wind, first.mag, first.magnitude, p.maxwind, p.max_wind, p.peak_wind_mph, p.peak_wind, p.mag, p.magnitude);
   const maxWidth = firstNonBlank(first.max_width_yards, first.max_width, first.width_yards, first.width, p.max_width_yards, p.max_width, p.width_yards, p.width);
 
   let h = `<div class="popup-title">${id}</div>
