@@ -92,10 +92,50 @@ const CROSSINGS_URL = "data/tornado_crossing_times.csv";
 const TZ = "America/Chicago";
 
 const APPS_SCRIPT_TRIGGER_URL = "https://script.google.com/a/macros/noaa.gov/s/AKfycbz4-0XaPXdx7ICOWkTrwtizUi89a9_YQn3WSnGv3YWw2UhDW-8kTHZVlR6lLEig2Glp/exec";
+const RUN_FORM_STORAGE_KEY = "tornadoPathWorkflowRunForm";
+const DEFAULT_RUN_START_DATE = "2026-04-01";
+const DEFAULT_RUN_END_DATE = "2026-05-17";
+
+function loadSavedRunForm() {
+  try {
+    return JSON.parse(localStorage.getItem(RUN_FORM_STORAGE_KEY) || "null") || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveRunForm(startDate, endDate, bbox) {
+  try {
+    localStorage.setItem(RUN_FORM_STORAGE_KEY, JSON.stringify({
+      startDate,
+      endDate,
+      bbox,
+      submittedAt: new Date().toISOString()
+    }));
+  } catch (e) {
+    console.warn("Could not save workflow dates", e);
+  }
+}
+
+function formatRunDateForStatus(v) {
+  const m = String(v || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return m ? `${m[2]}/${m[3]}/${m[1]}` : v;
+}
 
 function setDefaultDatesForRunForm() {
-  document.getElementById("startDate").value = "2026-04-01";
-  document.getElementById("endDate").value = "2026-05-17";
+  const saved = loadSavedRunForm();
+  const startDate = saved.startDate || DEFAULT_RUN_START_DATE;
+  const endDate = saved.endDate || DEFAULT_RUN_END_DATE;
+
+  document.getElementById("startDate").value = startDate;
+  document.getElementById("endDate").value = endDate;
+
+  if (saved.bbox) document.getElementById("bbox").value = saved.bbox;
+
+  if (saved.startDate && saved.endDate) {
+    document.getElementById("runStatus").textContent =
+      `Last submitted: ${formatRunDateForStatus(saved.startDate)} to ${formatRunDateForStatus(saved.endDate)}.`;
+  }
 }
 
 function triggerTornadoWorkflow() {
@@ -114,6 +154,14 @@ function triggerTornadoWorkflow() {
     status.textContent = "Fill out dates, bbox, and run key.";
     return;
   }
+
+  if (endDate < startDate) {
+    status.style.color = "#991b1b";
+    status.textContent = "End date must be on or after start date.";
+    return;
+  }
+
+  saveRunForm(startDate, endDate, bbox);
 
   btn.disabled = true;
   status.textContent = "Starting workflow... map will auto-refresh.";
@@ -153,15 +201,16 @@ function triggerTornadoWorkflow() {
   document.body.appendChild(form);
   form.submit();
   form.remove();
+  document.getElementById("runKey").value = "";
 
   let secondsRemaining = 60;
 
   status.style.color = "#166534";
-  status.textContent = `Workflow submitted. Auto-refreshing map in ${secondsRemaining} seconds...`;
+  status.textContent = `Workflow submitted for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. Auto-refreshing map in ${secondsRemaining} seconds...`;
 
   const timer = setInterval(() => {
     secondsRemaining -= 1;
-    status.textContent = `Workflow submitted. Auto-refreshing map in ${secondsRemaining} seconds...`;
+    status.textContent = `Workflow submitted for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. Auto-refreshing map in ${secondsRemaining} seconds...`;
 
     if (secondsRemaining <= 0) {
       clearInterval(timer);
