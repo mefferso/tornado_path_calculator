@@ -138,6 +138,43 @@ function setDefaultDatesForRunForm() {
   }
 }
 
+function buildWorkflowTriggerUrl(runKey, startDate, endDate, bbox) {
+  const params = new URLSearchParams({
+    run_key: runKey,
+    key: runKey,
+    password: runKey,
+    start_date: startDate,
+    startDate: startDate,
+    start: startDate,
+    end_date: endDate,
+    endDate: endDate,
+    end: endDate,
+    bbox: bbox,
+    source: "map_panel",
+    t: Date.now().toString()
+  });
+
+  return `${APPS_SCRIPT_TRIGGER_URL}?${params.toString()}`;
+}
+
+function startRefreshCountdown(status, startDate, endDate) {
+  let secondsRemaining = 60;
+
+  status.style.color = "#166534";
+  status.textContent = `Trigger sent for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. Auto-refreshing map in ${secondsRemaining} seconds...`;
+
+  const timer = setInterval(() => {
+    secondsRemaining -= 1;
+    status.textContent = `Trigger sent for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. Auto-refreshing map in ${secondsRemaining} seconds...`;
+
+    if (secondsRemaining <= 0) {
+      clearInterval(timer);
+      status.textContent = "Refreshing map...";
+      window.location.reload();
+    }
+  }, 1000);
+}
+
 function triggerTornadoWorkflow() {
   const btn = document.getElementById("runBtn");
   const status = document.getElementById("runStatus");
@@ -164,7 +201,7 @@ function triggerTornadoWorkflow() {
   saveRunForm(startDate, endDate, bbox);
 
   btn.disabled = true;
-  status.textContent = "Starting workflow... map will auto-refresh.";
+  status.textContent = "Sending trigger to workflow bridge...";
 
   const iframeName = "hiddenWorkflowTriggerFrame";
   let iframe = document.getElementById(iframeName);
@@ -177,47 +214,18 @@ function triggerTornadoWorkflow() {
     document.body.appendChild(iframe);
   }
 
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = APPS_SCRIPT_TRIGGER_URL;
-  form.target = iframeName;
-  form.style.display = "none";
-
-  const fields = {
-    run_key: runKey,
-    start_date: startDate,
-    end_date: endDate,
-    bbox: bbox
+  iframe.onload = () => {
+    document.getElementById("runKey").value = "";
+    startRefreshCountdown(status, startDate, endDate);
   };
 
-  Object.entries(fields).forEach(([name, value]) => {
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = name;
-    input.value = value;
-    form.appendChild(input);
-  });
+  iframe.onerror = () => {
+    btn.disabled = false;
+    status.style.color = "#991b1b";
+    status.textContent = "Trigger failed to load. Check the Apps Script web app URL/deployment.";
+  };
 
-  document.body.appendChild(form);
-  form.submit();
-  form.remove();
-  document.getElementById("runKey").value = "";
-
-  let secondsRemaining = 60;
-
-  status.style.color = "#166534";
-  status.textContent = `Workflow submitted for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. Auto-refreshing map in ${secondsRemaining} seconds...`;
-
-  const timer = setInterval(() => {
-    secondsRemaining -= 1;
-    status.textContent = `Workflow submitted for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. Auto-refreshing map in ${secondsRemaining} seconds...`;
-
-    if (secondsRemaining <= 0) {
-      clearInterval(timer);
-      status.textContent = "Refreshing map...";
-      window.location.reload();
-    }
-  }, 1000);
+  iframe.src = buildWorkflowTriggerUrl(runKey, startDate, endDate, bbox);
 }
 
 const map = L.map("map", { preferCanvas: true, zoomControl: true }).setView([30.7, -90.0], 7);
