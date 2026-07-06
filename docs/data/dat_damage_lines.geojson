@@ -3,174 +3,6 @@
   "features": [
     {
       "type": "Feature",
-      "id": 2620772,
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -90.22958041800001,
-            30.638145029999976
-          ],
-          [
-            -90.22874356900002,
-            30.639954312999976
-          ],
-          [
-            -90.22816361600002,
-            30.642946633000008
-          ]
-        ]
-      },
-      "properties": {
-        "objectid": 2620772,
-        "event_id": "Folsom, LA Tornado",
-        "stormdate": 1775349960000,
-        "starttime": 1775349960000,
-        "endtime": 1775350080000,
-        "startlat": 30.6381,
-        "startlon": -90.2296,
-        "endlat": 30.6429,
-        "endlon": -90.2282,
-        "length": 0.3432,
-        "width": 25,
-        "injuries": 0,
-        "fatalities": 0,
-        "efscale": "EF0",
-        "efnum": 0,
-        "qc": "Y",
-        "maxwind": 80,
-        "globalid": "{52589B56-1AE3-4091-BB49-181141988839}",
-        "cropdamage": 0,
-        "propdamage": 0,
-        "edit_user": null,
-        "edit_time": null,
-        "created_user": "dat_editor",
-        "created_date": 1776089207000,
-        "last_edited_user": "dat_editor",
-        "last_edited_date": 1779214888000,
-        "comments": "The track of a short-lived EF-0 tornado was confirmed via a combination of ground survey, aerial imagery, and the existence of a tornado debris signature on KHDC radar data. The tornado is estimated to have touched down between Charlie Lee Rd and Lee Settlement Rd in rural northwest St. Tammany Parish, west of Folsom, LA. Minor damage to tree tops was visible on aerial imagery which was collocated with a tornado debris signature on KHDC. A tree was partially snapped near the base south of Lee Settlement Rd pointed northwest with additional tree debris noted near the road. The tornado debris signature continued to the northeast beyond Lee Settlement Rd, but no additional tree damage was identified. Therefore, this is where the end point of the tornado is estimated to be.",
-        "st_length(shape)": 0.005041447919364863,
-        "wfo": "LIX"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 2649177,
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -89.07779723099998,
-            30.386018680000006
-          ],
-          [
-            -89.06677394899998,
-            30.38033383200002
-          ],
-          [
-            -89.05586749000003,
-            30.37468979099998
-          ]
-        ]
-      },
-      "properties": {
-        "objectid": 2649177,
-        "event_id": "Gulfport Tornado #2",
-        "stormdate": 1777116540000,
-        "starttime": 1777116540000,
-        "endtime": 1777203060000,
-        "startlat": 30.386,
-        "startlon": -89.0778,
-        "endlat": 30.3747,
-        "endlon": -89.0559,
-        "length": 1.5246,
-        "width": 150,
-        "injuries": 0,
-        "fatalities": 0,
-        "efscale": "EF1",
-        "efnum": 1,
-        "qc": "Y",
-        "maxwind": 90,
-        "globalid": "{5341515D-83A7-425C-9CB0-E65218DDCF9C}",
-        "cropdamage": 0,
-        "propdamage": 0,
-        "edit_user": null,
-        "edit_time": null,
-        "created_user": "dat_editor",
-        "created_date": 1777176480000,
-        "last_edited_user": "dat_editor",
-        "last_edited_date": 1778943553000,
-        "comments": "An EF-1 tornado with peak winds of 90 mph touched down at 30th Street and Brookwood Ave. where large branches were down on several trees.  Similar damage occurred as the tornado tracked to the southeast across Pass Road and 28th Street.  The tornado continued to the southeast and reached peak intensity of 90 mph near the intersection of 5th Avenue and 25th Street where a few trees were snapped.  One hardwood tree was hollow inside and the other snap was very high.  Numerous large branches were also removed from several trees near this intersection. The tornado then continued to the southeast crossing Gulf Avenue near 24th Street producing sporadic tree damage.  The tornado then crossed the railroad just west of Hewes St. where additional large branches were removed from several trees all the way to  Beach Blvd.  Numerous trees were observed to have lost large branches between Roberts Ave. and Centennial Plaza on Beach Blvd.  ",
-        "st_length(shape)": 0.02468314339385331,
-        "wfo": "LIX"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 2663977,
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -89.09894985599999,
-            30.41147821300001
-          ],
-          [
-            -89.09700912900001,
-            30.40127916900002
-          ],
-          [
-            -89.08878220600002,
-            30.388303511000004
-          ],
-          [
-            -89.08771409500002,
-            30.382429575000003
-          ],
-          [
-            -89.08417119,
-            30.377682451
-          ],
-          [
-            -89.07930120200001,
-            30.369122284000014
-          ]
-        ]
-      },
-      "properties": {
-        "objectid": 2663977,
-        "event_id": "",
-        "stormdate": 1777116360000,
-        "starttime": 1777116360000,
-        "endtime": 1777116660000,
-        "startlat": 30.4115,
-        "startlon": -89.0989,
-        "endlat": 30.3691,
-        "endlon": -89.0793,
-        "length": 3.1886,
-        "width": 300,
-        "injuries": 0,
-        "fatalities": 0,
-        "efscale": "EF1",
-        "efnum": 1,
-        "qc": "Y",
-        "maxwind": 95,
-        "globalid": "{16F79819-6A81-4D8B-A950-689B5A2C27D6}",
-        "cropdamage": 0,
-        "propdamage": 0,
-        "edit_user": null,
-        "edit_time": null,
-        "created_user": "dat_editor",
-        "created_date": 1777576762000,
-        "last_edited_user": "dat_editor",
-        "last_edited_date": 1778943252000,
-        "comments": "An EF-1 tornado with peak winds of 95 mph touched down just north of the intersection of Ohio Ave. and Polk St. in Gulfport.  The tornado quickly tracked to the south causing sporadic tree damage that consisted primarily of large tree limbs being blown off of trees as tracked southward between Wisconsin Ave. and West Railroad Ave.  \nThe tornado continued south-southeast across US Hwy 49 with no visible damage observed to commercial businesses in this area. Large branches and snapped trees were observed between 34th St. and 28th St. At the intersection of 28th St. and 22nd Ave. two metal buildings had their garage doors blown out as the tornado continued south-southeast. At the intersection of Pass Road and 22nd Ave. a large hardwood tree was completely uprooted. The tornado then crossed Pass Road and produced additional tree damage in the form of large branches and a few snapped trees. The snapped trees were either dead and diseased, so the windspeed was lowered to 90 mph to account for this. As the tornado crossed the railroad track, minor damage to a home in the form of a few removed shingles was observed on 3rd St. The tornado then moved offshore near the intersection of Beach Blvd. and Pratt Ave.",
-        "st_length(shape)": 0.04748819724822677,
-        "wfo": "LIX"
-      }
-    },
-    {
-      "type": "Feature",
       "id": 2671974,
       "geometry": {
         "type": "LineString",
@@ -243,7 +75,7 @@
         "created_user": "dat_editor",
         "created_date": 1778180932000,
         "last_edited_user": "dat_editor",
-        "last_edited_date": 1778957027000,
+        "last_edited_date": 1780950083000,
         "comments": "A NWS ground survey confirmed an EF-1 tornado with maximum sustained winds of 100 mph tracked across portions of southeast Pike and southwest Walthall counties. This tornado began near Smithburg, MS at the intersection of Mount Herman Road and Silver Drive where it uprooted a tree and snapped branches. Additional EF-0 tree damage was identified on Blanchard and Smithburg roads. The tornado peaked in intensity as an EF-1 as it approached and crossed over Harold Alford and Magnolia roads uprooting and snapping several trees as well as taking down wooden transmission lines. The tornado then weakened causing EF-0 damage to trees and removed metal panels from an industrial chicken coop as it approached Brockdale Rd and then crossed the Bogue Chitto River. The end point of this tornado is estimated to be after it crossed MS Hwy 27 where it caused additional tree damage in a confluent pattern.",
         "st_length(shape)": 0.12246159085112611,
         "wfo": "LIX"
@@ -347,7 +179,7 @@
         "created_user": "dat_editor",
         "created_date": 1778183053000,
         "last_edited_user": "dat_editor",
-        "last_edited_date": 1778957375000,
+        "last_edited_date": 1780950083000,
         "comments": "A NWS ground survey confirmed an EF-1 tornado with maximum sustained winds of 95 mph tracked across portions of northern Walthall County, near Enon, MS. This tornado began near L. L. Coon Rd where high resolution satellite imagery showed areas of damaged/displaced trees on a confined path that tracked southeast toward MS Hwy 44. The tornado strengthened to EF-1 strength as it moved into Willie Cothern Rd where it uprooted trees, lifted metal roofing off a porch, and snapped a swath of tree trunks on private property. The tornado turned more eastward as it crossed MS Hwy 583 where it damaged shingles on a church and uprooted and snapped a few trees. Minor tree damage continued eastward across New Home Church Road with plenty of tree debris across the road. The tornado then restrengthened some over inaccessible forested areas south of New Home Church Rd where patches of heavier tree damage/displacement was identified on high resolution satellite imagery. This tree damage gradually became more minor again near Hope Rd and Dee Toney Rd. Numerous small trees were leaning in a confluent pattern with large branches down near MS Hwy 27. Minor tree damage continued with uproots and large branches predominantly occurring along the damage path on Jordan, Sauls, and Dan Holmes roads. This tornado continued east-southeast into Marion County, within the NWS Jackson area of responsibility, where additional EF-0 and EF-1 tree damage was identified by ground survey. It's estimated that the tornado finally lifted near Circle Bar Road after being on the ground for approximately 16.5 miles and 24 minutes.",
         "st_length(shape)": 0.22253678959351603,
         "wfo": "JAN,LIX"
@@ -403,7 +235,7 @@
         "created_user": "dat_editor",
         "created_date": 1778185371000,
         "last_edited_user": "dat_editor",
-        "last_edited_date": 1778202087000,
+        "last_edited_date": 1780950083000,
         "comments": "This tornado moved into Marion County from northeastern Walthall County near the Darbun community, crossing Reid Rd, Bracey Rd, and Rowley Rd before lifting near Circle Bar Road. Along the path, multiple trees and tree limbs were downed.",
         "st_length(shape)": 0.055542269277519554,
         "wfo": "JAN"
@@ -424,44 +256,56 @@
             31.118714345
           ],
           [
-            -89.573869785,
-            31.12296687600002
+            -89.57366593699999,
+            31.122994430000006
           ],
           [
-            -89.56494339400001,
-            31.123554684
+            -89.56073769,
+            31.123866955999972
           ],
           [
-            -89.54764850999999,
-            31.126603879000015
+            -89.55183275600001,
+            31.125116031000005
           ],
           [
-            -89.541125378,
-            31.128587639999978
+            -89.54854973200003,
+            31.125960985000006
           ],
           [
-            -89.52756412899998,
-            31.131012181000017
+            -89.540910801,
+            31.127871287000005
           ],
           [
-            -89.52369672600003,
-            31.131197289
+            -89.52760704399998,
+            31.130424419000008
           ],
           [
-            -89.51168042900002,
-            31.131417698000007
+            -89.52166326899999,
+            31.131214222999972
+          ],
+          [
+            -89.51084860200001,
+            31.13125095800001
           ],
           [
             -89.50482972499998,
             31.132747892999987
           ],
           [
+            -89.500141224,
+            31.133234621999975
+          ],
+          [
+            -89.49400433,
+            31.13529171099998
+          ],
+          [
             -89.48460084700002,
             31.137074693999978
           ],
           [
-            -89.474043672,
-            31.14151923999998
+            -89.475207409,
+            31.142307518999985
           ],
           [
             -89.46546060399999,
@@ -519,7 +363,7 @@
         "startlon": -89.591,
         "endlat": 31.1767,
         "endlon": -89.3794,
-        "length": 13.3588,
+        "length": 13.3738,
         "width": 600,
         "injuries": 3,
         "fatalities": 0,
@@ -535,58 +379,10 @@
         "created_user": "dat_editor",
         "created_date": 1778274139000,
         "last_edited_user": "dat_editor",
-        "last_edited_date": 1778967419000,
+        "last_edited_date": 1781040612000,
         "comments": "This tornado began near or just west of the intersections of Tatum Salt Dome Road and R Thompson Road where it produced damage to trees crossing Tatum Salt Dome Road with a narrow swath of damage produced just north of R Thompson Rd. The tornado moved eastward through the Half Moon Creek lower wooded areas before crossing Beach Road, retaining a consolidated core that could be observed transecting the roadway twice as the tornado track roughly paralleled the roadway. The tornado produced mostly vegetative damage until it approached western Purvis in the Boggy Hollow areas where outbuildings were damaged or destroyed and trees were blown onto homes. A mobile home was blown off of its blocks just north of Purvis-to-Columbia Road, which the tornado approximately moved along as it traveled east-northeast. The tornado intensified to its maximum intensity, producing damage that suggests maximum winds were at least 135 mph as several residences had roofs removed as well as some exterior walls blown inward near Coal Town Road and Highway 589. Significant damage was also observed along Central Industrial Row where several metal building system (MBS) warehouse and commercial buildings had walls and internal structures including pillars/columns and roofing purlins destroyed. Numerous other facilities suffered substantial loss of roofing materials including the Lamar County Multi-Purpose Center. The tornado continued eastward downing numerous trees and causing widespread damage to roofs and outbuildings before dissipating just east of US Highway 11. The tornado at maximum width was estimated at 600 yards, had a track length of 13.4 miles, and had a maximum estimated intensity of 135 mph, EF-2. ",
-        "st_length(shape)": 0.221992932228059,
+        "st_length(shape)": 0.22219129381956687,
         "wfo": "JAN"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 2674374,
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -88.96337434399999,
-            31.176785515000006
-          ],
-          [
-            -88.92092867999997,
-            31.177176146000022
-          ]
-        ]
-      },
-      "properties": {
-        "objectid": 2674374,
-        "event_id": "Beaumont",
-        "stormdate": 1778115000000,
-        "starttime": 1778115000000,
-        "endtime": 1778115120000,
-        "startlat": 31.1768,
-        "startlon": -88.96340000000001,
-        "endlat": 31.1772,
-        "endlon": -88.9209,
-        "length": 2.5144,
-        "width": 1100,
-        "injuries": 0,
-        "fatalities": 0,
-        "efscale": "EF1",
-        "efnum": 1,
-        "qc": "Y",
-        "maxwind": 100,
-        "globalid": "{22BDE9A2-43CD-4C6D-B674-472EC7D37E1A}",
-        "cropdamage": 0,
-        "propdamage": 0,
-        "edit_user": null,
-        "edit_time": null,
-        "created_user": "dat_editor",
-        "created_date": 1778276856000,
-        "last_edited_user": "dat_editor",
-        "last_edited_date": 1778281355000,
-        "comments": "Preliminary ground survey confirms EF1 damage beginning along US Highway 98 between New Augusta and Beaumont, with multiple areas of softwood and hardwood trees snapped or uprooted. Two concentrated areas of tree damage were noted along US Highway 98, suggesting multiple subvortices within a broader circulation. The maximum intensity occurred around US Highway 98 with winds around 100 mph. The tornado continued generally eastward, crossing Highway 198 and tracking along or near V L Toussaint Blvd before weakening over the north side of Beaumont. Farther southwest, sporadic tree damage was also observed along Highway 29 south of New Augusta. Satellite data will be examined over the coming weeks to determine the starting point for the tornado, as radar suggests that it likely formed over a wooded area southwest of New Augusta. Further track adjustments are likely once satellite data is available.",
-        "st_length(shape)": 0.04244746146685543,
-        "wfo": "MOB"
       }
     },
     {
@@ -596,27 +392,39 @@
         "type": "LineString",
         "coordinates": [
           [
-            -88.31383300700003,
-            30.53528541999998
+            -88.31842673800003,
+            30.53759921699998
           ],
           [
-            -88.28429652099999,
-            30.521321381999996
+            -88.313043246,
+            30.534798217000002
+          ],
+          [
+            -88.28454310799998,
+            30.521606350000013
+          ],
+          [
+            -88.27937419400001,
+            30.517794373000015
+          ],
+          [
+            -88.24938828699999,
+            30.50765985999999
           ]
         ]
       },
       "properties": {
         "objectid": 2674375,
         "event_id": "Grand Bay",
-        "stormdate": 1778162640000,
-        "starttime": 1778162640000,
-        "endtime": 1778162820000,
-        "startlat": 30.5353,
-        "startlon": -88.3138,
-        "endlat": 30.5213,
-        "endlon": -88.2843,
-        "length": 2.0069,
-        "width": 30,
+        "stormdate": 1778162520000,
+        "starttime": 1778162520000,
+        "endtime": 1778162940000,
+        "startlat": 30.5376,
+        "startlon": -88.3184,
+        "endlat": 30.5077,
+        "endlon": -88.2494,
+        "length": 4.6266,
+        "width": 150,
         "injuries": 0,
         "fatalities": 0,
         "efscale": "EF1",
@@ -631,9 +439,9 @@
         "created_user": "dat_editor",
         "created_date": 1778277375000,
         "last_edited_user": "dat_editor",
-        "last_edited_date": 1778281444000,
-        "comments": "Preliminary ground survey confirms low end EF1 damage northeast of Grand Bay, Alabama. Maximum intensity of 88 mph was found on Jim McNeil Loop Road where several large tree limbs were down over a compact area. The tornado tracked southeast and produced sporadic damage on Dedicated Road where a horse trailer was flipped and more trees were damaged. After passing over Old Pascagoula Road, additional tree damage with downed limbs and snapped trees were found on Wells Road West. Satellite data will be examined in the coming weeks to confirm the starting point of the tornado, which is likely further to the northwest in wooded areas over Jackson Creek east of Grand Bay Wilmer Road.",
-        "st_length(shape)": 0.03267106307568765,
+        "last_edited_date": 1779779990000,
+        "comments": "Preliminary ground survey confirms low end EF1 damage northeast of Grand Bay, Alabama. Maximum intensity of 88 mph was found on Jim McNeil Loop Road where several large tree limbs were down over a compact area. The tornado tracked southeast and produced sporadic damage on Dedicated Road where a horse trailer was flipped and more trees were damaged. After passing over Old Pascagoula Road, additional tree damage with downed limbs and snapped trees were found on Wells Road West. Satellite data will be examined in the coming weeks to confirm the starting point of the tornado, which is likely further to the northwest in wooded areas over Jackson Creek east of Grand Bay Wilmer Road.\n\nAfter review of available Sentinel 2 satellite imagery, the beginning and end points of the tornado have been adjusted to reflect a narrow corridor of persistent tree damage along the tornado track. The start point is brought back to just south of Davis Lane along Jackson Creek where minor tree damage becomes evident. The end point was adjusted southeast across Interstate 10 where tree damage became apparent again in the vicinity of Boe Road and Henley Road, in line with the location that the radar TDS began to dissipate. No additional damage is visible southeast of this location. Further refinements of the track are possible later as higher resolution imagery becomes available.",
+        "st_length(shape)": 0.0755484652421417,
         "wfo": "MOB"
       }
     },
@@ -2412,12 +2220,12 @@
             31.532355067000026
           ],
           [
-            -90.13421004700001,
-            31.532595114000003
+            -90.13381588300001,
+            31.533612604999973
           ],
           [
-            -90.13039326299997,
-            31.533315252000023
+            -90.130379973,
+            31.534099550999997
           ],
           [
             -90.112939041,
@@ -2435,7 +2243,7 @@
         "startlon": -91.4368,
         "endlat": 31.5361,
         "endlon": -90.1129,
-        "length": 81.8832,
+        "length": 81.8797,
         "width": 2050,
         "injuries": 23,
         "fatalities": 0,
@@ -2451,9 +2259,9 @@
         "created_user": "dat_editor",
         "created_date": 1778420153000,
         "last_edited_user": "dat_editor",
-        "last_edited_date": 1778896991000,
+        "last_edited_date": 1779650953000,
         "comments": "This tornado began in the St. Catherine Creek National Wildlife Refuge in southwestern Adams County, then tracked near the Homochitto River across northern Wilkinson County and far southeastern Adams County before moving across southern Franklin County, central Lincoln County, and into Lawrence County, lifting on the south side of Monticello. Communities along and near the path of the tornado included Possum Corner, Garden City, West Lincoln, Bogue Chitto, Enterprise, East Lincoln, and Harmony. The first instance of EF3 damage was an area of nearly complete devastation to mixed forest east of the Garden City community. A second area of EF3 damage was identified in western Lincoln County between W Lincoln Drive and Rowan Lane, where another intense area of tree damage occurred. A third corridor of EF3 damage occurred just east of I-55 between Brookhaven and Bogue Chitto. In this area, tree damage was extensive with some debarking, a home was heavily damaged with exterior walls collapsed, and a mobile home park was devastated with debris and vehicles rowed along a center vortex path. Additional heavy tree damage occurred along the entire path. There were also multiple instances of EF2 structural damage in Wilkinson, Franklin, Lincoln, and Lawrence counties.\n\nSpecial thanks to the SR GIS Mutual Aid team for assistance with post event imagery acquisition and analysis.",
-        "st_length(shape)": 1.3707645316109973,
+        "st_length(shape)": 1.3707209877589928,
         "wfo": "JAN,LIX"
       }
     },
@@ -2551,10 +2359,338 @@
         "created_user": "dat_editor",
         "created_date": 1778940853000,
         "last_edited_user": "dat_editor",
-        "last_edited_date": 1779214888000,
+        "last_edited_date": 1780950083000,
         "comments": "A brief, weak EF-0 tornado touched down in the community of Paulina, LA causing minor uplift of shingles on two homes. The tornado tracked north-northeast from Lena Street to Angelle Street at around 8 miles per hour before it was estimated to have lifted. This damage was collocated with a tight tornado vortex signature visible on TMSY doppler radar. No additional damage was identified via reports or aerial imagery. Time estimated by radar.",
         "st_length(shape)": 0.002063808996476457,
         "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2677172,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.13371031499997,
+            30.523218547
+          ],
+          [
+            -88.11588635099997,
+            30.512885734000008
+          ],
+          [
+            -88.11208595900001,
+            30.51183818200002
+          ],
+          [
+            -88.10975780199999,
+            30.51065967300002
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2677172,
+        "event_id": "Theodore Industrial Park",
+        "stormdate": 1778163360000,
+        "starttime": 1778163360000,
+        "endtime": 1778163540000,
+        "startlat": 30.5232,
+        "startlon": -88.1337,
+        "endlat": 30.5107,
+        "endlon": -88.1098,
+        "length": 1.678,
+        "width": 30,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 80,
+        "globalid": "{FCDBED40-2EF7-4C7F-9A2F-64F66E5C050F}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1778976821000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1779779990000,
+        "comments": "Available Sentinel 2 satellite imagery and available radar data with a tornado debris signature revealed a weak EF0 tornado occurred near Theodore Industrial Park. Minor tree damage was evident, beginning along the tree line north of Degussa Road. This is where the first signs of a radar tornado debris signature appear. The tornado crossed Rangeline Road, producing another small corridor of tree damage west of Dauphin Island Parkway along Cedar Wood Drive North. The damage path comes to an end at Dauphin Island Parkway and serves as the end point for this tornado.",
+        "st_length(shape)": 0.02715401291008341,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2677572,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -89.08191664200001,
+            31.166760388
+          ],
+          [
+            -89.07399637600003,
+            31.167476446000023
+          ],
+          [
+            -89.068731157,
+            31.168489920000013
+          ],
+          [
+            -89.06162866599999,
+            31.168820402999984
+          ],
+          [
+            -89.057113018,
+            31.170066846999987
+          ],
+          [
+            -89.05416616500003,
+            31.171068478999985
+          ],
+          [
+            -89.046794261,
+            31.171260234999977
+          ],
+          [
+            -89.04333480899999,
+            31.17191914099999
+          ],
+          [
+            -89.03765358800001,
+            31.173513045999982
+          ],
+          [
+            -89.033717298,
+            31.17280519100001
+          ],
+          [
+            -89.03079666999997,
+            31.172923507000007
+          ],
+          [
+            -89.02731575799999,
+            31.174384085999975
+          ],
+          [
+            -89.024244926,
+            31.17487774099999
+          ],
+          [
+            -89.01535906700002,
+            31.175322435999988
+          ],
+          [
+            -89.009182834,
+            31.176341349999973
+          ],
+          [
+            -89.005060576,
+            31.17607820799998
+          ],
+          [
+            -88.99647750700001,
+            31.176363788000003
+          ],
+          [
+            -88.990559959,
+            31.17540913099998
+          ],
+          [
+            -88.98767986399997,
+            31.174225993999983
+          ],
+          [
+            -88.975501441,
+            31.173199918000023
+          ],
+          [
+            -88.97243061,
+            31.17330191299999
+          ],
+          [
+            -88.96723785299997,
+            31.174172956999996
+          ],
+          [
+            -88.96378555199999,
+            31.174211715000013
+          ],
+          [
+            -88.957344412,
+            31.173212444
+          ],
+          [
+            -88.95484101699998,
+            31.173436836000008
+          ],
+          [
+            -88.94971978500001,
+            31.173920296000006
+          ],
+          [
+            -88.94284295400001,
+            31.17415265300002
+          ],
+          [
+            -88.93485950799999,
+            31.177162484999997
+          ],
+          [
+            -88.92822312700002,
+            31.178459813000018
+          ],
+          [
+            -88.926436776,
+            31.178405758999986
+          ],
+          [
+            -88.92064618199998,
+            31.175901855999996
+          ],
+          [
+            -88.90826356399998,
+            31.174506192000024
+          ],
+          [
+            -88.90380513399998,
+            31.173641271000008
+          ],
+          [
+            -88.90012872199998,
+            31.17340260200001
+          ],
+          [
+            -88.88269078799999,
+            31.174667344
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2677572,
+        "event_id": "Beaumont",
+        "stormdate": 1778114220000,
+        "starttime": 1778114220000,
+        "endtime": 1778115300000,
+        "startlat": 31.1668,
+        "startlon": -89.0819,
+        "endlat": 31.1747,
+        "endlon": -88.8827,
+        "length": 12.0565,
+        "width": 700,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 110,
+        "globalid": "{2978EF9B-372C-4DAD-9E1B-BE6ED942B363}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1778983502000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1782410851000,
+        "comments": "Preliminary ground survey confirms EF1 damage beginning along US Highway 98 between New Augusta and Beaumont, with multiple areas of softwood and hardwood trees snapped or uprooted. Two concentrated areas of tree damage were noted along US Highway 98, suggesting multiple subvortices within a broader circulation. The maximum intensity occurred around US Highway 98 with winds around 100 mph. The tornado continued generally eastward, crossing Highway 198 and tracking along or near V L Toussaint Blvd before weakening over the north side of Beaumont. Farther southwest, sporadic tree damage was also observed along Highway 29 south of New Augusta. Satellite data will be examined over the coming weeks to determine the starting point for the tornado, as radar suggests that it likely formed over a wooded area southwest of New Augusta. Further track adjustments are likely once satellite data is available.\n\nAfter review of available Sentinel 2 satellite imagery the tornado track had major changes to its beginning and end points, width, and intensity. The tornado was found to have began much further west to the west of Highway 29 and just north of Red Hill Road. The tornado traversed forest uprooting and snapping trees along its path, reaching a peak intensity north of Red Hill Road where a large section of forest sustained significant damage. Here wind speeds were likely in the 100 to 110mph range. The tornado evolved into a multi-vortex evident by several notable corridors of tree damage along the main tornado track. The tornado continued east of Highway 29 gradually shrinking in size and weakening. During this period it dropped southeast a bit along FS Road 312 A. The tornado began to re-intensify as forest damage became more noticeable until reaching Highway 98 where ground survey crew assessed damage. Satellite imagery supported the tornado being multi-vortex as several focused corridors of damage became evident as it crossed Highway 98, consistent with ground survey assessments. Afte the ground survey end point, the tornado did continue into the forest causing forest damage across Horseshoe Bend Lake. It then reached the Leaf River where the last evidence of forest damage associated with the tornado was visible on Sentinel 2 satellite imagery. This is the estimated end point for the tornado. The tornado width was also updated to be approximately 700 yards wide. Additional adjustments are possible later as high-resolution satellite imagery becomes available over the next month.",
+        "st_length(shape)": 0.2024373379036944,
+        "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2677573,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -88.66318912100002,
+            31.20952861699999
+          ],
+          [
+            -88.662371345,
+            31.20962241699999
+          ],
+          [
+            -88.65792245400002,
+            31.210106712000027
+          ],
+          [
+            -88.65538210300002,
+            31.211329163000016
+          ],
+          [
+            -88.64894399000002,
+            31.213266961999977
+          ],
+          [
+            -88.647273869,
+            31.213624818000028
+          ],
+          [
+            -88.63654183400001,
+            31.214898359000017
+          ],
+          [
+            -88.63481687699999,
+            31.215444306999984
+          ],
+          [
+            -88.63353537699999,
+            31.216313432999982
+          ],
+          [
+            -88.62888345099998,
+            31.219361520000007
+          ],
+          [
+            -88.625874608,
+            31.220319812000014
+          ],
+          [
+            -88.60615777100003,
+            31.227096555999992
+          ],
+          [
+            -88.5953288,
+            31.232881368999983
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2677573,
+        "event_id": "Jonathan",
+        "stormdate": 1778116560000,
+        "starttime": 1778116560000,
+        "endtime": 1778117100000,
+        "startlat": 31.2095,
+        "startlon": -88.6632,
+        "endlat": 31.2329,
+        "endlon": -88.5953,
+        "length": 4.388,
+        "width": 120,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 90,
+        "globalid": "{255B179C-4F10-466F-BE94-F33CF903BFAE}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1778983604000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1781051348000,
+        "comments": "After review of available medium to high resolution satellite imagery, it was determined an EF1 tornado occurred near Jonathan. This tornado began southwest of Highway 63 where it began causing intermittent tree damage across portions of the forest. After crossing Highway 63, it moved into some open fields where it continued to cause tree damage in a focused corridor. The tornado strengthened on approach to Jonathan Road where a more persistent corridor of tree damage was able to be observed. The tornado continued northeast across Jonathan Road, reaching its peak intensity around 90mph just northwest of Albert Smith Road where a corridor of more substantial treefall was evident on satellite imagery. The damage path becomes intermittent after this point, with the last visible tree damage east of the Albert Smith Road and Old Avera Road intersection. This is also where the radar tornado debris signature dissipates, and no further damage is evident further east via satellite imagery. Adjustments to the tornado are possible later as high-resolution satellite imagery becomes available over the next month.",
+        "st_length(shape)": 0.07255951217795806,
+        "wfo": "MOB"
       }
     }
   ]
