@@ -1,5 +1,6 @@
 event_id,stormdate,wfo,efscale,start_time,end_time,duration_minutes,measured_track_miles,total_track_miles_used,avg_speed_mph,crossing_index,crossing_distance_miles,crossing_fraction,crossing_time,boundary_from,boundary_to,crossing_lon,crossing_lat,review_flag
 "Smithburg-Dillon, MS Tornado",1778107500000,LIX,EF1,2026-05-06 05:45:00 PM CDT,2026-05-06 05:58:00 PM CDT,13.0,7.356,7.373,34.0,1,2.09,0.28349,2026-05-06 05:48:41 PM CDT,Pike,Walthall,-90.259681,31.032849,
+"Enon-Darbun, MS Tornado",1778125320000,"JAN,LIX",EF1,2026-05-06 10:42:00 PM CDT,2026-05-06 11:06:00 PM CDT,24.0,13.246,13.287,33.2,1,13.287,1.0,2026-05-06 11:06:00 PM CDT,Walthall,Marion,-90.040345,31.291093,LINKED_DAT_SEGMENT:Darbun Tornado
 Garden City Lincoln Monticello,1778109720000,"JAN,LIX",EF3,2026-05-06 06:22:00 PM CDT,2026-05-06 08:31:00 PM CDT,129.0,81.619,81.88,38.1,1,4.254,0.05195,2026-05-06 06:28:42 PM CDT,Adams,Wilkinson,-91.365212,31.341285,
 Garden City Lincoln Monticello,1778109720000,"JAN,LIX",EF3,2026-05-06 06:22:00 PM CDT,2026-05-06 08:31:00 PM CDT,129.0,81.619,81.88,38.1,2,4.345,0.05307,2026-05-06 06:28:50 PM CDT,Wilkinson,Adams,-91.363686,31.341517,
 Garden City Lincoln Monticello,1778109720000,"JAN,LIX",EF3,2026-05-06 06:22:00 PM CDT,2026-05-06 08:31:00 PM CDT,129.0,81.619,81.88,38.1,3,4.596,0.05613,2026-05-06 06:29:14 PM CDT,Adams,Wilkinson,-91.359512,31.342154,
