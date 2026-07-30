@@ -62,6 +62,31 @@ class Config:
     timezone: str = "America/Chicago"
     track_length_field_miles: Optional[str] = None
     projected_crs: str = "EPSG:5070"
+    endpoint_link_distance_m: float = 250.0
+    endpoint_link_time_seconds: float = 120.0
+    endpoint_sample_offset_m: float = 100.0
+
+
+@dataclass
+class TrackInfo:
+    row: Any
+    line: LineString
+    tornado_id: str
+    start: pd.Timestamp
+    end: pd.Timestamp
+    measured_miles: float
+    total_miles: float
+    duration_seconds: float
+    duration_minutes: float
+    avg_speed_mph: Optional[float]
+
+
+@dataclass
+class LinkedEndpointCrossing:
+    point: Point
+    boundary_from: str
+    boundary_to: str
+    downstream_event_id: str
 
 
 def load_config(path: str | Path) -> Config:
@@ -186,6 +211,166 @@ def dedupe_crossings(crossings: list[tuple[float, Point]], min_separation_m: flo
     return deduped
 
 
+def build_track_info(trk, cfg: Config) -> Optional[TrackInfo]:
+    tornado_id = str(trk[cfg.track_id_field])
+    start = parse_time(trk[cfg.start_time_field], cfg.timezone)
+    end = parse_time(trk[cfg.end_time_field], cfg.timezone)
+
+    if end <= start:
+        print(f"Skipping {tornado_id}: end time is not after start time")
+        return None
+
+    line = as_single_line(trk.geometry)
+    measured_miles = line.length / M_PER_MILE
+    total_miles = measured_miles
+
+    if cfg.track_length_field_miles and cfg.track_length_field_miles in trk.index:
+        try:
+            val = trk[cfg.track_length_field_miles]
+            if not pd.isna(val):
+                total_miles = float(val)
+        except Exception:
+            total_miles = measured_miles
+
+    duration_seconds = (end - start).total_seconds()
+    duration_minutes = duration_seconds / 60.0
+    avg_speed_mph = total_miles / (duration_minutes / 60.0) if duration_minutes > 0 else None
+
+    return TrackInfo(
+        row=trk,
+        line=line,
+        tornado_id=tornado_id,
+        start=start,
+        end=end,
+        measured_miles=measured_miles,
+        total_miles=total_miles,
+        duration_seconds=duration_seconds,
+        duration_minutes=duration_minutes,
+        avg_speed_mph=avg_speed_mph,
+    )
+
+
+def find_linked_endpoint_crossings(
+    track_infos: list[TrackInfo],
+    boundaries: gpd.GeoDataFrame,
+    boundary_lines,
+    cfg: Config,
+) -> dict[int, LinkedEndpointCrossing]:
+    """Link an upstream DAT feature ending on a boundary to its downstream feature.
+
+    Neighboring WFOs commonly maintain separate DAT line features that are
+    intentionally snapped together at a CWA/county boundary. A normal endpoint
+    filter would discard the crossing on both features. This identifies the
+    best end-to-start continuation using time, distance, and the counties just
+    inside each segment, then records the crossing on the upstream feature.
+    """
+    linked: dict[int, LinkedEndpointCrossing] = {}
+
+    for upstream_idx, upstream in enumerate(track_infos):
+        upstream_end = Point(upstream.line.coords[-1])
+        upstream_county = boundary_name_at_point(
+            boundaries,
+            point_at_distance(
+                upstream.line,
+                max(0.0, upstream.line.length - cfg.endpoint_sample_offset_m),
+            ),
+            cfg.boundary_name_field,
+        )
+        if upstream_county is None:
+            continue
+
+        best: Optional[tuple[float, LinkedEndpointCrossing]] = None
+
+        for downstream_idx, downstream in enumerate(track_infos):
+            if downstream_idx == upstream_idx:
+                continue
+
+            time_gap = abs((downstream.start - upstream.end).total_seconds())
+            if time_gap > cfg.endpoint_link_time_seconds:
+                continue
+
+            downstream_start = Point(downstream.line.coords[0])
+            endpoint_gap = upstream_end.distance(downstream_start)
+            if endpoint_gap > cfg.endpoint_link_distance_m:
+                continue
+
+            shared_point = Point(
+                (upstream_end.x + downstream_start.x) / 2.0,
+                (upstream_end.y + downstream_start.y) / 2.0,
+            )
+            if shared_point.distance(boundary_lines) > cfg.endpoint_link_distance_m:
+                continue
+
+            downstream_county = boundary_name_at_point(
+                boundaries,
+                point_at_distance(
+                    downstream.line,
+                    min(cfg.endpoint_sample_offset_m, downstream.line.length),
+                ),
+                cfg.boundary_name_field,
+            )
+            if downstream_county is None or downstream_county == upstream_county:
+                continue
+
+            # Prefer the closest spatial and temporal continuation when more
+            # than one candidate falls within the tolerances.
+            score = endpoint_gap + time_gap
+            candidate = LinkedEndpointCrossing(
+                point=shared_point,
+                boundary_from=upstream_county,
+                boundary_to=downstream_county,
+                downstream_event_id=downstream.tornado_id,
+            )
+            if best is None or score < best[0]:
+                best = (score, candidate)
+
+        if best is not None:
+            linked[upstream_idx] = best[1]
+
+    return linked
+
+
+def make_output_row(
+    info: TrackInfo,
+    crossing_index: int,
+    dist_m: float,
+    pt_proj: Point,
+    crossing_time: pd.Timestamp,
+    before_name: Optional[str],
+    after_name: Optional[str],
+    cfg: Config,
+    review_flag: str = "",
+) -> dict[str, Any]:
+    measured_fraction = dist_m / info.line.length if info.line.length else 0.0
+    crossing_distance_miles = measured_fraction * info.total_miles
+    pt_wgs = gpd.GeoSeries([pt_proj], crs=cfg.projected_crs).to_crs("EPSG:4326").iloc[0]
+
+    if not review_flag and (before_name is None or after_name is None):
+        review_flag = "CHECK"
+
+    return {
+        "event_id": info.tornado_id,
+        "stormdate": info.row.get("stormdate", ""),
+        "wfo": info.row.get("wfo", ""),
+        "efscale": info.row.get("efscale", ""),
+        "start_time": info.start.strftime("%Y-%m-%d %I:%M:%S %p %Z"),
+        "end_time": info.end.strftime("%Y-%m-%d %I:%M:%S %p %Z"),
+        "duration_minutes": round(info.duration_minutes, 2),
+        "measured_track_miles": round(info.measured_miles, 3),
+        "total_track_miles_used": round(info.total_miles, 3),
+        "avg_speed_mph": round(info.avg_speed_mph, 1) if info.avg_speed_mph is not None else None,
+        "crossing_index": crossing_index,
+        "crossing_distance_miles": round(crossing_distance_miles, 3),
+        "crossing_fraction": round(measured_fraction, 5),
+        "crossing_time": crossing_time.strftime("%Y-%m-%d %I:%M:%S %p %Z"),
+        "boundary_from": before_name,
+        "boundary_to": after_name,
+        "crossing_lon": round(pt_wgs.x, 6),
+        "crossing_lat": round(pt_wgs.y, 6),
+        "review_flag": review_flag,
+    }
+
+
 def calculate(cfg: Config) -> pd.DataFrame:
     tracks = gpd.read_file(cfg.tracks_file)
     boundaries = gpd.read_file(cfg.boundaries_file)
@@ -215,79 +400,81 @@ def calculate(cfg: Config) -> pd.DataFrame:
     # dissolves internal boundaries and causes a header-only CSV.
     boundary_lines = boundaries_proj.geometry.boundary.union_all()
 
+    track_infos = []
+    for _, trk in tracks_proj.iterrows():
+        info = build_track_info(trk, cfg)
+        if info is not None:
+            track_infos.append(info)
+
+    linked_endpoints = find_linked_endpoint_crossings(
+        track_infos,
+        boundaries_proj,
+        boundary_lines,
+        cfg,
+    )
+
     rows = []
 
-    for _, trk in tracks_proj.iterrows():
-        tornado_id = str(trk[cfg.track_id_field])
-        start = parse_time(trk[cfg.start_time_field], cfg.timezone)
-        end = parse_time(trk[cfg.end_time_field], cfg.timezone)
-
-        if end <= start:
-            print(f"Skipping {tornado_id}: end time is not after start time")
-            continue
-
-        line = as_single_line(trk.geometry)
-        measured_miles = line.length / M_PER_MILE
-        total_miles = measured_miles
-
-        if cfg.track_length_field_miles and cfg.track_length_field_miles in trk.index:
-            try:
-                val = trk[cfg.track_length_field_miles]
-                if not pd.isna(val):
-                    total_miles = float(val)
-            except Exception:
-                total_miles = measured_miles
-
-        duration_seconds = (end - start).total_seconds()
-        duration_minutes = duration_seconds / 60.0
-        avg_speed_mph = total_miles / (duration_minutes / 60.0) if duration_minutes > 0 else None
-
-        pts = extract_crossing_points(line, boundary_lines)
+    for track_idx, info in enumerate(track_infos):
+        pts = extract_crossing_points(info.line, boundary_lines)
         crossings = []
         for pt in pts:
-            dist_m = line.project(pt)
-            if dist_m < 10 or dist_m > line.length - 10:
+            dist_m = info.line.project(pt)
+            # Ordinary isolated endpoint touches remain excluded. A legitimate
+            # split-track endpoint crossing is added separately below after a
+            # matching downstream DAT segment has been confirmed.
+            if dist_m < 10 or dist_m > info.line.length - 10:
                 continue
             crossings.append((dist_m, pt))
 
         crossings = dedupe_crossings(crossings)
+        crossing_index = 1
 
-        for i, (dist_m, pt_proj) in enumerate(crossings, start=1):
-            measured_fraction = dist_m / line.length if line.length else None
+        for dist_m, pt_proj in crossings:
+            measured_fraction = dist_m / info.line.length if info.line.length else None
             if measured_fraction is None:
                 continue
 
-            crossing_distance_miles = measured_fraction * total_miles
-            crossing_time = start + pd.Timedelta(seconds=measured_fraction * duration_seconds)
-
-            before_name, after_name = from_to_names(boundaries_proj, line, dist_m, cfg.boundary_name_field)
+            before_name, after_name = from_to_names(
+                boundaries_proj,
+                info.line,
+                dist_m,
+                cfg.boundary_name_field,
+            )
             if before_name == after_name:
                 continue
 
-            pt_wgs = gpd.GeoSeries([pt_proj], crs=cfg.projected_crs).to_crs("EPSG:4326").iloc[0]
-
+            crossing_time = info.start + pd.Timedelta(
+                seconds=measured_fraction * info.duration_seconds
+            )
             rows.append(
-                {
-                    "event_id": tornado_id,
-                    "stormdate": trk.get("stormdate", ""),
-                    "wfo": trk.get("wfo", ""),
-                    "efscale": trk.get("efscale", ""),
-                    "start_time": start.strftime("%Y-%m-%d %I:%M:%S %p %Z"),
-                    "end_time": end.strftime("%Y-%m-%d %I:%M:%S %p %Z"),
-                    "duration_minutes": round(duration_minutes, 2),
-                    "measured_track_miles": round(measured_miles, 3),
-                    "total_track_miles_used": round(total_miles, 3),
-                    "avg_speed_mph": round(avg_speed_mph, 1) if avg_speed_mph is not None else None,
-                    "crossing_index": i,
-                    "crossing_distance_miles": round(crossing_distance_miles, 3),
-                    "crossing_fraction": round(measured_fraction, 5),
-                    "crossing_time": crossing_time.strftime("%Y-%m-%d %I:%M:%S %p %Z"),
-                    "boundary_from": before_name,
-                    "boundary_to": after_name,
-                    "crossing_lon": round(pt_wgs.x, 6),
-                    "crossing_lat": round(pt_wgs.y, 6),
-                    "review_flag": "CHECK" if before_name is None or after_name is None else "",
-                }
+                make_output_row(
+                    info,
+                    crossing_index,
+                    dist_m,
+                    pt_proj,
+                    crossing_time,
+                    before_name,
+                    after_name,
+                    cfg,
+                )
+            )
+            crossing_index += 1
+
+        linked = linked_endpoints.get(track_idx)
+        if linked is not None:
+            rows.append(
+                make_output_row(
+                    info,
+                    crossing_index,
+                    info.line.length,
+                    linked.point,
+                    info.end,
+                    linked.boundary_from,
+                    linked.boundary_to,
+                    cfg,
+                    review_flag=f"LINKED_DAT_SEGMENT:{linked.downstream_event_id}",
+                )
             )
 
     return pd.DataFrame(rows, columns=OUTPUT_COLUMNS)
