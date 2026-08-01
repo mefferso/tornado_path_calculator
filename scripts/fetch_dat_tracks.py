@@ -48,6 +48,35 @@ def date_to_epoch_ms(date_text, end_of_day=False):
     return int(dt.timestamp() * 1000)
 
 
+def normalize_event_ids(data):
+    """Fill blank DAT event IDs from the stable ArcGIS object ID.
+
+    DAT occasionally returns a valid tornado line with an empty event_id. The
+    map uses objectid as its display fallback, so the crossing CSV must use the
+    same fallback or the crossing marker cannot be associated with the path.
+    """
+    normalized = 0
+
+    for feature in data.get("features", []):
+        properties = feature.setdefault("properties", {})
+        current = properties.get("event_id")
+
+        if current is not None and str(current).strip():
+            continue
+
+        fallback = properties.get("objectid", properties.get("OBJECTID"))
+        if fallback is None or not str(fallback).strip():
+            continue
+
+        if isinstance(fallback, float) and fallback.is_integer():
+            fallback = int(fallback)
+
+        properties["event_id"] = str(fallback).strip()
+        normalized += 1
+
+    return normalized
+
+
 def fetch_dat_lines(start_date, end_date, bbox, output):
     """
     bbox format:
@@ -80,6 +109,7 @@ def fetch_dat_lines(start_date, end_date, bbox, output):
     r.raise_for_status()
 
     data = r.json()
+    normalized_event_ids = normalize_event_ids(data)
 
     output = Path(output)
     output.parent.mkdir(exist_ok=True)
@@ -92,6 +122,9 @@ def fetch_dat_lines(start_date, end_date, bbox, output):
     print(f"Used date window: {start_date} through {end_date}")
     print(f"Used ArcGIS time: {start_ms},{end_ms}")
     print(f"Wrote {feature_count} DAT line features to {output}")
+
+    if normalized_event_ids:
+        print(f"Filled {normalized_event_ids} blank event_id value(s) from objectid.")
 
     if feature_count:
         props = data["features"][0].get("properties", {})
