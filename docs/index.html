@@ -9,31 +9,335 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
-    :root{--bg:#0f172a;--panel2:rgba(255,255,255,.95);--text:#e5e7eb;--muted:#94a3b8;--shadow:0 18px 50px rgba(0,0,0,.35)}
-    html,body{height:100%;width:100%;margin:0;padding:0;overflow:hidden;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg)}
-    #app{position:fixed;inset:0;display:flex;flex-direction:column;min-height:0}
-    header{flex:0 0 auto;color:var(--text);background:linear-gradient(135deg,#111827,#0f172a 65%,#082f49);padding:10px 14px;box-shadow:var(--shadow);z-index:1000}
-    .topline{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    h1{margin:0;font-size:17px;letter-spacing:.2px}
-    #summary{color:var(--muted);font-size:12px;white-space:nowrap}
-    #map{flex:1 1 auto;width:100%;min-height:0;background:#dbeafe}
-    .legend{background:var(--panel2);color:#0f172a;border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);line-height:1.35;font-size:14px;border:1px solid rgba(15,23,42,.16)}
-    .legend-title{font-weight:800;margin-bottom:6px}
-    .legend-row{display:flex;align-items:center;gap:7px;margin:4px 0}
-    .swatch{width:22px;height:4px;border-radius:999px;display:inline-block}
-    .leaflet-popup-content-wrapper{border-radius:14px}
-    .leaflet-popup-content{margin:14px 16px;min-width:370px;max-width:560px}
-    .popup-title{font-size:19px;font-weight:850;margin-bottom:9px;color:#0f172a}
-    .popup-subtitle{font-size:14px;color:#475569;margin-bottom:12px}
-    .detail-grid{display:grid;grid-template-columns:165px 1fr;gap:7px 13px;font-size:15px;line-height:1.35;margin-bottom:10px}
-    .detail-key{color:#475569;font-weight:750}
-    .detail-val{color:#111827;overflow-wrap:anywhere}
-    .detail-val.strong{font-weight:750}
-    .crossing-block{border:1px solid #cbd5e1;border-radius:12px;padding:10px 11px;margin:10px 0;background:#f8fafc}
-    .crossing-title{font-weight:850;font-size:16px;margin-bottom:8px;color:#0f172a}
-    .empty-note{color:#64748b;font-size:14px;font-style:italic;border-top:1px solid #e2e8f0;padding-top:8px}
-    .crossing-marker{width:12px;height:12px;border:2px solid white;border-radius:50%;background:#111827;box-shadow:0 0 0 2px rgba(15,23,42,.35)}
-    .error-box{position:absolute;top:64px;left:50%;transform:translateX(-50%);z-index:1001;background:#fee2e2;color:#7f1d1d;border:1px solid #fecaca;border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);max-width:720px;font-weight:700}
+    :root {
+      --bg: #0f172a;
+      --panel: rgba(255, 255, 255, .96);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .35);
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+    }
+
+    #app {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    header {
+      flex: 0 0 auto;
+      color: var(--text);
+      background: linear-gradient(135deg, #111827, #0f172a 65%, #082f49);
+      padding: 10px 14px;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+    }
+
+    .topline {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: .2px;
+    }
+
+    #summary {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    #map {
+      flex: 1 1 auto;
+      width: 100%;
+      min-height: 0;
+      background: #dbeafe;
+    }
+
+    .run-panel {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      z-index: 1001;
+      width: min(430px, calc(100vw - 46px));
+      padding: 12px;
+      color: #0f172a;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      box-sizing: border-box;
+      font-size: 13px;
+    }
+
+    .run-panel.collapsed {
+      width: auto;
+      min-width: 250px;
+    }
+
+    .run-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .run-panel-title {
+      font-size: 15px;
+      font-weight: 850;
+    }
+
+    .run-panel-toggle {
+      padding: 5px 8px;
+      color: #0f172a;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .run-panel-toggle:hover {
+      background: #e2e8f0;
+    }
+
+    .run-panel-body {
+      margin-top: 8px;
+    }
+
+    .run-panel.collapsed .run-panel-body {
+      display: none;
+    }
+
+    .run-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .run-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-weight: 750;
+    }
+
+    .run-label.full {
+      grid-column: 1 / -1;
+    }
+
+    .run-key-label-line {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .run-key-repo {
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .run-input {
+      padding: 7px 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      font: inherit;
+    }
+
+    .run-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    #runBtn {
+      padding: 8px 11px;
+      color: white;
+      background: #0f172a;
+      border: 0;
+      border-radius: 10px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    #runBtn:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
+    #runStatus {
+      color: #334155;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .run-note {
+      margin-top: 7px;
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .legend {
+      padding: 10px 12px;
+      color: #0f172a;
+      background: var(--panel);
+      border: 1px solid rgba(15, 23, 42, .16);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .legend-title {
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 4px 0;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 22px;
+      height: 4px;
+      border-radius: 999px;
+    }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 14px;
+    }
+
+    .leaflet-popup-content {
+      min-width: 370px;
+      max-width: 560px;
+      margin: 14px 16px;
+    }
+
+    .popup-title {
+      margin-bottom: 9px;
+      color: #0f172a;
+      font-size: 19px;
+      font-weight: 850;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 165px 1fr;
+      gap: 7px 13px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .detail-key {
+      color: #475569;
+      font-weight: 750;
+    }
+
+    .detail-val {
+      color: #111827;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-val.strong {
+      font-weight: 750;
+    }
+
+    .crossing-block {
+      margin: 10px 0;
+      padding: 10px 11px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+    }
+
+    .crossing-title {
+      margin-bottom: 8px;
+      color: #0f172a;
+      font-size: 16px;
+      font-weight: 850;
+    }
+
+    .empty-note {
+      padding-top: 8px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .crossing-marker {
+      width: 12px;
+      height: 12px;
+      background: #111827;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, .35);
+    }
+
+    .error-box {
+      position: absolute;
+      top: 64px;
+      left: 50%;
+      z-index: 1002;
+      max-width: 720px;
+      padding: 12px 14px;
+      color: #7f1d1d;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      font-weight: 700;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 640px) {
+      .run-panel {
+        top: 58px;
+        left: 10px;
+        width: calc(100vw - 20px);
+      }
+
+      .run-panel.collapsed {
+        width: auto;
+        min-width: 0;
+      }
+
+      .leaflet-popup-content {
+        min-width: 260px;
+      }
+
+      .detail-grid {
+        grid-template-columns: 132px 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -48,42 +352,62 @@
     <div id="map"></div>
   </div>
 
-  <div id="runPanel" style="position:absolute;top:60px;left:60px;z-index:1001;background:white;color:#0f172a;border-radius:14px;padding:12px;box-shadow:0 18px 50px rgba(0,0,0,.35);border:1px solid #cbd5e1;width:min(430px,calc(100vw - 46px));font-size:13px">
-    <div style="font-weight:850;font-size:15px;margin-bottom:8px">Parish/County line crossings</div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <label style="display:flex;flex-direction:column;gap:4px;font-weight:750">
-        Start date
-        <input id="startDate" type="date" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
-      </label>
-
-      <label style="display:flex;flex-direction:column;gap:4px;font-weight:750">
-        End date
-        <input id="endDate" type="date" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
-      </label>
-
-      <input id="bbox" type="hidden" value="-91.8,28.5,-87.8,31.5">
-      
-      <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-weight:750">
-        Run key
-        <input id="runKey" type="password" autocomplete="off" placeholder="Paste Password" style="font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:7px 8px">
-      </label>
+  <div id="runPanel" class="run-panel">
+    <div class="run-panel-header">
+      <div class="run-panel-title">Parish/County line crossings</div>
+      <button
+        id="runPanelToggle"
+        class="run-panel-toggle"
+        type="button"
+        aria-expanded="true"
+        aria-controls="runPanelBody"
+      >Collapse</button>
     </div>
 
-    <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">
-      <button id="runBtn" style="border:0;border-radius:10px;background:#0f172a;color:white;font-weight:850;padding:8px 11px;cursor:pointer">Start workflow</button>
-      <span id="runStatus" style="font-size:12px;color:#334155;line-height:1.35">Ready.</span>
-    </div>
+    <div id="runPanelBody" class="run-panel-body">
+      <div class="run-grid">
+        <label class="run-label">
+          Start date
+          <input id="startDate" class="run-input" type="date">
+        </label>
 
-    <div style="margin-top:7px;color:#64748b;font-size:12px;line-height:1.3">
-      The map will auto-refresh after about 1 minute once you click START WORKFLOW.
+        <label class="run-label">
+          End date
+          <input id="endDate" class="run-input" type="date">
+        </label>
+
+        <input id="bbox" type="hidden" value="-91.8,28.5,-87.8,31.5">
+
+        <label class="run-label full">
+          <span class="run-key-label-line">
+            <span>Run key</span>
+            <span class="run-key-repo">(tornado-path-calculator)</span>
+          </span>
+          <input
+            id="runKey"
+            class="run-input"
+            type="password"
+            autocomplete="off"
+            placeholder="Paste Password"
+          >
+        </label>
+      </div>
+
+      <div class="run-actions">
+        <button id="runBtn" type="button">Start workflow</button>
+        <span id="runStatus">Ready.</span>
+      </div>
+
+      <div class="run-note">
+        The map will auto-refresh after about 1 minute once you click START WORKFLOW.
+      </div>
     </div>
   </div>
 
 <script>
 (function(){
-  const s=document.createElement('style');
-  s.textContent='.leaflet-container{overflow:hidden;position:relative}.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-layer,.leaflet-pane>svg,.leaflet-pane>canvas{position:absolute;left:0;top:0}.leaflet-tile{width:256px;height:256px;border:0;max-width:none!important;max-height:none!important}.leaflet-tile-container img{display:block}.leaflet-map-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-popup-pane{z-index:700}.leaflet-control-container .leaflet-top,.leaflet-control-container .leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{position:relative;z-index:800;pointer-events:auto;float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-control-zoom a{display:block;width:26px;height:26px;line-height:26px;text-align:center;background:#fff;text-decoration:none;color:#111827}.leaflet-control-layers{background:#fff;padding:8px 10px;border-radius:6px;box-shadow:0 1px 5px #0006}.leaflet-popup{position:absolute}.leaflet-popup-content-wrapper{background:#fff}.leaflet-popup-close-button{position:absolute;right:0;top:0;text-decoration:none;color:#555}.leaflet-interactive{cursor:pointer}';
+  const s = document.createElement("style");
+  s.textContent = ".leaflet-container{overflow:hidden;position:relative}.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-layer,.leaflet-pane>svg,.leaflet-pane>canvas{position:absolute;left:0;top:0}.leaflet-tile{width:256px;height:256px;border:0;max-width:none!important;max-height:none!important}.leaflet-tile-container img{display:block}.leaflet-map-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-popup-pane{z-index:700}.leaflet-control-container .leaflet-top,.leaflet-control-container .leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{position:relative;z-index:800;pointer-events:auto;float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-control-zoom a{display:block;width:26px;height:26px;line-height:26px;text-align:center;background:#fff;text-decoration:none;color:#111827}.leaflet-control-layers{background:#fff;padding:8px 10px;border-radius:6px;box-shadow:0 1px 5px #0006}.leaflet-popup{position:absolute}.leaflet-popup-content-wrapper{background:#fff}.leaflet-popup-close-button{position:absolute;right:0;top:0;text-decoration:none;color:#555}.leaflet-interactive{cursor:pointer}";
   document.head.appendChild(s);
 })();
 
@@ -93,13 +417,15 @@ const TZ = "America/Chicago";
 
 const APPS_SCRIPT_TRIGGER_URL = "https://script.google.com/a/macros/noaa.gov/s/AKfycbz4-0XaPXdx7ICOWkTrwtizUi89a9_YQn3WSnGv3YWw2UhDW-8kTHZVlR6lLEig2Glp/exec";
 const RUN_FORM_STORAGE_KEY = "tornadoPathWorkflowRunForm";
+const RUN_PANEL_COLLAPSED_STORAGE_KEY = "tornadoPathWorkflowRunPanelCollapsed";
 const DEFAULT_RUN_START_DATE = "2026-04-01";
 const DEFAULT_RUN_END_DATE = "2026-05-17";
 
 function loadSavedRunForm() {
   try {
     return JSON.parse(localStorage.getItem(RUN_FORM_STORAGE_KEY) || "null") || {};
-  } catch (e) {
+  } catch (error) {
+    console.warn("Could not load workflow dates", error);
     return {};
   }
 }
@@ -112,14 +438,14 @@ function saveRunForm(startDate, endDate, bbox) {
       bbox,
       submittedAt: new Date().toISOString()
     }));
-  } catch (e) {
-    console.warn("Could not save workflow dates", e);
+  } catch (error) {
+    console.warn("Could not save workflow dates", error);
   }
 }
 
-function formatRunDateForStatus(v) {
-  const m = String(v || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  return m ? `${m[2]}/${m[3]}/${m[1]}` : v;
+function formatRunDateForStatus(value) {
+  const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return match ? `${match[2]}/${match[3]}/${match[1]}` : value;
 }
 
 function setDefaultDatesForRunForm() {
@@ -130,12 +456,48 @@ function setDefaultDatesForRunForm() {
   document.getElementById("startDate").value = startDate;
   document.getElementById("endDate").value = endDate;
 
-  if (saved.bbox) document.getElementById("bbox").value = saved.bbox;
+  if (saved.bbox) {
+    document.getElementById("bbox").value = saved.bbox;
+  }
 
   if (saved.startDate && saved.endDate) {
     document.getElementById("runStatus").textContent =
       `Last submitted: ${formatRunDateForStatus(saved.startDate)} to ${formatRunDateForStatus(saved.endDate)}.`;
   }
+}
+
+function setRunPanelCollapsed(collapsed) {
+  const panel = document.getElementById("runPanel");
+  const toggle = document.getElementById("runPanelToggle");
+
+  panel.classList.toggle("collapsed", collapsed);
+  toggle.textContent = collapsed ? "Expand" : "Collapse";
+  toggle.setAttribute("aria-expanded", String(!collapsed));
+
+  try {
+    localStorage.setItem(RUN_PANEL_COLLAPSED_STORAGE_KEY, collapsed ? "1" : "0");
+  } catch (error) {
+    console.warn("Could not save workflow panel state", error);
+  }
+
+  window.setTimeout(() => map.invalidateSize(true), 0);
+}
+
+function initRunPanel() {
+  let collapsed = false;
+
+  try {
+    collapsed = localStorage.getItem(RUN_PANEL_COLLAPSED_STORAGE_KEY) === "1";
+  } catch (error) {
+    console.warn("Could not load workflow panel state", error);
+  }
+
+  setRunPanelCollapsed(collapsed);
+
+  document.getElementById("runPanelToggle").addEventListener("click", () => {
+    const panel = document.getElementById("runPanel");
+    setRunPanelCollapsed(!panel.classList.contains("collapsed"));
+  });
 }
 
 function buildWorkflowTriggerUrl(runKey, startDate, endDate, bbox) {
@@ -144,12 +506,12 @@ function buildWorkflowTriggerUrl(runKey, startDate, endDate, bbox) {
     key: runKey,
     password: runKey,
     start_date: startDate,
-    startDate: startDate,
+    startDate,
     start: startDate,
     end_date: endDate,
-    endDate: endDate,
+    endDate,
     end: endDate,
-    bbox: bbox,
+    bbox,
     source: "map_panel",
     t: Date.now().toString()
   });
@@ -161,14 +523,18 @@ function startRefreshCountdown(status, startDate, endDate) {
   let secondsRemaining = 60;
 
   status.style.color = "#166534";
-  status.textContent = `Trigger sent for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. Auto-refreshing map in ${secondsRemaining} seconds...`;
+  status.textContent =
+    `Trigger sent for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. ` +
+    `Auto-refreshing map in ${secondsRemaining} seconds...`;
 
-  const timer = setInterval(() => {
+  const timer = window.setInterval(() => {
     secondsRemaining -= 1;
-    status.textContent = `Trigger sent for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. Auto-refreshing map in ${secondsRemaining} seconds...`;
+    status.textContent =
+      `Trigger sent for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. ` +
+      `Auto-refreshing map in ${secondsRemaining} seconds...`;
 
     if (secondsRemaining <= 0) {
-      clearInterval(timer);
+      window.clearInterval(timer);
       status.textContent = "Refreshing map...";
       window.location.reload();
     }
@@ -176,7 +542,7 @@ function startRefreshCountdown(status, startDate, endDate) {
 }
 
 function triggerTornadoWorkflow() {
-  const btn = document.getElementById("runBtn");
+  const button = document.getElementById("runBtn");
   const status = document.getElementById("runStatus");
 
   const startDate = document.getElementById("startDate").value;
@@ -200,7 +566,7 @@ function triggerTornadoWorkflow() {
 
   saveRunForm(startDate, endDate, bbox);
 
-  btn.disabled = true;
+  button.disabled = true;
   status.textContent = "Sending trigger to workflow bridge...";
 
   const iframeName = "hiddenWorkflowTriggerFrame";
@@ -220,7 +586,7 @@ function triggerTornadoWorkflow() {
   };
 
   iframe.onerror = () => {
-    btn.disabled = false;
+    button.disabled = false;
     status.style.color = "#991b1b";
     status.textContent = "Trigger failed to load. Check the Apps Script web app URL/deployment.";
   };
@@ -228,7 +594,10 @@ function triggerTornadoWorkflow() {
   iframe.src = buildWorkflowTriggerUrl(runKey, startDate, endDate, bbox);
 }
 
-const map = L.map("map", { preferCanvas: true, zoomControl: true }).setView([30.7, -90.0], 7);
+const map = L.map("map", {
+  preferCanvas: true,
+  zoomControl: true
+}).setView([30.7, -90.0], 7);
 
 const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
@@ -243,13 +612,13 @@ const topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
 const crossingsLayer = L.layerGroup().addTo(map);
 
 const pathLayer = L.geoJSON(null, {
-  style: f => trackStyle(f),
-  onEachFeature: (f, l) => {
-    l.on({
-      mouseover: e => e.target.setStyle({ weight: 7, opacity: 1 }),
-      mouseout: e => pathLayer.resetStyle(e.target),
-      click: e => {
-        l.bindPopup(buildTrackPopup(f), { maxWidth: 600 }).openPopup(e.latlng);
+  style: feature => trackStyle(feature),
+  onEachFeature: (feature, layer) => {
+    layer.on({
+      mouseover: event => event.target.setStyle({ weight: 7, opacity: 1 }),
+      mouseout: event => pathLayer.resetStyle(event.target),
+      click: event => {
+        layer.bindPopup(buildTrackPopup(feature), { maxWidth: 600 }).openPopup(event.latlng);
       }
     });
   }
@@ -271,8 +640,9 @@ const crossingIcon = L.divIcon({
 let crossingsByEvent = new Map();
 let allCrossings = [];
 
-function efColor(e) {
-  e = String(e || "").toUpperCase().trim();
+function efColor(value) {
+  const normalized = String(value || "").toUpperCase().trim();
+
   return {
     EF0: "#22c55e",
     EF1: "#eab308",
@@ -280,84 +650,103 @@ function efColor(e) {
     EF3: "#ef4444",
     EF4: "#a855f7",
     EF5: "#111827"
-  }[e] || "#2563eb";
+  }[normalized] || "#2563eb";
 }
 
-function trackStyle(f) {
-  const p = f.properties || {};
+function trackStyle(feature) {
+  const properties = feature.properties || {};
+
   return {
-    color: efColor(p.efscale),
+    color: efColor(properties.efscale),
     weight: 5,
-    opacity: 0.88,
+    opacity: .88,
     lineCap: "round",
     lineJoin: "round"
   };
 }
 
-function parseCsv(t) {
+function parseCsv(text) {
   const rows = [];
   let row = [];
-  let v = "";
-  let q = false;
+  let value = "";
+  let quoted = false;
 
-  for (let i = 0; i < t.length; i++) {
-    const c = t[i];
-    const n = t[i + 1];
+  for (let index = 0; index < text.length; index += 1) {
+    const character = text[index];
+    const next = text[index + 1];
 
-    if (c === '"') {
-      if (q && n === '"') {
-        v += '"';
-        i++;
+    if (character === '"') {
+      if (quoted && next === '"') {
+        value += '"';
+        index += 1;
       } else {
-        q = !q;
+        quoted = !quoted;
       }
-    } else if (c === "," && !q) {
-      row.push(v);
-      v = "";
-    } else if ((c === "\n" || c === "\r") && !q) {
-      if (c === "\r" && n === "\n") i++;
-      row.push(v);
-      if (row.some(x => x.trim() !== "")) rows.push(row);
+    } else if (character === "," && !quoted) {
+      row.push(value);
+      value = "";
+    } else if ((character === "\n" || character === "\r") && !quoted) {
+      if (character === "\r" && next === "\n") {
+        index += 1;
+      }
+
+      row.push(value);
+      if (row.some(item => item.trim() !== "")) {
+        rows.push(row);
+      }
+
       row = [];
-      v = "";
+      value = "";
     } else {
-      v += c;
+      value += character;
     }
   }
 
-  row.push(v);
-  if (row.some(x => x.trim() !== "")) rows.push(row);
-  if (!rows.length) return [];
+  row.push(value);
+  if (row.some(item => item.trim() !== "")) {
+    rows.push(row);
+  }
 
-  const h = rows[0].map(x => x.trim());
+  if (!rows.length) {
+    return [];
+  }
 
-  return rows.slice(1).map(r => {
-    const o = {};
-    h.forEach((x, i) => o[x] = (r[i] ?? "").trim());
-    return o;
+  const headers = rows[0].map(item => item.trim());
+
+  return rows.slice(1).map(values => {
+    const output = {};
+    headers.forEach((header, index) => {
+      output[header] = (values[index] ?? "").trim();
+    });
+    return output;
   });
 }
 
-function groupCrossings(rows) {
-  const g = new Map();
+function normalizeEventId(value) {
+  const text = value === null || value === undefined ? "" : String(value).trim();
 
-  rows.forEach(r => {
-    const id = r.event_id || "UNKNOWN";
-    if (!g.has(id)) g.set(id, []);
-    g.get(id).push(r);
-  });
+  if (!text) {
+    return "";
+  }
 
-  g.forEach(a => {
-    a.sort((x, y) => parseFloat(x.crossing_distance_miles || 0) - parseFloat(y.crossing_distance_miles || 0));
-  });
-
-  return g;
+  return /^-?\d+\.0+$/.test(text) ? text.replace(/\.0+$/, "") : text;
 }
 
-function formatDateTime(v) {
-  if (v === null || v === undefined || String(v).trim() === "") return "—";
+function featureEventId(feature) {
+  const properties = feature.properties || {};
 
-  const text = String(v).trim();
+  return normalizeEventId(properties.event_id) ||
+    normalizeEventId(properties.objectid) ||
+    normalizeEventId(properties.OBJECTID) ||
+    normalizeEventId(feature.id);
+}
+
+function formatDateTime(value) {
+  if (value === null || value === undefined || String(value).trim() === "") {
+    return "—";
+  }
+
+  const text = String(value).trim();
   const epoch = Number(text);
 
   if (Number.isFinite(epoch)) {
@@ -377,135 +766,306 @@ function formatDateTime(v) {
       .replace(/\bPM\b/g, "pm");
   }
 
-  const m = text.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})(?::\d{2})?\s*(AM|PM|am|pm)?\s*([A-Z]{2,4})?$/);
-  if (m) {
-    let hour = Number(m[4]);
-    const minute = m[5];
-    let suffix = m[6] ? m[6].toLowerCase() : "";
-    const zone = m[7] || "CDT";
+  const match = text.match(
+    /^(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})(?::\d{2})?\s*(AM|PM|am|pm)?\s*([A-Z]{2,4})?$/
+  );
+
+  if (match) {
+    let hour = Number(match[4]);
+    const minute = match[5];
+    let suffix = match[6] ? match[6].toLowerCase() : "";
+    const zone = match[7] || "CDT";
 
     if (!suffix) {
       suffix = hour >= 12 ? "pm" : "am";
       hour = hour % 12 || 12;
     }
 
-    return `${m[2]}-${m[3]}-${m[1]}, ${hour}:${minute} ${suffix} ${zone}`;
+    return `${match[2]}-${match[3]}-${match[1]}, ${hour}:${minute} ${suffix} ${zone}`;
   }
 
   return text;
 }
 
-function crossingLatLon(r) {
-  const lat = clean(r.crossing_lat);
-  const lon = clean(r.crossing_lon);
-  return `${lat} / ${lon}`;
+function timeMatchKey(value) {
+  const formatted = formatDateTime(value);
+  return formatted === "—" ? "" : formatted.toLowerCase();
 }
 
-function durationMinutes(s, e) {
-  s = Number(s);
-  e = Number(e);
+function trackTimeKey(feature) {
+  const properties = feature.properties || {};
+  const start = timeMatchKey(properties.starttime);
+  const end = timeMatchKey(properties.endtime);
 
-  if (!Number.isFinite(s) || !Number.isFinite(e) || e <= s) return "";
-  return ((e - s) / 60000).toFixed(2);
+  return start && end ? `${start}|${end}` : "";
 }
 
-function avgSpeed(l, d) {
-  l = Number(l);
-  d = Number(d);
+function groupCrossings(rows, tracks) {
+  const grouped = new Map();
+  const tracksByTime = new Map();
+  const features = tracks && Array.isArray(tracks.features) ? tracks.features : [];
 
-  if (!Number.isFinite(l) || !Number.isFinite(d) || d <= 0) return "";
-  return (l / (d / 60)).toFixed(1);
+  features.forEach(feature => {
+    const id = featureEventId(feature);
+    const timeKey = trackTimeKey(feature);
+
+    if (!id || !timeKey) {
+      return;
+    }
+
+    if (!tracksByTime.has(timeKey)) {
+      tracksByTime.set(timeKey, []);
+    }
+
+    tracksByTime.get(timeKey).push(id);
+  });
+
+  rows.forEach(row => {
+    let id = normalizeEventId(row.event_id);
+
+    if (!id) {
+      const rowTimeKey = `${timeMatchKey(row.start_time)}|${timeMatchKey(row.end_time)}`;
+      const candidates = tracksByTime.get(rowTimeKey) || [];
+
+      if (candidates.length === 1) {
+        id = candidates[0];
+      }
+    }
+
+    if (!id) {
+      id = "UNKNOWN";
+    }
+
+    row._resolved_event_id = id;
+
+    if (!grouped.has(id)) {
+      grouped.set(id, []);
+    }
+
+    grouped.get(id).push(row);
+  });
+
+  grouped.forEach(group => {
+    group.sort((left, right) =>
+      parseFloat(left.crossing_distance_miles || 0) -
+      parseFloat(right.crossing_distance_miles || 0)
+    );
+  });
+
+  return grouped;
 }
 
-function clean(v) {
-  return v === null || v === undefined || v === "" ? "—" : String(v);
+function clean(value) {
+  return value === null || value === undefined || value === "" ? "—" : String(value);
 }
 
-function firstNonBlank(...a) {
-  for (const v of a) {
-    if (v !== null && v !== undefined && String(v).trim() !== "") return v;
+function firstNonBlank(...values) {
+  for (const value of values) {
+    if (value !== null && value !== undefined && String(value).trim() !== "") {
+      return value;
+    }
   }
+
   return "";
 }
 
-function formatWithUnit(v, unit) {
-  const cleaned = clean(v);
-  if (cleaned === "—") return cleaned;
-  return String(cleaned).match(new RegExp(`\\b${unit}\\b`, "i")) ? cleaned : `${cleaned} ${unit}`;
-}
+function formatWithUnit(value, unit) {
+  const cleaned = clean(value);
 
-function detailRow(k, v, strong = false) {
-  return `<div class="detail-key">${k}</div><div class="detail-val${strong ? " strong" : ""}">${clean(v)}</div>`;
-}
-
-function crossingRows(r, includeDistance = false) {
-  let h = `<div class="detail-grid">`;
-
-  h += detailRow("Crossing Lat/Lon:", crossingLatLon(r), true);
-  h += detailRow("Crossing date:", formatDateTime(r.crossing_time), true);
-  h += detailRow("From:", r.boundary_from, true);
-  h += detailRow("To:", r.boundary_to, true);
-
-  if (includeDistance) {
-    h += detailRow("Distance into track:", formatWithUnit(r.crossing_distance_miles, "mi"));
+  if (cleaned === "—") {
+    return cleaned;
   }
 
-  h += `</div>`;
-  return h;
+  return String(cleaned).match(new RegExp(`\\b${unit}\\b`, "i"))
+    ? cleaned
+    : `${cleaned} ${unit}`;
 }
 
-function buildTrackPopup(f) {
-  const p = f.properties || {};
-  const id = clean(p.event_id || p.objectid || f.id);
+function formatLatLon(lat, lon) {
+  const latNumber = Number(lat);
+  const lonNumber = Number(lon);
+
+  if (!Number.isFinite(latNumber) || !Number.isFinite(lonNumber)) {
+    return "—";
+  }
+
+  return `${latNumber.toFixed(6)} / ${lonNumber.toFixed(6)}`;
+}
+
+function trackEndpointLatLon(feature, endpoint) {
+  const geometry = feature.geometry || {};
+  let lines = [];
+
+  if (geometry.type === "LineString" && Array.isArray(geometry.coordinates)) {
+    lines = [geometry.coordinates];
+  } else if (
+    geometry.type === "MultiLineString" &&
+    Array.isArray(geometry.coordinates)
+  ) {
+    lines = geometry.coordinates.filter(line => Array.isArray(line) && line.length);
+  }
+
+  if (!lines.length) {
+    return "—";
+  }
+
+  const line = endpoint === "end" ? lines[lines.length - 1] : lines[0];
+  const coordinate = endpoint === "end" ? line[line.length - 1] : line[0];
+
+  if (!Array.isArray(coordinate) || coordinate.length < 2) {
+    return "—";
+  }
+
+  return formatLatLon(coordinate[1], coordinate[0]);
+}
+
+function crossingLatLon(row) {
+  return formatLatLon(row.crossing_lat, row.crossing_lon);
+}
+
+function durationMinutes(start, end) {
+  const startNumber = Number(start);
+  const endNumber = Number(end);
+
+  if (
+    !Number.isFinite(startNumber) ||
+    !Number.isFinite(endNumber) ||
+    endNumber <= startNumber
+  ) {
+    return "";
+  }
+
+  return ((endNumber - startNumber) / 60000).toFixed(2);
+}
+
+function avgSpeed(length, duration) {
+  const lengthNumber = Number(length);
+  const durationNumber = Number(duration);
+
+  if (
+    !Number.isFinite(lengthNumber) ||
+    !Number.isFinite(durationNumber) ||
+    durationNumber <= 0
+  ) {
+    return "";
+  }
+
+  return (lengthNumber / (durationNumber / 60)).toFixed(1);
+}
+
+function detailRow(key, value, strong = false) {
+  return `<div class="detail-key">${key}</div>` +
+    `<div class="detail-val${strong ? " strong" : ""}">${clean(value)}</div>`;
+}
+
+function crossingRows(row, includeDistance = false) {
+  let html = '<div class="detail-grid">';
+
+  html += detailRow("Crossing Lat/Lon:", crossingLatLon(row), true);
+  html += detailRow("Crossing date:", formatDateTime(row.crossing_time), true);
+  html += detailRow("From:", row.boundary_from, true);
+  html += detailRow("To:", row.boundary_to, true);
+
+  if (includeDistance) {
+    html += detailRow(
+      "Distance into track:",
+      formatWithUnit(row.crossing_distance_miles, "mi")
+    );
+  }
+
+  html += "</div>";
+  return html;
+}
+
+function buildTrackPopup(feature) {
+  const properties = feature.properties || {};
+  const id = featureEventId(feature) || "UNKNOWN";
   const rows = crossingsByEvent.get(id) || [];
   const first = rows[0] || {};
 
-  const dur = firstNonBlank(first.duration_minutes, durationMinutes(p.starttime, p.endtime));
-  const miles = firstNonBlank(first.measured_track_miles, p.length);
-  const speed = firstNonBlank(first.avg_speed_mph, avgSpeed(miles, dur));
-  const peakWind = firstNonBlank(first.maxwind, first.max_wind, first.peak_wind_mph, first.peak_wind, first.mag, first.magnitude, p.maxwind, p.max_wind, p.peak_wind_mph, p.peak_wind, p.mag, p.magnitude);
-  const maxWidth = firstNonBlank(first.max_width_yards, first.max_width, first.width_yards, first.width, p.max_width_yards, p.max_width, p.width_yards, p.width);
+  const duration = firstNonBlank(
+    first.duration_minutes,
+    durationMinutes(properties.starttime, properties.endtime)
+  );
 
-  let h = `<div class="popup-title">${id}</div>
-           <div class="detail-grid">`;
+  const miles = firstNonBlank(first.measured_track_miles, properties.length);
+  const speed = firstNonBlank(first.avg_speed_mph, avgSpeed(miles, duration));
 
-  h += detailRow("EF scale:", firstNonBlank(first.efscale, p.efscale));
-  h += detailRow("Peak wind speed:", formatWithUnit(peakWind, "mph"));
-  h += detailRow("Max width:", formatWithUnit(maxWidth, "yd"));
-  h += detailRow("Start time:", formatDateTime(firstNonBlank(first.start_time, p.starttime)));
-  h += detailRow("End time:", formatDateTime(firstNonBlank(first.end_time, p.endtime)));
-  h += detailRow("Duration:", formatWithUnit(dur, "min"));
-  h += detailRow("Track length:", formatWithUnit(miles, "mi"));
-  h += detailRow("Avg speed:", formatWithUnit(speed, "mph"));
-  h += `</div>`;
+  const peakWind = firstNonBlank(
+    first.maxwind,
+    first.max_wind,
+    first.peak_wind_mph,
+    first.peak_wind,
+    first.mag,
+    first.magnitude,
+    properties.maxwind,
+    properties.max_wind,
+    properties.peak_wind_mph,
+    properties.peak_wind,
+    properties.mag,
+    properties.magnitude
+  );
+
+  const maxWidth = firstNonBlank(
+    first.max_width_yards,
+    first.max_width,
+    first.width_yards,
+    first.width,
+    properties.max_width_yards,
+    properties.max_width,
+    properties.width_yards,
+    properties.width
+  );
+
+  let html = `<div class="popup-title">${id}</div><div class="detail-grid">`;
+
+  html += detailRow("EF scale:", firstNonBlank(first.efscale, properties.efscale));
+  html += detailRow("Peak wind speed:", formatWithUnit(peakWind, "mph"));
+  html += detailRow("Max width:", formatWithUnit(maxWidth, "yd"));
+  html += detailRow(
+    "Start time:",
+    formatDateTime(firstNonBlank(first.start_time, properties.starttime))
+  );
+  html += detailRow("Start Lat/Lon:", trackEndpointLatLon(feature, "start"));
+  html += detailRow(
+    "End time:",
+    formatDateTime(firstNonBlank(first.end_time, properties.endtime))
+  );
+  html += detailRow("End Lat/Lon:", trackEndpointLatLon(feature, "end"));
+  html += detailRow("Duration:", formatWithUnit(duration, "min"));
+  html += detailRow("Track length:", formatWithUnit(miles, "mi"));
+  html += detailRow("Avg speed:", formatWithUnit(speed, "mph"));
+  html += "</div>";
 
   if (!rows.length) {
-    return h + `<div class="empty-note">No parish/county crossings were found for this tornado path.</div>`;
+    return html +
+      '<div class="empty-note">No parish/county crossings were found for this tornado path.</div>';
   }
 
-  rows.forEach((r, i) => {
-    h += `<div class="crossing-block">
-            <div class="crossing-title">Crossing ${i + 1}</div>
-            ${crossingRows(r, true)}
-          </div>`;
+  rows.forEach((row, index) => {
+    html += `<div class="crossing-block">` +
+      `<div class="crossing-title">Crossing ${index + 1}</div>` +
+      `${crossingRows(row, true)}</div>`;
   });
 
-  return h;
+  return html;
 }
 
 function addCrossingMarkers(rows) {
   crossingsLayer.clearLayers();
 
-  rows.forEach(r => {
-    const lat = parseFloat(r.crossing_lat);
-    const lon = parseFloat(r.crossing_lon);
+  rows.forEach(row => {
+    const lat = parseFloat(row.crossing_lat);
+    const lon = parseFloat(row.crossing_lon);
 
-    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
+      return;
+    }
 
     crossingsLayer.addLayer(
       L.marker([lat, lon], { icon: crossingIcon }).bindPopup(
-        `<div class="popup-title">Boundary Crossing</div>
-         <div class="crossing-block">${crossingRows(r, false)}</div>`,
+        `<div class="popup-title">Boundary Crossing</div>` +
+        `<div class="crossing-block">${crossingRows(row, false)}</div>`,
         { maxWidth: 540 }
       )
     );
@@ -516,69 +1076,79 @@ function addLegend() {
   const legend = L.control({ position: "bottomright" });
 
   legend.onAdd = () => {
-    const d = L.DomUtil.create("div", "legend");
-    const rows = ["EF0", "EF1", "EF2", "EF3", "EF4", "EF5", "Unknown"];
+    const container = L.DomUtil.create("div", "legend");
+    const labels = ["EF0", "EF1", "EF2", "EF3", "EF4", "EF5", "Unknown"];
 
-    d.innerHTML =
-      `<div class="legend-title">Path color</div>` +
-      rows.map(label =>
-        `<div class="legend-row">
-          <span class="swatch" style="background:${label === "Unknown" ? efColor("") : efColor(label)}"></span>${label}
-        </div>`
+    container.innerHTML =
+      '<div class="legend-title">Path color</div>' +
+      labels.map(label =>
+        `<div class="legend-row">` +
+        `<span class="swatch" style="background:${label === "Unknown" ? efColor("") : efColor(label)}"></span>` +
+        `${label}</div>`
       ).join("") +
-      `<div class="legend-row"><span class="crossing-marker" style="display:inline-block"></span> Crossing</div>`;
+      '<div class="legend-row">' +
+      '<span class="crossing-marker" style="display:inline-block"></span> Crossing' +
+      "</div>";
 
-    return d;
+    return container;
   };
 
   legend.addTo(map);
 }
 
-function showError(m) {
-  const b = document.createElement("div");
-  b.className = "error-box";
-  b.textContent = m;
-  document.body.appendChild(b);
+function showError(message) {
+  const box = document.createElement("div");
+  box.className = "error-box";
+  box.textContent = message;
+  document.body.appendChild(box);
   document.getElementById("summary").textContent = "Map failed to load.";
 }
 
 async function init() {
   try {
+    initRunPanel();
     setDefaultDatesForRunForm();
     document.getElementById("runBtn").addEventListener("click", triggerTornadoWorkflow);
 
     map.invalidateSize(true);
-    setTimeout(() => map.invalidateSize(true), 200);
+    window.setTimeout(() => map.invalidateSize(true), 200);
 
-    const [tr, cr] = await Promise.all([
+    const [tracksResponse, crossingsResponse] = await Promise.all([
       fetch(TRACKS_URL, { cache: "no-store" }),
       fetch(CROSSINGS_URL, { cache: "no-store" })
     ]);
 
-    if (!tr.ok) throw new Error(`Could not load ${TRACKS_URL}`);
-    if (!cr.ok) throw new Error(`Could not load ${CROSSINGS_URL}`);
+    if (!tracksResponse.ok) {
+      throw new Error(`Could not load ${TRACKS_URL}`);
+    }
 
-    const tracks = await tr.json();
-    const csv = await cr.text();
+    if (!crossingsResponse.ok) {
+      throw new Error(`Could not load ${CROSSINGS_URL}`);
+    }
+
+    const tracks = await tracksResponse.json();
+    const csv = await crossingsResponse.text();
 
     allCrossings = parseCsv(csv);
-    crossingsByEvent = groupCrossings(allCrossings);
+    crossingsByEvent = groupCrossings(allCrossings, tracks);
 
     pathLayer.addData(tracks);
     addCrossingMarkers(allCrossings);
     addLegend();
 
     const bounds = pathLayer.getBounds();
-    if (bounds.isValid()) map.fitBounds(bounds.pad(0.18));
+    if (bounds.isValid()) {
+      map.fitBounds(bounds.pad(.18));
+    }
 
-    setTimeout(() => map.invalidateSize(true), 100);
+    window.setTimeout(() => map.invalidateSize(true), 100);
 
     document.getElementById("summary").textContent =
-      `${tracks.features ? tracks.features.length : 0} tornado path(s), ${allCrossings.length} parish/county crossing record(s)`;
-
-  } catch (e) {
-    console.error(e);
-    showError(e.message || String(e));
+      `${tracks.features ? tracks.features.length : 0} tornado path(s), ` +
+      `${allCrossings.length} parish/county crossing record(s)`;
+  } catch (error) {
+    console.error(error);
+    showError(error.message || String(error));
   }
 }
 
