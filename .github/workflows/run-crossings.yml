@@ -1,23 +1,24 @@
-name: Run Tornado Crossing Workflow
+name: Refresh Tornado Crossing Archive
 
 on:
   workflow_dispatch:
-    inputs:
-      start_date:
-        description: "Start date YYYY-MM-DD"
-        required: true
-        default: "2026-05-01"
-      end_date:
-        description: "End date YYYY-MM-DD"
-        required: true
-        default: "2026-05-02"
-      bbox:
-        description: "min_lon,min_lat,max_lon,max_lat"
-        required: true
-        default: "-91.8,28.5,-87.8,31.5"
+  schedule:
+    - cron: "17 11 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/run-crossings.yml"
+      - "scripts/**"
+      - "config.json"
+      - "docs/index.html"
 
 permissions:
   contents: write
+
+concurrency:
+  group: tornado-crossing-archive
+  cancel-in-progress: true
 
 jobs:
   calculate:
@@ -35,21 +36,28 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Set archive date range
+        id: archive_dates
+        shell: bash
+        run: |
+          echo "start=2015-01-01" >> "$GITHUB_OUTPUT"
+          echo "end=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+
       - name: Fetch parish/county boundaries
         run: python scripts/fetch_boundaries.py
 
-      - name: Fetch DAT damage lines
+      - name: Fetch DAT tornado archive
         run: |
           python scripts/fetch_dat_tracks.py \
-            --start "${{ inputs.start_date }}" \
-            --end "${{ inputs.end_date }}" \
-            --bbox "${{ inputs.bbox }}" \
+            --start "${{ steps.archive_dates.outputs.start }}" \
+            --end "${{ steps.archive_dates.outputs.end }}" \
+            --bbox="-91.8,28.5,-87.8,31.5" \
             --output "data/dat_damage_lines.geojson"
 
       - name: Calculate crossing times
         run: python scripts/calculate_crossing_times.py --config config.json
 
-      - name: Build interactive map data
+      - name: Build GitHub Pages data
         run: python scripts/build_map.py
 
       - name: Upload output CSV
@@ -64,10 +72,10 @@ jobs:
           name: tornado-crossing-map
           path: docs/
 
-      - name: Commit generated files
+      - name: Commit refreshed archive
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data/*.geojson output/*.csv docs/
-          git commit -m "Update DAT tracks crossing times and map" || echo "No changes to commit"
+          git add data/*.geojson output/*.csv docs/data/
+          git commit -m "Refresh 2015-present tornado crossing archive" || echo "No changes to commit"
           git push
