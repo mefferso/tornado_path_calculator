@@ -1,110 +1,74 @@
-[README.md](https://github.com/user-attachments/files/27776611/README.md)
-# Tornado Path Tools
+# Tornado Path Crossing Calculator
 
-Calculate parish/county crossing times from QC'd tornado tracks.
+Interactive parish/county crossing-time map for QC'd NWS Damage Assessment Toolkit (DAT) tornado tracks in the New Orleans/Baton Rouge-area bbox.
 
-This repo takes tornado path GIS data, such as DAT-exported GeoJSON/Shapefile/KMZ-converted tracks, intersects those tracks with parish/county boundaries, and estimates the time each tornado crossed a boundary using a constant-speed assumption.
+The public map uses a **precomputed archive from January 1, 2015 through the present**. The archive refreshes automatically once per day with GitHub Actions, so choosing dates on the map is an instant browser-side filter; it does **not** launch a workflow or require Google Apps Script.
+
+## Public map
+
+`https://mefferso.github.io/tornado_path_calculator/`
 
 ## What it calculates
 
-For each tornado track:
+For each DAT tornado path, the processing pipeline derives:
 
-- total path length
+- measured path length
 - duration
 - average forward speed
-- distance into track at each parish/county crossing
+- parish/county boundary crossing locations
+- distance into the track at each crossing
 - estimated crossing time
-- from/to parish or county when possible
+- from/to parish or county when identifiable
 
-## Assumption
-
-Crossing time is estimated by linear interpolation along the track:
+Crossing time is estimated by linear interpolation along the finalized track:
 
 ```text
 crossing_time = start_time + (distance_into_track / total_track_length) * duration
 ```
 
-This is the same math normally done manually for Storm Data or survey summaries. It assumes constant forward speed along the finalized track.
+That assumes constant forward speed over the finalized path.
 
-## Repo structure
+## Archive workflow
+
+`.github/workflows/run-crossings.yml` runs:
+
+- automatically once per day
+- manually via `workflow_dispatch` if an immediate refresh is ever needed
+- once when the workflow/scripts/map logic are changed on `main`
+
+Each refresh:
+
+1. downloads parish/county boundaries
+2. queries DAT tornado line features from `2015-01-01` through the current UTC date for the configured bbox
+3. recalculates every boundary crossing
+4. copies the master GeoJSON and CSV into `docs/data/`
+5. commits changed archive files back to `main`
+
+The DAT fetcher paginates ArcGIS results so the archive is not limited to a single response page.
+
+## Map behavior
+
+`docs/index.html` loads the master archive once, then filters it locally by the selected start/end dates. The date controls never modify repository data and never call a backend.
+
+## Main files
 
 ```text
-tornado_path_tools/
-├── config.example.json
-├── requirements.txt
-├── README.md
-├── data/
-│   ├── dat_tracks.geojson        # put your DAT tracks here
-│   └── parishes.geojson          # put parish/county boundaries here
-├── output/
-│   └── tornado_crossing_times.csv
-└── scripts/
-    └── calculate_crossing_times.py
+.github/workflows/run-crossings.yml   # daily archive refresh
+scripts/fetch_dat_tracks.py           # DAT ArcGIS query + pagination
+scripts/fetch_boundaries.py           # parish/county polygons
+scripts/calculate_crossing_times.py   # crossing calculations
+scripts/build_map.py                  # copies generated data to docs/data
+config.json                           # calculation field/config settings
+data/dat_damage_lines.geojson         # master DAT archive
+output/tornado_crossing_times.csv     # master crossing table
+docs/index.html                       # GitHub Pages viewer/date filter
+docs/data/                            # files served by the viewer
 ```
 
-## Track input requirements
+## Calculation notes
 
-Your tornado track file should contain line geometries and these fields:
-
-| Field | Example | Notes |
-|---|---|---|
-| tornado_id | `2026-05-14_EF1_001` | Any unique ID/name |
-| start_time | `2026-05-14 20:29` | Local time or ISO timestamp |
-| end_time | `2026-05-14 20:42` | Local time or ISO timestamp |
-
-You can change the field names in `config.json`.
-
-## Boundary input requirements
-
-Boundary file should be polygons with a name field such as:
-
-| Field | Example |
-|---|---|
-| NAME | `Tangipahoa` |
-
-You can change the boundary name field in `config.json`.
-
-## Setup
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Mac/Linux
-# .venv\Scripts\activate   # Windows PowerShell
-
-pip install -r requirements.txt
-cp config.example.json config.json
-```
-
-Edit `config.json` to point to your actual input files and field names.
-
-## Run
-
-```bash
-python scripts/calculate_crossing_times.py --config config.json
-```
-
-## Output columns
-
-| Column | Meaning |
-|---|---|
-| tornado_id | ID/name of tornado track |
-| start_time | tornado start time |
-| end_time | tornado end time |
-| duration_minutes | total duration |
-| total_track_miles | measured GIS track length |
-| avg_speed_mph | average forward speed |
-| crossing_index | crossing number along path |
-| crossing_distance_miles | distance into track |
-| crossing_fraction | fraction of track completed |
-| crossing_time | estimated boundary crossing time |
-| boundary_from | polygon before crossing, if identified |
-| boundary_to | polygon after crossing, if identified |
-| crossing_lon | crossing longitude |
-| crossing_lat | crossing latitude |
-
-## Notes
-
-- Use a projected CRS for distance calculations. The default is `EPSG:5070`, which is good for CONUS distance work.
-- For Louisiana/Mississippi/Alabama work, `EPSG:5070` is fine.
-- If the DAT path has multiple segments, this script merges line parts where possible.
-- If a track starts exactly on a boundary, the first crossing may need human review.
+- Distances use projected CRS `EPSG:5070`.
+- DAT multi-part paths are merged where possible.
+- Split DAT segments that meet near a parish/county boundary are checked for a legitimate linked endpoint crossing.
+- Isolated endpoint touches are excluded from ordinary crossing detection.
+- Some crossings can still merit human review because the estimate assumes constant forward speed between the DAT start and end times.
