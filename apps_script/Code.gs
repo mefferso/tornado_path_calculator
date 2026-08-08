@@ -6,7 +6,17 @@ const DEFAULT_BBOX = '-91.8,28.5,-87.8,31.5';
 const MAX_DATE_RANGE_DAYS = 45;
 const MIN_SECONDS_BETWEEN_RUNS = 20;
 
-function doGet() {
+function doGet(e) {
+  const params = e && e.parameter ? e.parameter : {};
+  const hasRunRequest = Boolean(
+    params.start_date || params.startDate || params.start ||
+    params.end_date || params.endDate || params.end
+  );
+
+  if (hasRunRequest) {
+    return triggerWorkflow_(e);
+  }
+
   return htmlResponse_(
     'Tornado workflow trigger',
     '<p>This endpoint is alive. Submit requests from the tornado map run form.</p>'
@@ -14,6 +24,10 @@ function doGet() {
 }
 
 function doPost(e) {
+  return triggerWorkflow_(e);
+}
+
+function triggerWorkflow_(e) {
   try {
     const props = PropertiesService.getScriptProperties();
     const githubToken = props.getProperty('GITHUB_TOKEN');
@@ -29,9 +43,14 @@ function doPost(e) {
 
     throttle_();
 
-    const startDate = String(e.parameter.start_date || '').trim();
-    const endDate = String(e.parameter.end_date || '').trim();
-    const bbox = String(e.parameter.bbox || DEFAULT_BBOX).trim();
+    const params = e && e.parameter ? e.parameter : {};
+    const startDate = String(
+      params.start_date || params.startDate || params.start || ''
+    ).trim();
+    const endDate = String(
+      params.end_date || params.endDate || params.end || ''
+    ).trim();
+    const bbox = String(params.bbox || DEFAULT_BBOX).trim();
 
     validateDate_(startDate, 'start_date');
     validateDate_(endDate, 'end_date');
