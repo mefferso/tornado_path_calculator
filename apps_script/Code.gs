@@ -17,13 +17,15 @@ function doPost(e) {
   try {
     const props = PropertiesService.getScriptProperties();
     const githubToken = props.getProperty('GITHUB_TOKEN');
-    const runKey = props.getProperty('RUN_KEY');
 
     if (!githubToken) throw new Error('Missing Script Property: GITHUB_TOKEN');
-    if (!runKey) throw new Error('Missing Script Property: RUN_KEY');
 
-    const suppliedKey = String(e.parameter.run_key || '').trim();
-    if (suppliedKey !== runKey) throw new Error('Invalid run key. Workflow not started.');
+    // Run-key protection temporarily disabled. If abuse ever becomes a problem,
+    // restore RUN_KEY from Script Properties and compare e.parameter.run_key here.
+    // const runKey = props.getProperty('RUN_KEY');
+    // if (!runKey) throw new Error('Missing Script Property: RUN_KEY');
+    // const suppliedKey = String(e.parameter.run_key || '').trim();
+    // if (suppliedKey !== runKey) throw new Error('Invalid run key. Workflow not started.');
 
     throttle_();
 
