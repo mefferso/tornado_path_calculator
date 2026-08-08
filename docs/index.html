@@ -144,19 +144,6 @@
       grid-column: 1 / -1;
     }
 
-    .run-key-label-line {
-      display: flex;
-      align-items: baseline;
-      gap: 5px;
-      flex-wrap: wrap;
-    }
-
-    .run-key-repo {
-      color: #64748b;
-      font-size: 12px;
-      font-weight: 650;
-    }
-
     .run-input {
       padding: 7px 8px;
       border: 1px solid #cbd5e1;
@@ -377,20 +364,8 @@
         </label>
 
         <input id="bbox" type="hidden" value="-91.8,28.5,-87.8,31.5">
-
-        <label class="run-label full">
-          <span class="run-key-label-line">
-            <span>Run key</span>
-            <span class="run-key-repo">(tornado-path-calculator)</span>
-          </span>
-          <input
-            id="runKey"
-            class="run-input"
-            type="password"
-            autocomplete="off"
-            placeholder="Paste Password"
-          >
-        </label>
+        <!-- Run-key/password field intentionally disabled for now. -->
+        <input id="runKey" type="hidden" value="">
       </div>
 
       <div class="run-actions">
@@ -552,9 +527,9 @@ function triggerTornadoWorkflow() {
 
   status.style.color = "#334155";
 
-  if (!startDate || !endDate || !bbox || !runKey) {
+  if (!startDate || !endDate || !bbox) {
     status.style.color = "#991b1b";
-    status.textContent = "Fill out dates, bbox, and run key.";
+    status.textContent = "Fill out dates and bbox.";
     return;
   }
 
@@ -581,7 +556,6 @@ function triggerTornadoWorkflow() {
   }
 
   iframe.onload = () => {
-    document.getElementById("runKey").value = "";
     startRefreshCountdown(status, startDate, endDate);
   };
 
