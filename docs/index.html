@@ -17,6 +17,8 @@
       --shadow: 0 18px 50px rgba(0, 0, 0, .35);
     }
 
+    * { box-sizing: border-box; }
+
     html, body {
       height: 100%;
       width: 100%;
@@ -71,7 +73,7 @@
       background: #dbeafe;
     }
 
-    .run-panel {
+    .filter-panel {
       position: absolute;
       top: 60px;
       left: 60px;
@@ -83,28 +85,27 @@
       border: 1px solid #cbd5e1;
       border-radius: 14px;
       box-shadow: var(--shadow);
-      box-sizing: border-box;
       font-size: 13px;
     }
 
-    .run-panel.collapsed {
+    .filter-panel.collapsed {
       width: auto;
       min-width: 250px;
     }
 
-    .run-panel-header {
+    .filter-panel-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
 
-    .run-panel-title {
+    .filter-panel-title {
       font-size: 15px;
       font-weight: 850;
     }
 
-    .run-panel-toggle {
+    .filter-panel-toggle {
       padding: 5px 8px;
       color: #0f172a;
       background: #f8fafc;
@@ -115,43 +116,32 @@
       cursor: pointer;
     }
 
-    .run-panel-toggle:hover {
-      background: #e2e8f0;
-    }
+    .filter-panel-toggle:hover { background: #e2e8f0; }
+    .filter-panel-body { margin-top: 8px; }
+    .filter-panel.collapsed .filter-panel-body { display: none; }
 
-    .run-panel-body {
-      margin-top: 8px;
-    }
-
-    .run-panel.collapsed .run-panel-body {
-      display: none;
-    }
-
-    .run-grid {
+    .filter-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
 
-    .run-label {
+    .filter-label {
       display: flex;
       flex-direction: column;
       gap: 4px;
       font-weight: 750;
     }
 
-    .run-label.full {
-      grid-column: 1 / -1;
-    }
-
-    .run-input {
+    .filter-input {
+      width: 100%;
       padding: 7px 8px;
       border: 1px solid #cbd5e1;
       border-radius: 9px;
       font: inherit;
     }
 
-    .run-actions {
+    .filter-actions {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -159,32 +149,36 @@
       flex-wrap: wrap;
     }
 
-    #runBtn {
+    #filterBtn,
+    #allBtn {
       padding: 8px 11px;
-      color: white;
-      background: #0f172a;
       border: 0;
       border-radius: 10px;
       font-weight: 850;
       cursor: pointer;
     }
 
-    #runBtn:disabled {
-      opacity: .65;
-      cursor: wait;
+    #filterBtn {
+      color: white;
+      background: #0f172a;
     }
 
-    #runStatus {
+    #allBtn {
+      color: #0f172a;
+      background: #e2e8f0;
+    }
+
+    #filterStatus {
       color: #334155;
       font-size: 12px;
       line-height: 1.35;
     }
 
-    .run-note {
+    .filter-note {
       margin-top: 7px;
       color: #64748b;
       font-size: 12px;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
     .legend {
@@ -217,9 +211,7 @@
       border-radius: 999px;
     }
 
-    .leaflet-popup-content-wrapper {
-      border-radius: 14px;
-    }
+    .leaflet-popup-content-wrapper { border-radius: 14px; }
 
     .leaflet-popup-content {
       min-width: 370px;
@@ -253,9 +245,7 @@
       overflow-wrap: anywhere;
     }
 
-    .detail-val.strong {
-      font-weight: 750;
-    }
+    .detail-val.strong { font-weight: 750; }
 
     .crossing-block {
       margin: 10px 0;
@@ -306,24 +296,19 @@
     }
 
     @media (max-width: 640px) {
-      .run-panel {
+      .filter-panel {
         top: 58px;
         left: 10px;
         width: calc(100vw - 20px);
       }
 
-      .run-panel.collapsed {
+      .filter-panel.collapsed {
         width: auto;
         min-width: 0;
       }
 
-      .leaflet-popup-content {
-        min-width: 260px;
-      }
-
-      .detail-grid {
-        grid-template-columns: 132px 1fr;
-      }
+      .leaflet-popup-content { min-width: 260px; }
+      .detail-grid { grid-template-columns: 132px 1fr; }
     }
   </style>
 </head>
@@ -333,48 +318,46 @@
     <header>
       <div class="topline">
         <h1>Tornado Path Crossing Calculator</h1>
-        <div id="summary">Loading tornado paths and crossing data…</div>
+        <div id="summary">Loading tornado archive…</div>
       </div>
     </header>
     <div id="map"></div>
   </div>
 
-  <div id="runPanel" class="run-panel">
-    <div class="run-panel-header">
-      <div class="run-panel-title">Parish/County line crossings</div>
+  <div id="filterPanel" class="filter-panel">
+    <div class="filter-panel-header">
+      <div class="filter-panel-title">Parish/County line crossings</div>
       <button
-        id="runPanelToggle"
-        class="run-panel-toggle"
+        id="filterPanelToggle"
+        class="filter-panel-toggle"
         type="button"
         aria-expanded="true"
-        aria-controls="runPanelBody"
+        aria-controls="filterPanelBody"
       >Collapse</button>
     </div>
 
-    <div id="runPanelBody" class="run-panel-body">
-      <div class="run-grid">
-        <label class="run-label">
+    <div id="filterPanelBody" class="filter-panel-body">
+      <div class="filter-grid">
+        <label class="filter-label">
           Start date
-          <input id="startDate" class="run-input" type="date">
+          <input id="startDate" class="filter-input" type="date" min="2015-01-01">
         </label>
 
-        <label class="run-label">
+        <label class="filter-label">
           End date
-          <input id="endDate" class="run-input" type="date">
+          <input id="endDate" class="filter-input" type="date" min="2015-01-01">
         </label>
-
-        <input id="bbox" type="hidden" value="-91.8,28.5,-87.8,31.5">
-        <!-- Run-key/password field intentionally disabled for now. -->
-        <input id="runKey" type="hidden" value="">
       </div>
 
-      <div class="run-actions">
-        <button id="runBtn" type="button">Start workflow</button>
-        <span id="runStatus">Ready.</span>
+      <div class="filter-actions">
+        <button id="filterBtn" type="button">Show dates</button>
+        <button id="allBtn" type="button">Show all</button>
+        <span id="filterStatus">Loading archive…</span>
       </div>
 
-      <div class="run-note">
-        The map will auto-refresh after about 1 minute once you click START WORKFLOW.
+      <div class="filter-note">
+        Tracks and crossings are precomputed from 2015-present and refreshed automatically each day.
+        Changing dates only filters the archive in your browser; it does not run a workflow.
       </div>
     </div>
   </div>
@@ -388,185 +371,10 @@
 
 const TRACKS_URL = "data/dat_damage_lines.geojson";
 const CROSSINGS_URL = "data/tornado_crossing_times.csv";
+const ARCHIVE_START = "2015-01-01";
 const TZ = "America/Chicago";
-
-const APPS_SCRIPT_TRIGGER_URL = "https://script.google.com/a/macros/noaa.gov/s/AKfycbz4-0XaPXdx7ICOWkTrwtizUi89a9_YQn3WSnGv3YWw2UhDW-8kTHZVlR6lLEig2Glp/exec";
-const RUN_FORM_STORAGE_KEY = "tornadoPathWorkflowRunForm";
-const RUN_PANEL_COLLAPSED_STORAGE_KEY = "tornadoPathWorkflowRunPanelCollapsed";
-const DEFAULT_RUN_START_DATE = "2026-04-01";
-const DEFAULT_RUN_END_DATE = "2026-05-17";
-
-function loadSavedRunForm() {
-  try {
-    return JSON.parse(localStorage.getItem(RUN_FORM_STORAGE_KEY) || "null") || {};
-  } catch (error) {
-    console.warn("Could not load workflow dates", error);
-    return {};
-  }
-}
-
-function saveRunForm(startDate, endDate, bbox) {
-  try {
-    localStorage.setItem(RUN_FORM_STORAGE_KEY, JSON.stringify({
-      startDate,
-      endDate,
-      bbox,
-      submittedAt: new Date().toISOString()
-    }));
-  } catch (error) {
-    console.warn("Could not save workflow dates", error);
-  }
-}
-
-function formatRunDateForStatus(value) {
-  const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  return match ? `${match[2]}/${match[3]}/${match[1]}` : value;
-}
-
-function setDefaultDatesForRunForm() {
-  const saved = loadSavedRunForm();
-  const startDate = saved.startDate || DEFAULT_RUN_START_DATE;
-  const endDate = saved.endDate || DEFAULT_RUN_END_DATE;
-
-  document.getElementById("startDate").value = startDate;
-  document.getElementById("endDate").value = endDate;
-
-  if (saved.bbox) {
-    document.getElementById("bbox").value = saved.bbox;
-  }
-
-  if (saved.startDate && saved.endDate) {
-    document.getElementById("runStatus").textContent =
-      `Last submitted: ${formatRunDateForStatus(saved.startDate)} to ${formatRunDateForStatus(saved.endDate)}.`;
-  }
-}
-
-function setRunPanelCollapsed(collapsed) {
-  const panel = document.getElementById("runPanel");
-  const toggle = document.getElementById("runPanelToggle");
-
-  panel.classList.toggle("collapsed", collapsed);
-  toggle.textContent = collapsed ? "Expand" : "Collapse";
-  toggle.setAttribute("aria-expanded", String(!collapsed));
-
-  try {
-    localStorage.setItem(RUN_PANEL_COLLAPSED_STORAGE_KEY, collapsed ? "1" : "0");
-  } catch (error) {
-    console.warn("Could not save workflow panel state", error);
-  }
-
-  window.setTimeout(() => map.invalidateSize(true), 0);
-}
-
-function initRunPanel() {
-  let collapsed = false;
-
-  try {
-    collapsed = localStorage.getItem(RUN_PANEL_COLLAPSED_STORAGE_KEY) === "1";
-  } catch (error) {
-    console.warn("Could not load workflow panel state", error);
-  }
-
-  setRunPanelCollapsed(collapsed);
-
-  document.getElementById("runPanelToggle").addEventListener("click", () => {
-    const panel = document.getElementById("runPanel");
-    setRunPanelCollapsed(!panel.classList.contains("collapsed"));
-  });
-}
-
-function buildWorkflowTriggerUrl(runKey, startDate, endDate, bbox) {
-  const params = new URLSearchParams({
-    run_key: runKey,
-    key: runKey,
-    password: runKey,
-    start_date: startDate,
-    startDate,
-    start: startDate,
-    end_date: endDate,
-    endDate,
-    end: endDate,
-    bbox,
-    source: "map_panel",
-    t: Date.now().toString()
-  });
-
-  return `${APPS_SCRIPT_TRIGGER_URL}?${params.toString()}`;
-}
-
-function startRefreshCountdown(status, startDate, endDate) {
-  let secondsRemaining = 60;
-
-  status.style.color = "#166534";
-  status.textContent =
-    `Trigger sent for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. ` +
-    `Auto-refreshing map in ${secondsRemaining} seconds...`;
-
-  const timer = window.setInterval(() => {
-    secondsRemaining -= 1;
-    status.textContent =
-      `Trigger sent for ${formatRunDateForStatus(startDate)} to ${formatRunDateForStatus(endDate)}. ` +
-      `Auto-refreshing map in ${secondsRemaining} seconds...`;
-
-    if (secondsRemaining <= 0) {
-      window.clearInterval(timer);
-      status.textContent = "Refreshing map...";
-      window.location.reload();
-    }
-  }, 1000);
-}
-
-function triggerTornadoWorkflow() {
-  const button = document.getElementById("runBtn");
-  const status = document.getElementById("runStatus");
-
-  const startDate = document.getElementById("startDate").value;
-  const endDate = document.getElementById("endDate").value;
-  const bbox = document.getElementById("bbox").value.trim();
-  const runKey = document.getElementById("runKey").value.trim();
-
-  status.style.color = "#334155";
-
-  if (!startDate || !endDate || !bbox) {
-    status.style.color = "#991b1b";
-    status.textContent = "Fill out dates and bbox.";
-    return;
-  }
-
-  if (endDate < startDate) {
-    status.style.color = "#991b1b";
-    status.textContent = "End date must be on or after start date.";
-    return;
-  }
-
-  saveRunForm(startDate, endDate, bbox);
-
-  button.disabled = true;
-  status.textContent = "Sending trigger to workflow bridge...";
-
-  const iframeName = "hiddenWorkflowTriggerFrame";
-  let iframe = document.getElementById(iframeName);
-
-  if (!iframe) {
-    iframe = document.createElement("iframe");
-    iframe.name = iframeName;
-    iframe.id = iframeName;
-    iframe.style.display = "none";
-    document.body.appendChild(iframe);
-  }
-
-  iframe.onload = () => {
-    startRefreshCountdown(status, startDate, endDate);
-  };
-
-  iframe.onerror = () => {
-    button.disabled = false;
-    status.style.color = "#991b1b";
-    status.textContent = "Trigger failed to load. Check the Apps Script web app URL/deployment.";
-  };
-
-  iframe.src = buildWorkflowTriggerUrl(runKey, startDate, endDate, bbox);
-}
+const FILTER_STORAGE_KEY = "tornadoPathArchiveFilter";
+const FILTER_PANEL_COLLAPSED_STORAGE_KEY = "tornadoPathFilterPanelCollapsed";
 
 const map = L.map("map", {
   preferCanvas: true,
@@ -611,8 +419,10 @@ const crossingIcon = L.divIcon({
   iconAnchor: [8, 8]
 });
 
-let crossingsByEvent = new Map();
+let allTracks = { type: "FeatureCollection", features: [] };
 let allCrossings = [];
+let crossingsByEvent = new Map();
+let archiveEnd = todayDateKey();
 
 function efColor(value) {
   const normalized = String(value || "").toUpperCase().trim();
@@ -639,6 +449,68 @@ function trackStyle(feature) {
   };
 }
 
+function todayDateKey() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function dateKeyFromDate(date) {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(date);
+
+  const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function dateKeyFromValue(value) {
+  if (value === null || value === undefined || String(value).trim() === "") {
+    return "";
+  }
+
+  const text = String(value).trim();
+  const numeric = Number(text);
+
+  if (Number.isFinite(numeric)) {
+    const milliseconds = numeric > 10_000_000_000 ? numeric : numeric * 1000;
+    return dateKeyFromDate(new Date(milliseconds));
+  }
+
+  const isoMatch = text.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (isoMatch) {
+    return `${isoMatch[1]}-${isoMatch[2]}-${isoMatch[3]}`;
+  }
+
+  const parsed = new Date(text);
+  return dateKeyFromDate(parsed);
+}
+
+function featureDateRange(feature) {
+  const properties = feature.properties || {};
+  const fallback = dateKeyFromValue(properties.stormdate);
+  const start = dateKeyFromValue(properties.starttime) || fallback;
+  const end = dateKeyFromValue(properties.endtime) || start || fallback;
+  return { start, end };
+}
+
+function featureOverlapsRange(feature, startDate, endDate) {
+  const range = featureDateRange(feature);
+  if (!range.start || !range.end) {
+    return false;
+  }
+  return range.end >= startDate && range.start <= endDate;
+}
+
 function parseCsv(text) {
   const rows = [];
   let row = [];
@@ -663,12 +535,10 @@ function parseCsv(text) {
       if (character === "\r" && next === "\n") {
         index += 1;
       }
-
       row.push(value);
       if (row.some(item => item.trim() !== "")) {
         rows.push(row);
       }
-
       row = [];
       value = "";
     } else {
@@ -698,17 +568,12 @@ function parseCsv(text) {
 
 function normalizeEventId(value) {
   const text = value === null || value === undefined ? "" : String(value).trim();
-
-  if (!text) {
-    return "";
-  }
-
+  if (!text) return "";
   return /^-?\d+\.0+$/.test(text) ? text.replace(/\.0+$/, "") : text;
 }
 
 function featureEventId(feature) {
   const properties = feature.properties || {};
-
   return normalizeEventId(properties.event_id) ||
     normalizeEventId(properties.objectid) ||
     normalizeEventId(properties.OBJECTID) ||
@@ -724,6 +589,7 @@ function formatDateTime(value) {
   const epoch = Number(text);
 
   if (Number.isFinite(epoch)) {
+    const milliseconds = epoch > 10_000_000_000 ? epoch : epoch * 1000;
     return new Intl.DateTimeFormat("en-US", {
       timeZone: TZ,
       year: "numeric",
@@ -734,7 +600,7 @@ function formatDateTime(value) {
       hour12: true,
       timeZoneName: "short"
     })
-      .format(new Date(epoch))
+      .format(new Date(milliseconds))
       .replace(/\//g, "-")
       .replace(/\bAM\b/g, "am")
       .replace(/\bPM\b/g, "pm");
@@ -770,7 +636,6 @@ function trackTimeKey(feature) {
   const properties = feature.properties || {};
   const start = timeMatchKey(properties.starttime);
   const end = timeMatchKey(properties.endtime);
-
   return start && end ? `${start}|${end}` : "";
 }
 
@@ -782,15 +647,8 @@ function groupCrossings(rows, tracks) {
   features.forEach(feature => {
     const id = featureEventId(feature);
     const timeKey = trackTimeKey(feature);
-
-    if (!id || !timeKey) {
-      return;
-    }
-
-    if (!tracksByTime.has(timeKey)) {
-      tracksByTime.set(timeKey, []);
-    }
-
+    if (!id || !timeKey) return;
+    if (!tracksByTime.has(timeKey)) tracksByTime.set(timeKey, []);
     tracksByTime.get(timeKey).push(id);
   });
 
@@ -800,22 +658,13 @@ function groupCrossings(rows, tracks) {
     if (!id) {
       const rowTimeKey = `${timeMatchKey(row.start_time)}|${timeMatchKey(row.end_time)}`;
       const candidates = tracksByTime.get(rowTimeKey) || [];
-
-      if (candidates.length === 1) {
-        id = candidates[0];
-      }
+      if (candidates.length === 1) id = candidates[0];
     }
 
-    if (!id) {
-      id = "UNKNOWN";
-    }
-
+    if (!id) id = "UNKNOWN";
     row._resolved_event_id = id;
 
-    if (!grouped.has(id)) {
-      grouped.set(id, []);
-    }
-
+    if (!grouped.has(id)) grouped.set(id, []);
     grouped.get(id).push(row);
   });
 
@@ -839,17 +688,12 @@ function firstNonBlank(...values) {
       return value;
     }
   }
-
   return "";
 }
 
 function formatWithUnit(value, unit) {
   const cleaned = clean(value);
-
-  if (cleaned === "—") {
-    return cleaned;
-  }
-
+  if (cleaned === "—") return cleaned;
   return String(cleaned).match(new RegExp(`\\b${unit}\\b`, "i"))
     ? cleaned
     : `${cleaned} ${unit}`;
@@ -858,11 +702,7 @@ function formatWithUnit(value, unit) {
 function formatLatLon(lat, lon) {
   const latNumber = Number(lat);
   const lonNumber = Number(lon);
-
-  if (!Number.isFinite(latNumber) || !Number.isFinite(lonNumber)) {
-    return "—";
-  }
-
+  if (!Number.isFinite(latNumber) || !Number.isFinite(lonNumber)) return "—";
   return `${latNumber.toFixed(6)} / ${lonNumber.toFixed(6)}`;
 }
 
@@ -879,17 +719,11 @@ function trackEndpointLatLon(feature, endpoint) {
     lines = geometry.coordinates.filter(line => Array.isArray(line) && line.length);
   }
 
-  if (!lines.length) {
-    return "—";
-  }
+  if (!lines.length) return "—";
 
   const line = endpoint === "end" ? lines[lines.length - 1] : lines[0];
   const coordinate = endpoint === "end" ? line[line.length - 1] : line[0];
-
-  if (!Array.isArray(coordinate) || coordinate.length < 2) {
-    return "—";
-  }
-
+  if (!Array.isArray(coordinate) || coordinate.length < 2) return "—";
   return formatLatLon(coordinate[1], coordinate[0]);
 }
 
@@ -901,29 +735,21 @@ function durationMinutes(start, end) {
   const startNumber = Number(start);
   const endNumber = Number(end);
 
-  if (
-    !Number.isFinite(startNumber) ||
-    !Number.isFinite(endNumber) ||
-    endNumber <= startNumber
-  ) {
+  if (!Number.isFinite(startNumber) || !Number.isFinite(endNumber) || endNumber <= startNumber) {
     return "";
   }
 
-  return ((endNumber - startNumber) / 60000).toFixed(2);
+  const startMs = startNumber > 10_000_000_000 ? startNumber : startNumber * 1000;
+  const endMs = endNumber > 10_000_000_000 ? endNumber : endNumber * 1000;
+  return ((endMs - startMs) / 60000).toFixed(2);
 }
 
 function avgSpeed(length, duration) {
   const lengthNumber = Number(length);
   const durationNumber = Number(duration);
-
-  if (
-    !Number.isFinite(lengthNumber) ||
-    !Number.isFinite(durationNumber) ||
-    durationNumber <= 0
-  ) {
+  if (!Number.isFinite(lengthNumber) || !Number.isFinite(durationNumber) || durationNumber <= 0) {
     return "";
   }
-
   return (lengthNumber / (durationNumber / 60)).toFixed(1);
 }
 
@@ -934,17 +760,13 @@ function detailRow(key, value, strong = false) {
 
 function crossingRows(row, includeDistance = false) {
   let html = '<div class="detail-grid">';
-
   html += detailRow("Crossing Lat/Lon:", crossingLatLon(row), true);
   html += detailRow("Crossing date:", formatDateTime(row.crossing_time), true);
   html += detailRow("From:", row.boundary_from, true);
   html += detailRow("To:", row.boundary_to, true);
 
   if (includeDistance) {
-    html += detailRow(
-      "Distance into track:",
-      formatWithUnit(row.crossing_distance_miles, "mi")
-    );
+    html += detailRow("Distance into track:", formatWithUnit(row.crossing_distance_miles, "mi"));
   }
 
   html += "</div>";
@@ -992,19 +814,12 @@ function buildTrackPopup(feature) {
   );
 
   let html = `<div class="popup-title">${id}</div><div class="detail-grid">`;
-
   html += detailRow("EF scale:", firstNonBlank(first.efscale, properties.efscale));
   html += detailRow("Peak wind speed:", formatWithUnit(peakWind, "mph"));
   html += detailRow("Max width:", formatWithUnit(maxWidth, "yd"));
-  html += detailRow(
-    "Start time:",
-    formatDateTime(firstNonBlank(first.start_time, properties.starttime))
-  );
+  html += detailRow("Start time:", formatDateTime(firstNonBlank(first.start_time, properties.starttime)));
   html += detailRow("Start Lat/Lon:", trackEndpointLatLon(feature, "start"));
-  html += detailRow(
-    "End time:",
-    formatDateTime(firstNonBlank(first.end_time, properties.endtime))
-  );
+  html += detailRow("End time:", formatDateTime(firstNonBlank(first.end_time, properties.endtime)));
   html += detailRow("End Lat/Lon:", trackEndpointLatLon(feature, "end"));
   html += detailRow("Duration:", formatWithUnit(duration, "min"));
   html += detailRow("Track length:", formatWithUnit(miles, "mi"));
@@ -1012,8 +827,7 @@ function buildTrackPopup(feature) {
   html += "</div>";
 
   if (!rows.length) {
-    return html +
-      '<div class="empty-note">No parish/county crossings were found for this tornado path.</div>';
+    return html + '<div class="empty-note">No parish/county crossings were found for this tornado path.</div>';
   }
 
   rows.forEach((row, index) => {
@@ -1031,10 +845,7 @@ function addCrossingMarkers(rows) {
   rows.forEach(row => {
     const lat = parseFloat(row.crossing_lat);
     const lon = parseFloat(row.crossing_lon);
-
-    if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
-      return;
-    }
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
 
     crossingsLayer.addLayer(
       L.marker([lat, lon], { icon: crossingIcon }).bindPopup(
@@ -1070,6 +881,136 @@ function addLegend() {
   legend.addTo(map);
 }
 
+function loadSavedFilter() {
+  try {
+    return JSON.parse(localStorage.getItem(FILTER_STORAGE_KEY) || "null") || {};
+  } catch (error) {
+    console.warn("Could not load saved date filter", error);
+    return {};
+  }
+}
+
+function saveFilter(startDate, endDate) {
+  try {
+    localStorage.setItem(FILTER_STORAGE_KEY, JSON.stringify({ startDate, endDate }));
+  } catch (error) {
+    console.warn("Could not save date filter", error);
+  }
+}
+
+function setFilterPanelCollapsed(collapsed) {
+  const panel = document.getElementById("filterPanel");
+  const toggle = document.getElementById("filterPanelToggle");
+
+  panel.classList.toggle("collapsed", collapsed);
+  toggle.textContent = collapsed ? "Expand" : "Collapse";
+  toggle.setAttribute("aria-expanded", String(!collapsed));
+
+  try {
+    localStorage.setItem(FILTER_PANEL_COLLAPSED_STORAGE_KEY, collapsed ? "1" : "0");
+  } catch (error) {
+    console.warn("Could not save filter panel state", error);
+  }
+
+  window.setTimeout(() => map.invalidateSize(true), 0);
+}
+
+function initFilterPanel() {
+  let collapsed = false;
+
+  try {
+    collapsed = localStorage.getItem(FILTER_PANEL_COLLAPSED_STORAGE_KEY) === "1";
+  } catch (error) {
+    console.warn("Could not load filter panel state", error);
+  }
+
+  setFilterPanelCollapsed(collapsed);
+
+  document.getElementById("filterPanelToggle").addEventListener("click", () => {
+    const panel = document.getElementById("filterPanel");
+    setFilterPanelCollapsed(!panel.classList.contains("collapsed"));
+  });
+}
+
+function setDefaultFilterDates() {
+  const saved = loadSavedFilter();
+  const startInput = document.getElementById("startDate");
+  const endInput = document.getElementById("endDate");
+
+  startInput.min = ARCHIVE_START;
+  endInput.min = ARCHIVE_START;
+  startInput.max = archiveEnd;
+  endInput.max = archiveEnd;
+
+  const currentYearStart = `${archiveEnd.slice(0, 4)}-01-01`;
+  const startDate = saved.startDate && saved.startDate >= ARCHIVE_START && saved.startDate <= archiveEnd
+    ? saved.startDate
+    : currentYearStart;
+  const endDate = saved.endDate && saved.endDate >= ARCHIVE_START && saved.endDate <= archiveEnd
+    ? saved.endDate
+    : archiveEnd;
+
+  startInput.value = startDate;
+  endInput.value = endDate;
+}
+
+function applyDateFilter(fitMap = true) {
+  const status = document.getElementById("filterStatus");
+  const startDate = document.getElementById("startDate").value;
+  const endDate = document.getElementById("endDate").value;
+
+  if (!startDate || !endDate) {
+    status.style.color = "#991b1b";
+    status.textContent = "Choose a start and end date.";
+    return;
+  }
+
+  if (startDate < ARCHIVE_START) {
+    status.style.color = "#991b1b";
+    status.textContent = `Archive begins ${ARCHIVE_START}.`;
+    return;
+  }
+
+  if (endDate < startDate) {
+    status.style.color = "#991b1b";
+    status.textContent = "End date must be on or after start date.";
+    return;
+  }
+
+  const features = allTracks.features.filter(feature =>
+    featureOverlapsRange(feature, startDate, endDate)
+  );
+
+  const eventIds = new Set(features.map(featureEventId).filter(Boolean));
+  const crossings = allCrossings.filter(row => eventIds.has(row._resolved_event_id));
+
+  pathLayer.clearLayers();
+  pathLayer.addData({ type: "FeatureCollection", features });
+  addCrossingMarkers(crossings);
+
+  saveFilter(startDate, endDate);
+
+  status.style.color = "#334155";
+  status.textContent = `${features.length} path(s), ${crossings.length} crossing(s) shown.`;
+
+  document.getElementById("summary").textContent =
+    `${features.length} of ${allTracks.features.length} tornado path(s), ` +
+    `${crossings.length} parish/county crossing record(s) shown`;
+
+  if (fitMap) {
+    const bounds = pathLayer.getBounds();
+    if (bounds.isValid()) {
+      map.fitBounds(bounds.pad(.18));
+    }
+  }
+}
+
+function showAllArchive() {
+  document.getElementById("startDate").value = ARCHIVE_START;
+  document.getElementById("endDate").value = archiveEnd;
+  applyDateFilter(true);
+}
+
 function showError(message) {
   const box = document.createElement("div");
   box.className = "error-box";
@@ -1080,9 +1021,7 @@ function showError(message) {
 
 async function init() {
   try {
-    initRunPanel();
-    setDefaultDatesForRunForm();
-    document.getElementById("runBtn").addEventListener("click", triggerTornadoWorkflow);
+    initFilterPanel();
 
     map.invalidateSize(true);
     window.setTimeout(() => map.invalidateSize(true), 200);
@@ -1092,34 +1031,26 @@ async function init() {
       fetch(CROSSINGS_URL, { cache: "no-store" })
     ]);
 
-    if (!tracksResponse.ok) {
-      throw new Error(`Could not load ${TRACKS_URL}`);
-    }
+    if (!tracksResponse.ok) throw new Error(`Could not load ${TRACKS_URL}`);
+    if (!crossingsResponse.ok) throw new Error(`Could not load ${CROSSINGS_URL}`);
 
-    if (!crossingsResponse.ok) {
-      throw new Error(`Could not load ${CROSSINGS_URL}`);
-    }
-
-    const tracks = await tracksResponse.json();
+    allTracks = await tracksResponse.json();
     const csv = await crossingsResponse.text();
-
     allCrossings = parseCsv(csv);
-    crossingsByEvent = groupCrossings(allCrossings, tracks);
+    crossingsByEvent = groupCrossings(allCrossings, allTracks);
 
-    pathLayer.addData(tracks);
-    addCrossingMarkers(allCrossings);
+    archiveEnd = todayDateKey();
+
+    setDefaultFilterDates();
     addLegend();
 
-    const bounds = pathLayer.getBounds();
-    if (bounds.isValid()) {
-      map.fitBounds(bounds.pad(.18));
-    }
+    document.getElementById("filterBtn").addEventListener("click", () => applyDateFilter(true));
+    document.getElementById("allBtn").addEventListener("click", showAllArchive);
+    document.getElementById("startDate").addEventListener("change", () => applyDateFilter(true));
+    document.getElementById("endDate").addEventListener("change", () => applyDateFilter(true));
 
+    applyDateFilter(true);
     window.setTimeout(() => map.invalidateSize(true), 100);
-
-    document.getElementById("summary").textContent =
-      `${tracks.features ? tracks.features.length : 0} tornado path(s), ` +
-      `${allCrossings.length} parish/county crossing record(s)`;
   } catch (error) {
     console.error(error);
     showError(error.message || String(error));
