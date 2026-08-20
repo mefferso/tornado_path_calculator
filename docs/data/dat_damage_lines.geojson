@@ -33747,6 +33747,70 @@
     },
     {
       "type": "Feature",
+      "id": 2742835,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.74519972000002,
+            29.541482014999985
+          ],
+          [
+            -90.73840002100002,
+            29.544394205000003
+          ],
+          [
+            -90.73496202400003,
+            29.546408213999996
+          ],
+          [
+            -90.73246101299998,
+            29.548030175999997
+          ],
+          [
+            -90.73054975999997,
+            29.548971128999995
+          ],
+          [
+            -90.72531429399999,
+            29.55114108700002
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2742835,
+        "event_id": "Bonvillain Canal, LA Tornado",
+        "stormdate": 1781772180000,
+        "starttime": 1781772180000,
+        "endtime": 1781772360000,
+        "startlat": 29.5415,
+        "startlon": -90.7452,
+        "endlat": 29.5511,
+        "endlon": -90.7253,
+        "length": 1.3738000000000001,
+        "width": 80,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 75,
+        "globalid": "{51487D2B-A5AF-44C1-A6F9-D439E7B09AEC}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1782064002000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1787249611000,
+        "comments": "An EF-0 tornado touched down over inaccessible areas of Terrebonne Parish, southwest of Houma, LA. A weak path of damage to marsh vegetation and trees was observed on high resolution satellite imagery which was collocated with a large, vertically and temporally continuous tornado debris signature on Climavision V014 radar. The tornado apparently lifted prior to crossing Bayou Dularge Rd given that no substantive damage was observed by the ground survey team in the area despite the weakening tornado debris signature still being present on radar.",
+        "st_length(shape)": 0.022160134198312992,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
       "id": 2742935,
       "geometry": {
         "type": "LineString",
@@ -34043,82 +34107,6 @@
     },
     {
       "type": "Feature",
-      "id": 2742997,
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -90.25630015500002,
-            29.893827687999988
-          ],
-          [
-            -90.24982522200003,
-            29.897923486000025
-          ],
-          [
-            -90.24558095499998,
-            29.899717642999974
-          ],
-          [
-            -90.24128941999999,
-            29.901726600000018
-          ],
-          [
-            -90.235629604,
-            29.904621255999984
-          ],
-          [
-            -90.228133721,
-            29.906729314000017
-          ],
-          [
-            -90.21596936700001,
-            29.911975369000004
-          ],
-          [
-            -90.21401671900003,
-            29.912551946999997
-          ],
-          [
-            -90.210154338,
-            29.915806761
-          ]
-        ]
-      },
-      "properties": {
-        "objectid": 2742997,
-        "event_id": "Avondale, LA Tornado",
-        "stormdate": 1781778420000,
-        "starttime": 1781778420000,
-        "endtime": 1781778840000,
-        "startlat": 29.8938,
-        "startlon": -90.2563,
-        "endlat": 29.9158,
-        "endlon": -90.2102,
-        "length": 3.1829,
-        "width": 250,
-        "injuries": 2,
-        "fatalities": 0,
-        "efscale": "EF1",
-        "efnum": 1,
-        "qc": "Y",
-        "maxwind": 95,
-        "globalid": "{EAB2D269-4173-49F5-AD21-D61F367530CF}",
-        "cropdamage": 0,
-        "propdamage": 0,
-        "edit_user": null,
-        "edit_time": null,
-        "created_user": "dat_editor",
-        "created_date": 1782591754000,
-        "last_edited_user": "dat_editor",
-        "last_edited_date": 1785495552000,
-        "comments": "An EF-1 tornado tracked through parts of Avondale, LA in Jefferson Parish. This tornado began over inaccessible areas to ground survey team near the levees, near Bayou Verret. A clear path of tree damage was evident on high resolution satellite imagery spanning to at least 250 yards wide with numerous trees displaced. The damage path within this inaccessible area became weaker and less apparent as the tornado approached US Hwy 90. The tornado was at EF-0 intensity as it crossed US Hwy 90 into Avondale. As it tracked northeast, the tornado caused light home damage and snapped tree branches. The tornado restrengthened to low-end EF-1 intensity at George Street, rolling a single-wide manufactured home into another home which was the cause of the most significant structural damage. The manufactured home was thrown to the northeast with the frame being well bent. 2 people were injured as a result. Additional home damage was also found on Defourneaux Ln as the tornado began to weaken again. It's estimated that the tornado lifted after crossing Restlawn Park Cemetery, near Center Street.",
-        "st_length(shape)": 0.051486029399347974,
-        "wfo": "LIX"
-      }
-    },
-    {
-      "type": "Feature",
       "id": 2742998,
       "geometry": {
         "type": "LineString",
@@ -34314,6 +34302,70 @@
         "last_edited_date": 1783709948000,
         "comments": "An EF-0 tornado touched down near Bayou la Cache, east of Chauvin, LA in Terrebonne Parish and tracked northeast toward Montegut, LA. High resolution satellite imagery depicted a defined swath of tree damage beginning over inaccessible areas which aligned with a tornado debris signature on Climavision V014. The damage path grew to a maximum width of 200 yards and peaked in intensity over inaccessible forest west of Blue Jay St as it enroached on neighborhoods near Crochetville Rd. The tornado gradually weakened and decreased in size as it moved over southern parts of Montegut, near Crochetville Rd where mainly minor tree damage was noted. It is estimated that this tornado dissipated near Willow Aly and Bayou Terrebonne.",
         "st_length(shape)": 0.045741390256127966,
+        "wfo": "LIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2743019,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.977026578,
+            29.381143365000014
+          ],
+          [
+            -90.97262775600001,
+            29.383369404999996
+          ],
+          [
+            -90.966986663,
+            29.384164982000016
+          ],
+          [
+            -90.964029794,
+            29.384393086999978
+          ],
+          [
+            -90.96238184499998,
+            29.385043743999972
+          ],
+          [
+            -90.96083245599999,
+            29.386721900999987
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2743019,
+        "event_id": "Jug Lake, LA Tornado",
+        "stormdate": 1781766480000,
+        "starttime": 1781766480000,
+        "endtime": 1781766600000,
+        "startlat": 29.3811,
+        "startlon": -90.977,
+        "endlat": 29.3867,
+        "endlon": -90.9608,
+        "length": 1.0878,
+        "width": 100,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 80,
+        "globalid": "{9A7B31CC-032C-42D2-9D7B-25FA96E2BFD0}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1782859201000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1787249533000,
+        "comments": "The damage path of an EF-0 tornado was identified on medium resolution satellite imagery over lower Terrebonne Parish, near Jug Lake. This damage path is closely aligned with a strong tornado vortex signature that was on KHDC radar, but no debris signature was ever evident. Swaths of damage to marsh vegetation were most evident throughout the track. Additional pictures of trees damaged along the path provided by a private landowner were the basis for the EF-0 rating. ",
+        "st_length(shape)": 0.017648354302946187,
         "wfo": "LIX"
       }
     },
@@ -34527,6 +34579,114 @@
         "comments": "The tornado began along Howells Ferry rd near Grider rd as a weak EF-0 bringing down a couple branches resulting in minor damage across two properties. The tornado then continued southeast across Carlisle Dr and strengthened as it approached Central Blvd and Mississippi St. south of Howells Ferry Rd. Several large uprooted hardwood trees were noted within this area with  more widespread small to large branches snapped throughout several roads within the community. The tornado then continued east towards Moffett Rd as it likely moved along Moffett before resulting in a few sporadic uprooted trees near a water treatment plant on the north side of Moffett Rd. The tornado likely weakened as it destroyed two businesses signs before dissipating near Northview Dr.",
         "st_length(shape)": 0.03868432405890697,
         "wfo": "MOB"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2758810,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.33172034199998,
+            29.817173971999978
+          ],
+          [
+            -90.32116316700001,
+            29.828269105999993
+          ],
+          [
+            -90.315841664,
+            29.835268086999974
+          ],
+          [
+            -90.31043433100001,
+            29.84487227300002
+          ],
+          [
+            -90.30631445799997,
+            29.84978568600002
+          ],
+          [
+            -90.2941265,
+            29.85648540400001
+          ],
+          [
+            -90.28846167500001,
+            29.86199372499999
+          ],
+          [
+            -90.27223967499998,
+            29.872860600000024
+          ],
+          [
+            -90.26296996000002,
+            29.880079720000026
+          ],
+          [
+            -90.25936507099999,
+            29.890274905000012
+          ],
+          [
+            -90.25601767500001,
+            29.894069925999986
+          ],
+          [
+            -90.24975203399998,
+            29.897976415000016
+          ],
+          [
+            -90.24558924600001,
+            29.899799390999988
+          ],
+          [
+            -90.235718717,
+            29.904635696000014
+          ],
+          [
+            -90.227951039,
+            29.90679335599998
+          ],
+          [
+            -90.21417521400002,
+            29.91248489100002
+          ],
+          [
+            -90.21005534099999,
+            29.915869897999983
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2758810,
+        "event_id": "2758810",
+        "stormdate": 1781777460000,
+        "starttime": 1781777460000,
+        "endtime": 1781778840000,
+        "startlat": 29.8172,
+        "startlon": -90.3317,
+        "endlat": 29.9159,
+        "endlon": -90.2101,
+        "length": 10.3068,
+        "width": 300,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF1",
+        "efnum": 1,
+        "qc": "Y",
+        "maxwind": 100,
+        "globalid": "{B8C66E67-D76C-4B0F-8B3E-F19423EAFB41}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1785567026000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1787249589000,
+        "comments": "An EF-1 tornado tracked across parts of St. Charles and Jefferson Parishes, affecting the community of Avondale, LA. This tornado began over the Salvador Wildlife Management Area as evidenced by a well-defined 15-20 yard wide path of damage to marsh vegetation oriented southwest to northeast that was collocated with an intensifying area of rotation on both TMSY and KHDC. This damage path gradually broadened and fluctuated in intensity causing minor damage to trees as it traveled over uninhabited and inaccessible marsh areas. The tornado damage path evidently became larger and more noticeable again near Bayou Verret. As the tornado crossed into Jefferson Parish, a clear path of tree damage was evident on high resolution satellite imagery spanning to approximately 300 yards wide with numerous trees damaged or displaced. The damage path within this inaccessible area became weaker and less apparent as the tornado approached US Hwy 90. The tornado was at EF-0 intensity as it crossed US Hwy 90 into Avondale. As it tracked northeast, the tornado caused light home damage and snapped tree branches. The tornado restrengthened to low-end EF-1 intensity at George Street, rolling a single-wide manufactured home into another home which was the cause of the most significant structural damage. The manufactured home was thrown to the northeast with the frame being well bent. 2 people were injured as a result. Additional home damage was also found on Defourneaux Ln as the tornado began to weaken again. It's estimated that the tornado lifted after crossing Restlawn Park Cemetery, near Center Street.",
+        "st_length(shape)": 0.16171847899394298,
+        "wfo": "LIX"
       }
     },
     {
