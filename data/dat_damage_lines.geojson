@@ -34936,6 +34936,66 @@
         "st_length(shape)": 0.03576151323239468,
         "wfo": "MOB"
       }
+    },
+    {
+      "type": "Feature",
+      "id": 2767577,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -87.95277590400002,
+            30.82234366900002
+          ],
+          [
+            -87.94075960800001,
+            30.828019014999995
+          ],
+          [
+            -87.927670428,
+            30.834136220000005
+          ],
+          [
+            -87.923297832,
+            30.842177255000024
+          ],
+          [
+            -87.91423792500001,
+            30.85020328799999
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 2767577,
+        "event_id": "Hurricane",
+        "stormdate": 1787259120000,
+        "starttime": 1787259120000,
+        "endtime": 1787259840000,
+        "startlat": 30.8223,
+        "startlon": -87.9528,
+        "endlat": 30.8502,
+        "endlon": -87.9142,
+        "length": 3.083,
+        "width": 0,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EFU",
+        "efnum": -99,
+        "qc": "Y",
+        "maxwind": -99,
+        "globalid": "{00D7127B-1334-46E3-9A0F-D02E5EE9FEBA}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_user": null,
+        "edit_time": null,
+        "created_user": "dat_editor",
+        "created_date": 1787493244000,
+        "last_edited_user": "dat_editor",
+        "last_edited_date": 1787494757000,
+        "comments": "Estimated path of the Mobile River Delta tornado. The area is completely inaccessible to ground survey crews and will rely on high resolution satellite imagery to estimate the true path of the tornado. Times and track are estimated via radar tornado debris signature and video via social media.",
+        "st_length(shape)": 0.0489939071638186,
+        "wfo": "MOB"
+      }
     }
   ]
 }
