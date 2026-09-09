@@ -34982,6 +34982,59 @@
         "comments": "An EF-1 tornado with maximum sustained winds of 95 mph touched down along an intermittent path in southeast Pike County from near Emerald Ln, south of MS Highway 48, to Mesa Road just north of MS Highway 48. Primary damage was to trees and power lines with large trees toppled and or snapped. A few houses and mobile homes were damaged by fallen trees as well as power lines. This track was revised and combined with the subsequent damage path farther east on MS Hwy 48 after further analysis using high resolution satellite imagery from February 2017.",
         "st_length(shape)": 0.16675315312441938
       }
+    },
+    {
+      "type": "Feature",
+      "id": 2784775,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.49682240800001,
+            30.503319652000016
+          ],
+          [
+            -90.49749560800001,
+            30.500470914999994
+          ],
+          [
+            -90.50156535399998,
+            30.493044666000003
+          ],
+          [
+            -90.501568932,
+            30.493044666000003
+          ]
+        ]
+      },
+      "properties": {
+        "wfo": "LIX",
+        "objectid": 2784775,
+        "event_id": "Hammond, LA Tornado",
+        "stormdate": 1788809940000,
+        "starttime": 1788809940000,
+        "endtime": 1788810180000,
+        "startlat": 30.5033,
+        "startlon": -90.4968,
+        "endlat": 30.493,
+        "endlon": -90.5015,
+        "length": 0.7675000000000001,
+        "width": 40,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EF0",
+        "efnum": 0,
+        "qc": "Y",
+        "maxwind": 85,
+        "globalid": "{14310016-8B47-4A03-93FB-E7CF063E8A56}",
+        "cropdamage": -99,
+        "propdamage": -99,
+        "edit_time": 1788888505000,
+        "created_date": 1788829944000,
+        "last_edited_date": 1788888506000,
+        "comments": "An NWS ground survey confirmed an EF-0 tornado touched down in a parking lot south of West Thomas Street (US 190) west of downtown Hammond, LA in Tangipahoa Parish. This tornado tracked south-southwest causing minor tree damage and collapse of an exterior wall of a small professional building near Robinhood Drive. The damage path remained sparse with only minor threshold of visible damage and tree damage noted as the tornado continued southward across Interstate 55. Some additional EF-0 damage was identified near Stein Rd and Saint Rd before the tornado evidently lifted prior to Old Baton Rouge Hwy. Evidence of this tornado was also supported by eyewitness video and a brief tornado debris signature on KHDC radar imagery. Additional revisions to this track will be possible with the supplementation of additional reports or satellite data in the coming weeks.",
+        "st_length(shape)": 0.011399072356273925
+      }
     }
   ]
 }
