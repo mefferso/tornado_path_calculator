@@ -12813,6 +12813,55 @@
     },
     {
       "type": "Feature",
+      "id": 2001888,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -90.15191006600003,
+            29.749304010999992
+          ],
+          [
+            -90.136823236,
+            29.76081326000002
+          ],
+          [
+            -90.11435496600001,
+            29.775897195000027
+          ]
+        ]
+      },
+      "properties": {
+        "wfo": "LIX",
+        "objectid": 2001888,
+        "event_id": "Jean Lafitte Preserve Tornado",
+        "stormdate": 1674622500000,
+        "starttime": 1674622500000,
+        "endtime": 1674622680000,
+        "startlat": 29.7493,
+        "startlon": -90.1519,
+        "endlat": 29.7759,
+        "endlon": -90.1144,
+        "length": 2.908,
+        "width": 100,
+        "injuries": 0,
+        "fatalities": 0,
+        "efscale": "EFU",
+        "efnum": -1,
+        "qc": "Y",
+        "maxwind": -99,
+        "globalid": "{01080F51-D15A-4CED-BF64-1E06B1CC2448}",
+        "cropdamage": 0,
+        "propdamage": 0,
+        "edit_time": 1789745900000,
+        "created_date": 1710513043000,
+        "last_edited_date": 1789745900000,
+        "comments": "Apparent tornado damage path in the marsh with discoloration of ground which matches up with area of rotation that tracked through this area. Tornado appears to have started over Lake Salvador and move onshore north of Barataria Blvd. Max width of the tornado and further extension of the path was supported by NDVI differencing.",
+        "st_length(shape)": 0.046037582553085626
+      }
+    },
+    {
+      "type": "Feature",
       "id": 2013887,
       "geometry": {
         "type": "LineString",
