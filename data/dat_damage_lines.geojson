@@ -34852,54 +34852,70 @@
         "type": "LineString",
         "coordinates": [
           [
-            -87.95277590400002,
-            30.82234366900002
+            -87.95201368900001,
+            30.81866772799998
           ],
           [
-            -87.94075960800001,
-            30.828019014999995
+            -87.94843355699999,
+            30.819879531000026
           ],
           [
-            -87.927670428,
-            30.834136220000005
+            -87.94552440400003,
+            30.82123220400001
           ],
           [
-            -87.923297832,
-            30.842177255000024
+            -87.942412166,
+            30.82263151699999
           ],
           [
-            -87.91423792500001,
-            30.85020328799999
+            -87.932783127,
+            30.828629631000013
+          ],
+          [
+            -87.92734022299999,
+            30.833398104000025
+          ],
+          [
+            -87.92453383100002,
+            30.83760363099998
+          ],
+          [
+            -87.92119472799999,
+            30.84051371700002
+          ],
+          [
+            -87.915427953,
+            30.84468374300002
           ]
         ]
       },
       "properties": {
         "wfo": "MOB",
         "objectid": 2767577,
-        "event_id": "Hurricane",
-        "stormdate": 1787259120000,
-        "starttime": 1787259120000,
-        "endtime": 1787259840000,
-        "startlat": 30.8223,
-        "startlon": -87.9528,
-        "endlat": 30.8502,
-        "endlon": -87.9142,
-        "length": 3.083,
-        "width": 0,
+        "event_id": "Briar Creek",
+        "stormdate": 1787259060000,
+        "starttime": 1787259060000,
+        "endtime": 1787259720000,
+        "startlat": 30.8187,
+        "startlon": -87.952,
+        "endlat": 30.8447,
+        "endlon": -87.9154,
+        "length": 2.86,
+        "width": 150,
         "injuries": 0,
         "fatalities": 0,
-        "efscale": "EFU",
-        "efnum": -99,
+        "efscale": "EF0",
+        "efnum": 0,
         "qc": "Y",
-        "maxwind": -99,
+        "maxwind": 70,
         "globalid": "{00D7127B-1334-46E3-9A0F-D02E5EE9FEBA}",
         "cropdamage": 0,
         "propdamage": 0,
-        "edit_time": null,
+        "edit_time": 1790139264000,
         "created_date": 1787493244000,
-        "last_edited_date": 1787494757000,
-        "comments": "Estimated path of the Mobile River Delta tornado. The area is completely inaccessible to ground survey crews and will rely on high resolution satellite imagery to estimate the true path of the tornado. Times and track are estimated via radar tornado debris signature and video via social media.",
-        "st_length(shape)": 0.0489939071638186
+        "last_edited_date": 1790139266000,
+        "comments": "Review of available Sentinel 2, Planet, and NISAR satellite imagery along with public/media provided video helped to determine the track, intensity, and width of the tornado that occurred in the Mobile River Delta. It was determined an EF0 with peak winds of 70mph and width around 150 yards occurred in the river delta just west of Briar Creek and south of the Mobile River causing minor tree damage along its track. The tornado crossed the far northern portion of the Mobile-Tensaw Cut-off Channel generally moving east-northeast before turning towards the northeast after crossing Briar Creek. It continued northeast across Big Lizard Creek near the railroad crossing adjacent to the Tensaw River, lifting at the river. Radar and satellite imagery support this being the end point of the tornado.",
+        "st_length(shape)": 0.04558261669960319
       }
     },
     {
